@@ -1,0 +1,644 @@
+//
+//  SneakyController.m
+//  SneakyBastard
+//
+//  This file is part of SneakyBastard
+
+//	This program is free software; you can redistribute it and/or
+//	modify it under the terms of the GNU General Public License
+//	as published by the Free Software Foundation; either version 2
+//	of the License, or (at your option) any later version.
+
+//	This program is distributed in the hope that it will be useful,
+//	but WITHOUT ANY WARRANTY; without even the implied warranty of
+//	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//	GNU General Public License for more details.
+
+//	You should have received a copy of the GNU General Public License
+//	along with this program; if not, write to the Free Software
+//	Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+
+//  Created by Krist Menina on 02/06/10.
+//  Copyright 2010 Hello Wala Studios. All rights reserved.
+//
+
+#import "Controller.h"
+
+@interface Controller (Private)
+- (void)refreshTable;
+- (BOOL)isConnected;
+- (BOOL)isAvailable:(NSString *)url;
+- (NSTimer *)timer;
+- (void)setTimer:(NSTimer *)value;
+- (void)timerIncrement:(NSTimer *)aTimer;
+- (void)loadSnapshotsStart:(NSString *)rpath;
+- (void)sendMailStart:(id)sender;
+- (void)startSneaky:(NSString *)fpath;
+- (BOOL) useSmtpSettings;
+- (void)alertTimeOut:(NSTimer *)mTimer;
+@end
+
+#define	TIMEOUT 30
+#define CANCELTIMEOUT 200
+
+@implementation Controller
+
+- (id) init
+{
+	NSLog(@"init");
+	
+	self = [super init];
+	
+	NSFileManager *fm = [NSFileManager defaultManager];
+	snapCount = 0;
+	sbDir = @"temp/";
+	path = NSHomeDirectory();
+	fullPath =  [NSString stringWithFormat:@"%@/%@",path,sbDir];	
+	[fm changeCurrentDirectoryPath:path]; 
+	BOOL isDir,b;
+	b = [fm fileExistsAtPath:sbDir isDirectory:&isDir];
+
+	if(b){
+		tableRecord = [[NSMutableArray alloc] init];
+		queue = [[NSOperationQueue alloc] init];
+	}else{
+		BOOL dirOk;
+		NSString *username = NSUserName();
+		NSMutableDictionary *attr = [NSMutableDictionary dictionary]; 
+		[attr setObject:username forKey:NSFileOwnerAccountName]; 
+		[attr setObject:@"staff" forKey:NSFileGroupOwnerAccountName]; 
+		[attr setObject:[NSNumber numberWithInt:480] forKey:NSFilePosixPermissions];
+		
+		dirOk = [fm createDirectoryAtPath:sbDir 
+							   attributes:attr];
+
+	}
+	
+
+	// retain or use getter/setter
+	[sbDir retain];
+	[path retain];
+	[fullPath retain];
+	
+	NSNotificationCenter *center = [[NSWorkspace sharedWorkspace] notificationCenter];
+	[center addObserver:self 
+			   selector:@selector(machineDidWake:)
+				   name:NSWorkspaceDidWakeNotification 
+				 object:NULL];
+	[center addObserver:self 
+			   selector:@selector(machineWillSleep:)
+				   name:NSWorkspaceWillSleepNotification 
+				 object:NULL];	
+	
+	// observe screensaver stop event
+    [[NSDistributedNotificationCenter defaultCenter] addObserver:self
+			selector:@selector(screenSaverDidStop:)
+			name:@"com.apple.screensaver.didstop" object:nil];
+	
+	//NSDictionary *defaults = [NSDictionary dictionaryWithObject:[NSNumber numberWithBool:NO] forKey:@"includeNetwork"];
+	NSDictionary *defaults = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:NO],@"includeNetwork",[NSNumber numberWithInt:120],@"snapshotDelay",[NSNumber numberWithBool:YES],@"isDelayOnlyWakeup",[NSNumber numberWithInt:0],@"alertLevel",nil];
+	[[NSUserDefaults standardUserDefaults] registerDefaults: defaults];	
+	
+	return self;
+}
+
+- (void)awakeFromNib
+{
+
+	NSLog(@"awake from nib");
+	NSLog(@"network? %d",[[NSUserDefaults standardUserDefaults] boolForKey:@"includeNetwork"]);	
+	NSLog(@"delay: %d",[[NSUserDefaults standardUserDefaults] integerForKey:@"snapshotDelay"]);
+	NSLog(@"do i delay %d",[[NSUserDefaults standardUserDefaults] boolForKey:@"isDelayOnlyWakeup"]);
+	NSLog(@"alert level %d",[[NSUserDefaults standardUserDefaults] boolForKey:@"alertLevel"]);
+	//int delay = [[NSUserDefaults standardUserDefaults] integerForKey:@"snapshotDelay"];
+	/*if( [txtDelay stringValue] == nil){
+		[[NSUserDefaults standardUserDefaults] setInteger:120 forKey:@"snapshotDelay"];
+
+	}*/
+	//[checkOnlyonwakeup setEnabled:false];
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(anyThread_handleLoadedSnapshots:) name:LoadSnapshotsFinish object:nil];	
+	if([[NSUserDefaults standardUserDefaults] boolForKey:@"isDelayOnlyWakeup"]){
+		[self startSneaky:fullPath];		
+	}else{
+		[self performSelector: @selector(startSneaky:)
+				   withObject:fullPath
+				   afterDelay:[[NSUserDefaults standardUserDefaults] integerForKey:@"snapshotDelay"]];			
+		
+	}
+	//[self startSneaky:fullPath];
+	
+}
+
+
+- (NSApplication *)application
+{
+	
+
+	return NSApp;
+}
+
+- (void) startSneaky:(NSString *)fpath
+{
+	NSLog(@"start sneaky");
+	
+	//[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(anyThread_handleNoSnapshots:) name:NoSnapshotsFound object:nil];		
+	[self loadSnapshotsStart:fullPath];	
+	[self setTimer: [NSTimer scheduledTimerWithTimeInterval: 1.0
+													 target: self
+												   selector: @selector(checkProgress:)
+												   userInfo: nil
+													repeats: YES]];	
+	[self quickSnap:self];		
+	
+}
+
+- (void) machineWillSleep:(NSNotification *)notification{
+	NSLog(@"going to sleep %@",timer);
+	[NSObject cancelPreviousPerformRequestsWithTarget: self
+											 selector:@selector(startSneaky:)
+											   object:fullPath];
+	[queue cancelAllOperations];	
+	[timer invalidate];
+	[self setTimer:nil];	
+}
+
+- (void) machineDidWake:(NSNotification *)notification{
+	NSLog(@"sneaky wake up! %d seconds",[[NSUserDefaults standardUserDefaults] integerForKey:@"snapshotDelay"]);
+
+	//[self startSneaky:fullPath];
+	[self performSelector: @selector(startSneaky:)
+				withObject:fullPath
+				afterDelay:[[NSUserDefaults standardUserDefaults] integerForKey:@"snapshotDelay"]];
+}
+
+- (void) screenSaverDidStop:(NSNotification *)notification{
+	NSLog(@"back from idle time %d",[[NSUserDefaults standardUserDefaults] integerForKey:@"alertLevel"]);
+	if([[NSUserDefaults standardUserDefaults] integerForKey:@"alertLevel"] == 1){
+		
+		[self performSelector: @selector(startSneaky:)
+				   withObject:fullPath
+				   afterDelay:([[NSUserDefaults standardUserDefaults] boolForKey:@"isDelayOnlyWakeup"]) ? 0.5 : [[NSUserDefaults standardUserDefaults] integerForKey:@"snapshotDelay"]];		
+	}
+}
+
+- (void)dealloc
+{
+	NSLog(@"dealloc");
+	[[NSStatusBar systemStatusBar] removeStatusItem:_statusItem];
+	[_statusItem release];
+	[timer release];
+	[queue release];
+	queue = nil;
+	[sneakyCam release];
+	[super dealloc];
+}
+
+- (void)loadSnapshotsStart:(NSString *)rpath
+{
+	
+	NSLog(@"load snap start");
+	[tableRecord removeAllObjects];
+
+	
+	[queue cancelAllOperations];
+	
+	// start the GetPathsOperation with the root path to start the search
+	GetSnapshots* getSnaps = [[GetSnapshots alloc] initWithRootPath:rpath operationClass:nil queue:queue];
+	
+	[queue addOperation: getSnaps];	// this will start the "GetPathsOperation"
+	[getSnaps release];	
+
+	
+}
+
+- (void)anyThread_handleLoadedSnapshots:(NSNotification *)note
+{
+	// update our table view on the main thread
+	NSLog(@"Loaded snapshots");	
+	//[[NSNotificationCenter defaultCenter] removeObserver:self name:LoadSnapshotsFinish object:nil];	
+	// apparently you don't need to remove observer
+	[self performSelectorOnMainThread:@selector(updateSnapTable:) withObject:note waitUntilDone:NO];
+
+
+}
+
+- (void)anyThread_handleNoSnapshots:(NSNotification *)note
+{
+	NSLog(@"no snapshots");
+	//[[NSNotificationCenter defaultCenter] removeObserver:self name:NoSnapshotsFound object:nil];
+	//[self performSelectorOnMainThread:@selector(updateSnapTable:) withObject:nil waitUntilDone:NO];
+}
+
+- (void)sendMailStart:(id)sender
+{
+	NSLog(@"attempting to send mail ");
+	NSLog(@"%d",[self isConnected]);
+	
+	if([tableRecord count] <= 0){
+		NSLog(@"Nothing to send");
+	}else if(![self useSmtpSettings]){
+		NSLog(@"incomplete smtp settings");
+
+	}else if(![self isConnected]){
+		NSLog(@"network is not connected");
+	}else{
+		NSLog(@"credentials complete");
+		
+		// setup smtp credentials
+		NSMutableDictionary *authInfo = [NSMutableDictionary dictionary];
+		[authInfo setObject:[[NSUserDefaults standardUserDefaults] stringForKey:@"smtpUsername"] forKey:EDSMTPUserName];
+		[authInfo setObject:[[NSUserDefaults standardUserDefaults] stringForKey:@"smtpPassword"] forKey:EDSMTPPassword];
+		
+		// setup email header
+		NSMutableDictionary *headerFields = [NSMutableDictionary dictionary];
+		[headerFields setObject:[[NSUserDefaults standardUserDefaults] stringForKey:@"emailFrom"] forKey:@"From"]; 
+		[headerFields setObject:[[NSUserDefaults standardUserDefaults] stringForKey:@"emailAddress"] forKey:@"To"]; 	
+		[headerFields setObject:[[NSUserDefaults standardUserDefaults] stringForKey:@"emailSubject"] forKey:@"Subject"];
+		
+		// setup attachments
+		id item = NULL;
+		NSEnumerator* iterator = [tableRecord objectEnumerator]; 
+		NSMutableArray* attachmentList = [NSMutableArray array];
+		NSMutableString* imgPath;
+		NSMutableArray* ipAddress = [NSMutableArray array];
+		
+		while (item=[iterator nextObject]) 
+		{
+			imgPath = [NSString stringWithFormat:@"%@/%@",fullPath,[item valueForKey:@"name"]];
+			NSData *imgData = [[NSData alloc] initWithContentsOfFile:imgPath];
+			[attachmentList addObject:[EDObjectPair pairWithObjects:imgData:[imgPath lastPathComponent]]];
+		}
+		
+		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(anyThread_handleEmailSent:) name:EmailSentSuccess object:nil];
+		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(anyThread_handleEmailSentFail:) name:EmailSentFail object:nil];
+		
+		[queue cancelAllOperations];
+		NSLog(@"sending mail");
+		
+		if([[NSUserDefaults standardUserDefaults] boolForKey:@"includeNetwork"] == true){
+			NSEnumerator *addresses = [[[NSHost currentHost] addresses] objectEnumerator];
+			NSString *address;
+			while (address = [addresses nextObject])
+				[ipAddress addObject:address];
+			
+
+			NSError **outError;
+			//url = [NSURL URLWithString:@"http://www.whatismyip.org"];
+			NSURL *url = [NSURL URLWithString:@"http://sneakybastard.co.tv/getip.php"];
+			
+		
+			//if([self isAvailable:@"http://sneakybastard.co.tv/getip.php"]){ 
+			if(url != nil){
+				NSString *wanIP = [NSString stringWithContentsOfURL:url encoding:NSUTF8StringEncoding error:outError];		
+				[ipAddress addObject:wanIP];
+			}else{
+				[ipAddress addObject:@"WAN IP NOT AVAILABLE"];
+			}
+			NSArray *hostnames = [[NSHost currentHost] names];
+			[ipAddress addObject:[hostnames componentsJoinedByString:@","]];
+			
+			NSLog(@"machine id: %@",ipAddress);
+		}else{
+			[ipAddress addObject:@"Sneaky Bastard version 0.1.6"];
+		}
+		
+		secs = to = 0;
+		[timer invalidate];
+		[self setTimer: [NSTimer scheduledTimerWithTimeInterval: 1.0
+														 target: self
+													   selector: @selector(timerIncrement:)
+													   userInfo: nil
+														repeats: YES]];			
+		MailOperation* mailSnaps = [[MailOperation alloc] initWithRootPath:fullPath queue:queue attachList:attachmentList header:headerFields auth:authInfo ipAddr:ipAddress];
+		
+		[queue addOperation: mailSnaps];	
+
+
+	}
+}
+
+
+
+- (void)anyThread_handleEmailSent:(NSNotification *)note
+{
+	NSLog(@"Email SentOK ");
+	[[NSNotificationCenter defaultCenter] removeObserver:self name:EmailSentSuccess object:nil];
+	[[NSNotificationCenter defaultCenter] removeObserver:self name:EmailSentFail object:nil];
+	[self performSelectorOnMainThread:@selector(deleteSnapshots) withObject:nil waitUntilDone:NO];
+}
+
+- (void)anyThread_handleEmailSentFail:(NSNotification *)note
+{
+	NSLog(@"Email Sent Failed");
+	[[NSNotificationCenter defaultCenter] removeObserver:self name:EmailSentSuccess object:nil];
+	[[NSNotificationCenter defaultCenter] removeObserver:self name:EmailSentFail object:nil];
+	NSLog(@"mail sending FAIL");
+	[self performSelectorOnMainThread:@selector(alertSendFail) withObject:nil waitUntilDone:NO];
+}
+
+- (BOOL) useSmtpSettings
+{
+	//[[NSUserDefaults standardUserDefaults] boolForKey:@"overwriteSnapshot"]
+	return ([[NSUserDefaults standardUserDefaults] stringForKey:@"smtpURL"] != nil && [[NSUserDefaults standardUserDefaults] stringForKey:@"smtpPort"] != nil && [[NSUserDefaults standardUserDefaults] stringForKey:@"smtpUsername"] != nil && [[NSUserDefaults standardUserDefaults] stringForKey:@"smtpPassword"] != nil && [[NSUserDefaults standardUserDefaults] stringForKey:@"emailAddress"] != nil && [[NSUserDefaults standardUserDefaults] stringForKey:@"emailSubject"] != nil );
+}
+
+
+- (void)updateSnapTable:(NSNotification *)note
+{
+	NSLog(@"update table %@",note);
+	NSLog(@"operations: %d",[[queue operations] count]);	
+	if(note != nil){
+		NSLog(@"update table add");
+		[tableRecord addObject:[note userInfo]];
+		//[self performSelectorOnMainThread:@selector(sendMailStart:) withObject:nil waitUntilDone:NO];
+	}
+	/*[self setTimer: [NSTimer scheduledTimerWithTimeInterval: 1.0
+	 target: self
+	 selector: @selector(checkProgress:)
+	 userInfo: nil
+	 repeats: YES]];	*/
+	//[self refreshTable];
+}
+
+- (void)refreshTable
+{
+	NSLog(@"refresh Table");
+	int total = [tableRecord count];
+	if(total){
+		NSLog(@"%d snapshots found",[tableRecord count]);
+	}else{
+		NSLog(@"No snapshots found");
+	}
+	
+	//[self stopTimer];
+	
+}
+
+
+- (NSTimer *)timer
+{
+    return [[timer retain] autorelease];
+}
+
+
+- (void)setTimer:(NSTimer *)value
+{
+    if (timer != value)
+	{
+        [timer release];
+        timer = [value retain];
+    }
+}
+
+
+-(void)checkProgress:(NSTimer *)t
+{
+	NSLog(@"check progress %d",[[queue operations] count]);
+	if([[queue operations] count] == 0)
+	{
+		NSLog(@"send mail nowwwwww--------------> %d",[tableRecord count]);
+		[t invalidate];
+		[self setTimer:nil];
+		[self performSelectorOnMainThread:@selector(sendMailStart:) withObject:nil waitUntilDone:NO];
+		//[self sendMailStart:nil];
+	}
+}
+
+- (void)timerIncrement:(NSTimer *)aTimer
+{
+
+	NSLog(@"secs: %d %d",secs,[self isConnected]);
+	secs++;
+	if(![self isConnected]){
+		to++;
+		if(to >= TIMEOUT){
+			[self alertTimeOut:aTimer];
+		}
+	}else{
+		to = 0;
+		if(secs >= CANCELTIMEOUT){
+			[self alertTimeOut:aTimer];
+		}
+	}
+
+}
+
+- (void)alertSendFail
+{
+	[timer invalidate];
+	[self setTimer:nil];
+	//[self stopTimer];	
+}
+
+- (void)alertTimeOut:(NSTimer *)mTimer
+{
+
+	
+	[mTimer invalidate];
+	[self setTimer:nil];
+	/*NSAlert *alert = [NSAlert alertWithMessageText: @"Connection Timeout"
+									 defaultButton: @"OK"
+								   alternateButton: nil
+									   otherButton: nil
+						 informativeTextWithFormat: @"Network Connection timed out"];
+	[alert beginSheetModalForWindow: [self window] modalDelegate:self didEndSelector:@selector(alertDidEnd:returnCode:contextInfo:) contextInfo:nil];	*/
+
+	NSLog(@"operations running: %d",[[queue operations] count]);
+	[queue cancelAllOperations];	// find a way to cancel running operation here!!!
+	//[queue waitUntilAllOperationsAreFinished]; //indefinitely hangs
+	NSLog(@"Connection Timeout");
+	
+}
+
+- (void)deleteSnapshots
+{
+	//[self stopTimer];
+	[timer invalidate];
+	[self setTimer:nil];
+	
+	id item = NULL;
+	NSEnumerator* iterator = [tableRecord objectEnumerator]; 	
+	NSFileManager* fileManager = [NSFileManager defaultManager];
+	NSMutableString* imgPath;
+	//int total = [self numberOfRowsInTableView:tableView];
+
+	while (item=[iterator nextObject]) 
+	{
+		imgPath = [NSString stringWithFormat:@"%@%@",fullPath,[item valueForKey:@"name"]];
+		[fileManager removeItemAtPath:imgPath error:NULL];
+		
+		NSLog(@"delete --> %@",imgPath);
+	}
+	[tableRecord removeAllObjects];
+
+	
+}
+
+
+- (void) actionQuit:(id)sender {
+	[NSApp terminate:sender];
+}
+
+
+- (void) quickSnap:(id)sender{
+	
+	NSString *fn;
+	
+	if([[NSUserDefaults standardUserDefaults] boolForKey:@"overwriteSnapshot"] == 1){
+		NSDate *now = [NSDate date];
+	
+		NSDateFormatter* formatter = [[[NSDateFormatter alloc] init] autorelease];
+		[formatter setDateFormat:@"MMddYY_HHmmss"];
+		NSString* formattedDateString;
+		formattedDateString = [formatter stringFromDate:now];		
+		
+		fn = [NSString stringWithFormat:@"bbb_%@.jpg",formattedDateString];
+	} else {
+		fn = @"bbb.jpg";
+		
+	}
+	sneakyCam = [[SneakyCamera alloc] init] ;
+	[sneakyCam setImgPath:[path stringByAppendingFormat:@"/%@",sbDir]];
+	[sneakyCam setImgName:fn];
+	
+}
+
+
+- (BOOL)isConnected
+{
+    Boolean success;
+    BOOL okay;
+    SCNetworkConnectionFlags status;
+	
+    success = SCNetworkCheckReachabilityByName("www.apple.com", 
+											   &status);
+	
+    okay = success && (status & kSCNetworkFlagsReachable) && !(status & 
+															   kSCNetworkFlagsConnectionRequired);
+	
+    if (!okay)
+    {
+        /*success = SCNetworkCheckReachabilityByName("www.w3.org", 
+												   &status);
+		
+        okay = success && (status & kSCNetworkFlagsReachable) && 
+		!(status & kSCNetworkFlagsConnectionRequired);*/
+		NSLog(@"No net");
+    }else{
+		NSLog(@"Net OK");
+	}
+	
+	
+    return okay;
+}
+
+// need a c string datatype
+- (BOOL)isAvailable:(NSString *)url
+{
+	Boolean success;
+    BOOL okay;
+    SCNetworkConnectionFlags status;
+	
+    success = SCNetworkCheckReachabilityByName([url UTF8String], 
+											   &status);
+	
+    okay = success && (status & kSCNetworkFlagsReachable) && !(status & 
+															   kSCNetworkFlagsConnectionRequired);
+	
+	
+    return okay;
+}
+
+- (id)statusItem
+{
+	if (_statusItem == nil)
+	{
+		//NSMenu		*menu;
+		//NSMenuItem *bmenu;
+		NSImage *img;
+		
+
+		img = [NSImage imageNamed:@"smile"];
+		_statusItem = [[[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength] retain];
+		[_statusItem setImage:img];
+		[_statusItem setHighlightMode:YES];
+		[_statusItem setEnabled:YES];
+		
+
+		[_statusItem setMenu:menuItemMenu];
+		
+		[img release];
+		//[menu release];		
+
+		
+	}
+	return _statusItem;
+}
+
+
+- (IBAction) setOverwriteSnapshot:(id)sender{
+	
+	NSLog(@"overwrite snapshot %d",[[NSUserDefaults standardUserDefaults] boolForKey:@"overwriteSnapshot"]);
+	
+}
+
+- (NSString *)versionString
+{
+    NSBundle *mainBundle = [NSBundle mainBundle];
+    NSDictionary *infoDict = [mainBundle infoDictionary];
+	
+    //NSString *mainString = [infoDict valueForKey:@"CFBundleShortVersionString"];
+    NSString *subString = [infoDict valueForKey:@"CFBundleVersion"];
+    //return [NSString stringWithFormat:@"Version %@ (%@)", mainString, subString];
+	return [NSString stringWithFormat:@"Version %@", subString];
+}
+
+- (NSString*)copyrightString
+{
+    return @"Copyright © 2010 \nKrist Menina\nkrist@hellowala.org";
+}
+- (float)appNameLabelFontSize
+{
+    return 16.0;
+}
+
+- (float)prefLevelsFontSize
+{
+	return 10.0;
+}
+
+
+- (IBAction) aboutWindowController: (id) sender
+{
+	[aboutWindow setLevel:NSStatusWindowLevel];
+	[aboutWindow makeKeyAndOrderFront:nil];
+	[aboutWindow center];
+	//[versionText setStringValue:[self printVersion]];	
+}
+
+- (IBAction) prefWindowController: (id) sender
+{
+	[prefWindow setLevel:NSStatusWindowLevel];
+	[prefWindow makeKeyAndOrderFront:nil];
+	[prefWindow center];
+
+	//[versionText setStringValue:[self printVersion]];	
+}
+
+- (IBAction) prefTestEmail:(id)sender
+{
+	//NSLog(@"snapshots %@",[tableRecord count]);
+	//NSWindow *prefWindow;
+	NSAlert *alert = [NSAlert alertWithMessageText: @"Sorry, not yet implemented"
+									 defaultButton: @"OK"
+								   alternateButton: nil
+									   otherButton: nil
+						 informativeTextWithFormat: @""];
+	[alert beginSheetModalForWindow: prefWindow modalDelegate:self didEndSelector:@selector(alertDidEnd:returnCode:contextInfo:) contextInfo:nil];		
+}
+
+-(void)alertDidEnd:(NSAlert *)alert returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo
+{
+	NSLog(@"alert did end");
+}
+@end
