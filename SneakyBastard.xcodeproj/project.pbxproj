@@ -7,349 +7,557 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1DDD58160DA1D0A300B32029 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DDD58140DA1D0A300B32029 /* MainMenu.xib */; };
-		5B317A5510EEE0C200E8EE3E /* GetSnapshots.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B317A5210EEE0C200E8EE3E /* GetSnapshots.m */; };
-		5B317A5610EEE0C200E8EE3E /* MailOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B317A5310EEE0C200E8EE3E /* MailOperation.m */; };
-		5B45B98C111BFAA80094FD46 /* EDMessage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B45B98A111BFAA80094FD46 /* EDMessage.framework */; };
-		5B45B98D111BFAA80094FD46 /* EDCommon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B45B98B111BFAA80094FD46 /* EDCommon.framework */; };
-		5B45B9E8111BFAB90094FD46 /* EDMessage.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5B45B98A111BFAA80094FD46 /* EDMessage.framework */; };
-		5B45B9E9111BFAB90094FD46 /* EDCommon.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5B45B98B111BFAA80094FD46 /* EDCommon.framework */; };
-		5B6D39C610F0EF750073A795 /* sbastard.icns in Resources */ = {isa = PBXBuildFile; fileRef = 5B6D39C510F0EF750073A795 /* sbastard.icns */; };
-		5B75FB4C105D52500091DAA9 /* SneakyCamera.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B75FB4A105D52500091DAA9 /* SneakyCamera.m */; };
-		5BAB10B8105D35C2000484BC /* Controller.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BAB10B5105D35C2000484BC /* Controller.m */; };
-		5BAB10C4105D3609000484BC /* smile.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 5BAB10C3105D3609000484BC /* smile.tiff */; };
-		5BAB10C6105D3621000484BC /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BAB10C5105D3621000484BC /* SystemConfiguration.framework */; };
-		5BAB10C8105D3630000484BC /* QTKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BAB10C7105D3630000484BC /* QTKit.framework */; };
-		5BAB10CA105D363A000484BC /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BAB10C9105D363A000484BC /* QuartzCore.framework */; };
-		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
-		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
-		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
+		5B47EAE71360462900095307 /* SneakyBastard.app in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5BFD2DC3135FC9C000E35469 /* SneakyBastard.app */; };
+		5BFD2DE9135FCA2700E35469 /* EDCommon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BFD2D50135FC95F00E35469 /* EDCommon.framework */; };
+		5BFD2DEA135FCA2700E35469 /* EDMessage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BFD2D51135FC95F00E35469 /* EDMessage.framework */; };
+		5BFD2DED135FCA3000E35469 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7ADFEA557BF11CA2CBB /* Cocoa.framework */; };
+		5BFD2E62135FCAB400E35469 /* QTKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BFD2DF2135FCA9D00E35469 /* QTKit.framework */; };
+		5BFD2E63135FCAB400E35469 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BFD2DF4135FCA9D00E35469 /* QuartzCore.framework */; };
+		5BFD2E64135FCAB400E35469 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BFD2DF6135FCA9D00E35469 /* SystemConfiguration.framework */; };
+		5BFD2EA4135FCAFE00E35469 /* Controller.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BFD2DD8135FCA0700E35469 /* Controller.m */; };
+		5BFD2EA5135FCAFE00E35469 /* GetSnapshots.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BFD2DDA135FCA0700E35469 /* GetSnapshots.m */; };
+		5BFD2EA6135FCAFE00E35469 /* MailOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BFD2DDC135FCA0700E35469 /* MailOperation.m */; };
+		5BFD2EA7135FCAFE00E35469 /* SneakyCamera.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BFD2DDE135FCA0700E35469 /* SneakyCamera.m */; };
+		5BFD2EA8135FCAFE00E35469 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BFD2EA0135FCADF00E35469 /* main.m */; };
+		5BFD2EAA135FCB2F00E35469 /* EDCommon.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5BFD2D50135FC95F00E35469 /* EDCommon.framework */; };
+		5BFD2EAB135FCB2F00E35469 /* EDMessage.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5BFD2D51135FC95F00E35469 /* EDMessage.framework */; };
+		5BFD2EB6135FCC0200E35469 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5BFD2EB4135FCC0200E35469 /* MainMenu.xib */; };
+		5BFD2EB7135FCC2C00E35469 /* sbastard.icns in Resources */ = {isa = PBXBuildFile; fileRef = 5BFD2DEE135FCA4E00E35469 /* sbastard.icns */; };
+		5BFD2EB8135FCC2C00E35469 /* smile.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 5BFD2DF0135FCA5200E35469 /* smile.tiff */; };
+		5BFD2EB9135FCC2C00E35469 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8D202CF70486D31800D8A456 /* Info.plist */; };
+		8D202CEA0486D31800D8A456 /* SneakyPreferences_Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 32DBCFA20370C41700C91783 /* SneakyPreferences_Prefix.pch */; };
+		8D202CEB0486D31800D8A456 /* SneakyPreferencesPref.h in Headers */ = {isa = PBXBuildFile; fileRef = F506C03C013D9D7901CA16C8 /* SneakyPreferencesPref.h */; };
+		8D202CED0486D31800D8A456 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C167DFE841241C02AAC07 /* InfoPlist.strings */; };
+		8D202CEE0486D31800D8A456 /* SneakyPreferencesPref.tiff in Resources */ = {isa = PBXBuildFile; fileRef = F506C040013D9D8001CA16C8 /* SneakyPreferencesPref.tiff */; };
+		8D202CEF0486D31800D8A456 /* SneakyPreferencesPref.xib in Resources */ = {isa = PBXBuildFile; fileRef = F506C042013D9D8C01CA16C8 /* SneakyPreferencesPref.xib */; };
+		8D202CF10486D31800D8A456 /* SneakyPreferencesPref.m in Sources */ = {isa = PBXBuildFile; fileRef = F506C03D013D9D7901CA16C8 /* SneakyPreferencesPref.m */; };
+		8D202CF30486D31800D8A456 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7ADFEA557BF11CA2CBB /* Cocoa.framework */; };
+		8D202CF40486D31800D8A456 /* PreferencePanes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F506C035013D953901CA16C8 /* PreferencePanes.framework */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		5B47EAA61360455700095307 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 089C1669FE841209C02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5BFD2DC2135FC9C000E35469;
+			remoteInfo = SneakyBastard;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXCopyFilesBuildPhase section */
-		5BB7C0D21119D7B800C7689A /* CopyFiles */ = {
+		5B47EAE61360462500095307 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 7;
+			files = (
+				5B47EAE71360462900095307 /* SneakyBastard.app in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5BFD2EB3135FCB3800E35469 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				5B45B9E8111BFAB90094FD46 /* EDMessage.framework in CopyFiles */,
-				5B45B9E9111BFAB90094FD46 /* EDCommon.framework in CopyFiles */,
+				5BFD2EAA135FCB2F00E35469 /* EDCommon.framework in CopyFiles */,
+				5BFD2EAB135FCB2F00E35469 /* EDMessage.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		089C165DFE840E0CC02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
-		13E42FB307B3F0F600E4EEF1 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
-		1DDD58150DA1D0A300B32029 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/MainMenu.xib; sourceTree = "<group>"; };
-		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
-		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
-		32CA4F630368D1EE00C91783 /* SneakyBastard_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SneakyBastard_Prefix.pch; sourceTree = "<group>"; };
-		5B317A5110EEE0C200E8EE3E /* MailOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MailOperation.h; sourceTree = "<group>"; };
-		5B317A5210EEE0C200E8EE3E /* GetSnapshots.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GetSnapshots.m; sourceTree = "<group>"; };
-		5B317A5310EEE0C200E8EE3E /* MailOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MailOperation.m; sourceTree = "<group>"; };
-		5B317A5410EEE0C200E8EE3E /* GetSnapshots.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GetSnapshots.h; sourceTree = "<group>"; };
-		5B45B98A111BFAA80094FD46 /* EDMessage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = EDMessage.framework; sourceTree = "<group>"; };
-		5B45B98B111BFAA80094FD46 /* EDCommon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = EDCommon.framework; sourceTree = "<group>"; };
-		5B6D39C510F0EF750073A795 /* sbastard.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = sbastard.icns; sourceTree = "<group>"; };
-		5B75FB4A105D52500091DAA9 /* SneakyCamera.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SneakyCamera.m; sourceTree = "<group>"; };
-		5B75FB4B105D52500091DAA9 /* SneakyCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SneakyCamera.h; sourceTree = "<group>"; };
-		5BAB10B3105D35C2000484BC /* Controller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Controller.h; sourceTree = "<group>"; };
-		5BAB10B5105D35C2000484BC /* Controller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Controller.m; sourceTree = "<group>"; };
-		5BAB10C3105D3609000484BC /* smile.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = smile.tiff; sourceTree = "<group>"; };
-		5BAB10C5105D3621000484BC /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = /System/Library/Frameworks/SystemConfiguration.framework; sourceTree = "<absolute>"; };
-		5BAB10C7105D3630000484BC /* QTKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QTKit.framework; path = /System/Library/Frameworks/QTKit.framework; sourceTree = "<absolute>"; };
-		5BAB10C9105D363A000484BC /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = /System/Library/Frameworks/QuartzCore.framework; sourceTree = "<absolute>"; };
-		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		8D1107320486CEB800E47090 /* SneakyBastard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SneakyBastard.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		089C1672FE841209C02AAC07 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
+		089C167EFE841241C02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		089C167FFE841241C02AAC07 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
+		1058C7ADFEA557BF11CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
+		32DBCFA20370C41700C91783 /* SneakyPreferences_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SneakyPreferences_Prefix.pch; sourceTree = "<group>"; };
+		5BFD2D50135FC95F00E35469 /* EDCommon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = EDCommon.framework; sourceTree = "<group>"; };
+		5BFD2D51135FC95F00E35469 /* EDMessage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = EDMessage.framework; sourceTree = "<group>"; };
+		5BFD2DC3135FC9C000E35469 /* SneakyBastard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SneakyBastard.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		5BFD2DC5135FC9C000E35469 /* SneakyBastard-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SneakyBastard-Info.plist"; sourceTree = "<group>"; };
+		5BFD2DD7135FCA0700E35469 /* Controller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Controller.h; sourceTree = "<group>"; };
+		5BFD2DD8135FCA0700E35469 /* Controller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Controller.m; sourceTree = "<group>"; };
+		5BFD2DD9135FCA0700E35469 /* GetSnapshots.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GetSnapshots.h; sourceTree = "<group>"; };
+		5BFD2DDA135FCA0700E35469 /* GetSnapshots.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GetSnapshots.m; sourceTree = "<group>"; };
+		5BFD2DDB135FCA0700E35469 /* MailOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MailOperation.h; sourceTree = "<group>"; };
+		5BFD2DDC135FCA0700E35469 /* MailOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MailOperation.m; sourceTree = "<group>"; };
+		5BFD2DDD135FCA0700E35469 /* SneakyCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SneakyCamera.h; sourceTree = "<group>"; };
+		5BFD2DDE135FCA0700E35469 /* SneakyCamera.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SneakyCamera.m; sourceTree = "<group>"; };
+		5BFD2DEE135FCA4E00E35469 /* sbastard.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = sbastard.icns; sourceTree = "<group>"; };
+		5BFD2DF0135FCA5200E35469 /* smile.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = smile.tiff; sourceTree = "<group>"; };
+		5BFD2DF2135FCA9D00E35469 /* QTKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QTKit.framework; path = System/Library/Frameworks/QTKit.framework; sourceTree = SDKROOT; };
+		5BFD2DF4135FCA9D00E35469 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		5BFD2DF6135FCA9D00E35469 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		5BFD2EA0135FCADF00E35469 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		5BFD2EB5135FCC0200E35469 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		8D202CF70486D31800D8A456 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		8D202CF80486D31800D8A456 /* SneakyBastard.prefPane */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SneakyBastard.prefPane; sourceTree = BUILT_PRODUCTS_DIR; };
+		F506C035013D953901CA16C8 /* PreferencePanes.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PreferencePanes.framework; path = /System/Library/Frameworks/PreferencePanes.framework; sourceTree = "<absolute>"; };
+		F506C03C013D9D7901CA16C8 /* SneakyPreferencesPref.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SneakyPreferencesPref.h; sourceTree = "<group>"; };
+		F506C03D013D9D7901CA16C8 /* SneakyPreferencesPref.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SneakyPreferencesPref.m; sourceTree = "<group>"; };
+		F506C040013D9D8001CA16C8 /* SneakyPreferencesPref.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = SneakyPreferencesPref.tiff; sourceTree = "<group>"; };
+		F506C043013D9D8C01CA16C8 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/SneakyPreferencesPref.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		8D11072E0486CEB800E47090 /* Frameworks */ = {
+		5BFD2DC1135FC9C000E35469 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
-				5BAB10C8105D3630000484BC /* QTKit.framework in Frameworks */,
-				5BAB10CA105D363A000484BC /* QuartzCore.framework in Frameworks */,
-				5BAB10C6105D3621000484BC /* SystemConfiguration.framework in Frameworks */,
-				5B45B98C111BFAA80094FD46 /* EDMessage.framework in Frameworks */,
-				5B45B98D111BFAA80094FD46 /* EDCommon.framework in Frameworks */,
+				5BFD2E62135FCAB400E35469 /* QTKit.framework in Frameworks */,
+				5BFD2E63135FCAB400E35469 /* QuartzCore.framework in Frameworks */,
+				5BFD2E64135FCAB400E35469 /* SystemConfiguration.framework in Frameworks */,
+				5BFD2DED135FCA3000E35469 /* Cocoa.framework in Frameworks */,
+				5BFD2DE9135FCA2700E35469 /* EDCommon.framework in Frameworks */,
+				5BFD2DEA135FCA2700E35469 /* EDMessage.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8D202CF20486D31800D8A456 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8D202CF30486D31800D8A456 /* Cocoa.framework in Frameworks */,
+				8D202CF40486D31800D8A456 /* PreferencePanes.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		080E96DDFE201D6D7F000001 /* Classes */ = {
+		089C166AFE841209C02AAC07 /* SneakyPreferences */ = {
 			isa = PBXGroup;
 			children = (
-				5B317A5110EEE0C200E8EE3E /* MailOperation.h */,
-				5B317A5310EEE0C200E8EE3E /* MailOperation.m */,
-				5B317A5410EEE0C200E8EE3E /* GetSnapshots.h */,
-				5B317A5210EEE0C200E8EE3E /* GetSnapshots.m */,
-				5B75FB4B105D52500091DAA9 /* SneakyCamera.h */,
-				5B75FB4A105D52500091DAA9 /* SneakyCamera.m */,
-				5BAB10B3105D35C2000484BC /* Controller.h */,
-				5BAB10B5105D35C2000484BC /* Controller.m */,
+				08FB77AFFE84173DC02AAC07 /* Classes */,
+				32DBCFA10370C40200C91783 /* Other Sources */,
+				089C167CFE841241C02AAC07 /* Resources */,
+				089C1671FE841209C02AAC07 /* Frameworks and Libraries */,
+				19C28FB8FE9D52D311CA2CBB /* Products */,
+				5BFD2DC5135FC9C000E35469 /* SneakyBastard-Info.plist */,
 			);
-			name = Classes;
+			name = SneakyPreferences;
 			sourceTree = "<group>";
 		};
-		1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */ = {
+		089C1671FE841209C02AAC07 /* Frameworks and Libraries */ = {
 			isa = PBXGroup;
 			children = (
-				5B45B98A111BFAA80094FD46 /* EDMessage.framework */,
-				5B45B98B111BFAA80094FD46 /* EDCommon.framework */,
-				1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */,
-				5BAB10C7105D3630000484BC /* QTKit.framework */,
-				5BAB10C9105D363A000484BC /* QuartzCore.framework */,
-				5BAB10C5105D3621000484BC /* SystemConfiguration.framework */,
+				1058C7ACFEA557BF11CA2CBB /* Linked Frameworks */,
+				1058C7AEFEA557BF11CA2CBB /* Other Frameworks */,
 			);
-			name = "Linked Frameworks";
+			name = "Frameworks and Libraries";
 			sourceTree = "<group>";
 		};
-		1058C7A2FEA54F0111CA2CBB /* Other Frameworks */ = {
+		089C167CFE841241C02AAC07 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				29B97324FDCFA39411CA2CEA /* AppKit.framework */,
-				13E42FB307B3F0F600E4EEF1 /* CoreData.framework */,
-				29B97325FDCFA39411CA2CEA /* Foundation.framework */,
-			);
-			name = "Other Frameworks";
-			sourceTree = "<group>";
-		};
-		19C28FACFE9D520D11CA2CBB /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				8D1107320486CEB800E47090 /* SneakyBastard.app */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		29B97314FDCFA39411CA2CEA /* SneakyBastard */ = {
-			isa = PBXGroup;
-			children = (
-				080E96DDFE201D6D7F000001 /* Classes */,
-				29B97315FDCFA39411CA2CEA /* Other Sources */,
-				29B97317FDCFA39411CA2CEA /* Resources */,
-				29B97323FDCFA39411CA2CEA /* Frameworks */,
-				19C28FACFE9D520D11CA2CBB /* Products */,
-			);
-			name = SneakyBastard;
-			sourceTree = "<group>";
-		};
-		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
-			isa = PBXGroup;
-			children = (
-				32CA4F630368D1EE00C91783 /* SneakyBastard_Prefix.pch */,
-				29B97316FDCFA39411CA2CEA /* main.m */,
-			);
-			name = "Other Sources";
-			sourceTree = "<group>";
-		};
-		29B97317FDCFA39411CA2CEA /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				5BAB10C3105D3609000484BC /* smile.tiff */,
-				8D1107310486CEB800E47090 /* Info.plist */,
-				5B6D39C510F0EF750073A795 /* sbastard.icns */,
-				089C165CFE840E0CC02AAC07 /* InfoPlist.strings */,
-				1DDD58140DA1D0A300B32029 /* MainMenu.xib */,
+				5BFD2EB4135FCC0200E35469 /* MainMenu.xib */,
+				5BFD2DEE135FCA4E00E35469 /* sbastard.icns */,
+				5BFD2DF0135FCA5200E35469 /* smile.tiff */,
+				8D202CF70486D31800D8A456 /* Info.plist */,
+				089C167DFE841241C02AAC07 /* InfoPlist.strings */,
+				F506C040013D9D8001CA16C8 /* SneakyPreferencesPref.tiff */,
+				F506C042013D9D8C01CA16C8 /* SneakyPreferencesPref.xib */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
 		};
-		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
+		08FB77AFFE84173DC02AAC07 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */,
-				1058C7A2FEA54F0111CA2CBB /* Other Frameworks */,
+				F506C03C013D9D7901CA16C8 /* SneakyPreferencesPref.h */,
+				F506C03D013D9D7901CA16C8 /* SneakyPreferencesPref.m */,
+				5BFD2DD7135FCA0700E35469 /* Controller.h */,
+				5BFD2DD8135FCA0700E35469 /* Controller.m */,
+				5BFD2DD9135FCA0700E35469 /* GetSnapshots.h */,
+				5BFD2DDA135FCA0700E35469 /* GetSnapshots.m */,
+				5BFD2DDB135FCA0700E35469 /* MailOperation.h */,
+				5BFD2DDC135FCA0700E35469 /* MailOperation.m */,
+				5BFD2DDD135FCA0700E35469 /* SneakyCamera.h */,
+				5BFD2DDE135FCA0700E35469 /* SneakyCamera.m */,
 			);
-			name = Frameworks;
+			name = Classes;
+			sourceTree = "<group>";
+		};
+		1058C7ACFEA557BF11CA2CBB /* Linked Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				5BFD2DF2135FCA9D00E35469 /* QTKit.framework */,
+				5BFD2DF4135FCA9D00E35469 /* QuartzCore.framework */,
+				5BFD2DF6135FCA9D00E35469 /* SystemConfiguration.framework */,
+				1058C7ADFEA557BF11CA2CBB /* Cocoa.framework */,
+				F506C035013D953901CA16C8 /* PreferencePanes.framework */,
+			);
+			name = "Linked Frameworks";
+			sourceTree = "<group>";
+		};
+		1058C7AEFEA557BF11CA2CBB /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				5BFD2D50135FC95F00E35469 /* EDCommon.framework */,
+				5BFD2D51135FC95F00E35469 /* EDMessage.framework */,
+				089C1672FE841209C02AAC07 /* Foundation.framework */,
+				089C167FFE841241C02AAC07 /* AppKit.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		19C28FB8FE9D52D311CA2CBB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8D202CF80486D31800D8A456 /* SneakyBastard.prefPane */,
+				5BFD2DC3135FC9C000E35469 /* SneakyBastard.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		32DBCFA10370C40200C91783 /* Other Sources */ = {
+			isa = PBXGroup;
+			children = (
+				5BFD2EA0135FCADF00E35469 /* main.m */,
+				32DBCFA20370C41700C91783 /* SneakyPreferences_Prefix.pch */,
+			);
+			name = "Other Sources";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
+/* Begin PBXHeadersBuildPhase section */
+		8D202CE90486D31800D8A456 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8D202CEA0486D31800D8A456 /* SneakyPreferences_Prefix.pch in Headers */,
+				8D202CEB0486D31800D8A456 /* SneakyPreferencesPref.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
 /* Begin PBXNativeTarget section */
-		8D1107260486CEB800E47090 /* SneakyBastard */ = {
+		5BFD2DC2135FC9C000E35469 /* SneakyBastard */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "SneakyBastard" */;
+			buildConfigurationList = 5BFD2DC8135FC9C100E35469 /* Build configuration list for PBXNativeTarget "SneakyBastard" */;
 			buildPhases = (
-				5BB7C0D21119D7B800C7689A /* CopyFiles */,
-				8D1107290486CEB800E47090 /* Resources */,
-				8D11072C0486CEB800E47090 /* Sources */,
-				8D11072E0486CEB800E47090 /* Frameworks */,
+				5BFD2DBF135FC9C000E35469 /* Resources */,
+				5BFD2DC0135FC9C000E35469 /* Sources */,
+				5BFD2DC1135FC9C000E35469 /* Frameworks */,
+				5BFD2EB3135FCB3800E35469 /* CopyFiles */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = SneakyBastard;
-			productInstallPath = "$(HOME)/Applications";
 			productName = SneakyBastard;
-			productReference = 8D1107320486CEB800E47090 /* SneakyBastard.app */;
+			productReference = 5BFD2DC3135FC9C000E35469 /* SneakyBastard.app */;
 			productType = "com.apple.product-type.application";
+		};
+		8D202CE80486D31800D8A456 /* SneakyPreferences */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1DBD214808BA80EA00186707 /* Build configuration list for PBXNativeTarget "SneakyPreferences" */;
+			buildPhases = (
+				8D202CE90486D31800D8A456 /* Headers */,
+				8D202CEC0486D31800D8A456 /* Resources */,
+				8D202CF00486D31800D8A456 /* Sources */,
+				8D202CF20486D31800D8A456 /* Frameworks */,
+				8D202CF50486D31800D8A456 /* Rez */,
+				5B47EAE61360462500095307 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				5B47EAA71360455700095307 /* PBXTargetDependency */,
+			);
+			name = SneakyPreferences;
+			productInstallPath = "$(HOME)/Library/PreferencePanes";
+			productName = SneakyPreferences;
+			productReference = 8D202CF80486D31800D8A456 /* SneakyBastard.prefPane */;
+			productType = "com.apple.product-type.bundle";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		29B97313FDCFA39411CA2CEA /* Project object */ = {
+		089C1669FE841209C02AAC07 /* Project object */ = {
 			isa = PBXProject;
-			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "SneakyBastard" */;
+			buildConfigurationList = 1DBD214C08BA80EA00186707 /* Build configuration list for PBXProject "SneakyBastard" */;
 			compatibilityVersion = "Xcode 3.1";
+			developmentRegion = English;
 			hasScannedForEncodings = 1;
-			mainGroup = 29B97314FDCFA39411CA2CEA /* SneakyBastard */;
+			knownRegions = (
+				English,
+				Japanese,
+				French,
+				German,
+			);
+			mainGroup = 089C166AFE841209C02AAC07 /* SneakyPreferences */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				8D1107260486CEB800E47090 /* SneakyBastard */,
+				8D202CE80486D31800D8A456 /* SneakyPreferences */,
+				5BFD2DC2135FC9C000E35469 /* SneakyBastard */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		8D1107290486CEB800E47090 /* Resources */ = {
+		5BFD2DBF135FC9C000E35469 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */,
-				1DDD58160DA1D0A300B32029 /* MainMenu.xib in Resources */,
-				5BAB10C4105D3609000484BC /* smile.tiff in Resources */,
-				5B6D39C610F0EF750073A795 /* sbastard.icns in Resources */,
+				5BFD2EB7135FCC2C00E35469 /* sbastard.icns in Resources */,
+				5BFD2EB8135FCC2C00E35469 /* smile.tiff in Resources */,
+				5BFD2EB9135FCC2C00E35469 /* Info.plist in Resources */,
+				5BFD2EB6135FCC0200E35469 /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8D202CEC0486D31800D8A456 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8D202CED0486D31800D8A456 /* InfoPlist.strings in Resources */,
+				8D202CEE0486D31800D8A456 /* SneakyPreferencesPref.tiff in Resources */,
+				8D202CEF0486D31800D8A456 /* SneakyPreferencesPref.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXRezBuildPhase section */
+		8D202CF50486D31800D8A456 /* Rez */ = {
+			isa = PBXRezBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXRezBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
-		8D11072C0486CEB800E47090 /* Sources */ = {
+		5BFD2DC0135FC9C000E35469 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8D11072D0486CEB800E47090 /* main.m in Sources */,
-				5BAB10B8105D35C2000484BC /* Controller.m in Sources */,
-				5B75FB4C105D52500091DAA9 /* SneakyCamera.m in Sources */,
-				5B317A5510EEE0C200E8EE3E /* GetSnapshots.m in Sources */,
-				5B317A5610EEE0C200E8EE3E /* MailOperation.m in Sources */,
+				5BFD2EA4135FCAFE00E35469 /* Controller.m in Sources */,
+				5BFD2EA5135FCAFE00E35469 /* GetSnapshots.m in Sources */,
+				5BFD2EA6135FCAFE00E35469 /* MailOperation.m in Sources */,
+				5BFD2EA7135FCAFE00E35469 /* SneakyCamera.m in Sources */,
+				5BFD2EA8135FCAFE00E35469 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8D202CF00486D31800D8A456 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8D202CF10486D31800D8A456 /* SneakyPreferencesPref.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		5B47EAA71360455700095307 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5BFD2DC2135FC9C000E35469 /* SneakyBastard */;
+			targetProxy = 5B47EAA61360455700095307 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
-		089C165CFE840E0CC02AAC07 /* InfoPlist.strings */ = {
+		089C167DFE841241C02AAC07 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				089C165DFE840E0CC02AAC07 /* English */,
+				089C167EFE841241C02AAC07 /* English */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
-		1DDD58140DA1D0A300B32029 /* MainMenu.xib */ = {
+		5BFD2EB4135FCC0200E35469 /* MainMenu.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				1DDD58150DA1D0A300B32029 /* English */,
+				5BFD2EB5135FCC0200E35469 /* English */,
 			);
 			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+		F506C042013D9D8C01CA16C8 /* SneakyPreferencesPref.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F506C043013D9D8C01CA16C8 /* English */,
+			);
+			name = SneakyPreferencesPref.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		C01FCF4B08A954540054247B /* Debug */ = {
+		1DBD214908BA80EA00186707 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/../../../Library/Frameworks\"",
 					"\"$(SRCROOT)\"",
 				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_ENABLE_OBJC_GC = supported;
 				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = SneakyBastard_Prefix.pch;
+				GCC_PREFIX_HEADER = SneakyPreferences_Prefix.pch;
 				INFOPLIST_FILE = Info.plist;
-				INSTALL_PATH = "$(HOME)/Applications";
+				INSTALL_PATH = "$(HOME)/Library/PreferencePanes";
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = SneakyBastard;
+				WRAPPER_EXTENSION = prefPane;
+				ZERO_LINK = YES;
 			};
 			name = Debug;
 		};
-		C01FCF4C08A954540054247B /* Release */ = {
+		1DBD214A08BA80EA00186707 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/../../../Library/Frameworks\"",
 					"\"$(SRCROOT)\"",
 				);
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = SneakyBastard_Prefix.pch;
+				GCC_PREFIX_HEADER = SneakyPreferences_Prefix.pch;
 				INFOPLIST_FILE = Info.plist;
-				INSTALL_PATH = "$(HOME)/Applications";
-				PRODUCT_NAME = SneakyBastard;
+				INSTALL_PATH = "$(HOME)/Library/PreferencePanes";
+				PRODUCT_NAME = SneakyPreferences;
+				WRAPPER_EXTENSION = prefPane;
 			};
 			name = Release;
 		};
-		C01FCF4F08A954540054247B /* Debug */ = {
+		1DBD214D08BA80EA00186707 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				GCC_C_LANGUAGE_STANDARD = c99;
-				GCC_OPTIMIZATION_LEVEL = 0;
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_GC = supported;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				PREBINDING = NO;
-				SDKROOT = macosx10.5;
+				PRODUCT_NAME = SneakyBastard;
+				SDKROOT = macosx10.6;
+				VALID_ARCHS = "i386 ppc x86_64";
 			};
 			name = Debug;
 		};
-		C01FCF5008A954540054247B /* Release */ = {
+		1DBD214E08BA80EA00186707 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				GCC_C_LANGUAGE_STANDARD = c99;
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_GC = supported;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				PREBINDING = NO;
-				SDKROOT = macosx10.5;
+				SDKROOT = macosx10.6;
+				VALID_ARCHS = "i386 ppc x86_64";
+			};
+			name = Release;
+		};
+		5BFD2DC6135FC9C100E35469 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_ENABLE_OBJC_GC = unsupported;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = s;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				INFOPLIST_FILE = "SneakyBastard-Info.plist";
+				INSTALL_PATH = "$(HOME)/Applications";
+				MACOSX_DEPLOYMENT_TARGET = 10.5;
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = SneakyBastard;
+			};
+			name = Debug;
+		};
+		5BFD2DC7135FC9C100E35469 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				INFOPLIST_FILE = "SneakyBastard-Info.plist";
+				INSTALL_PATH = "$(HOME)/Applications";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = SneakyBastard;
+				ZERO_LINK = NO;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "SneakyBastard" */ = {
+		1DBD214808BA80EA00186707 /* Build configuration list for PBXNativeTarget "SneakyPreferences" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				C01FCF4B08A954540054247B /* Debug */,
-				C01FCF4C08A954540054247B /* Release */,
+				1DBD214908BA80EA00186707 /* Debug */,
+				1DBD214A08BA80EA00186707 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "SneakyBastard" */ = {
+		1DBD214C08BA80EA00186707 /* Build configuration list for PBXProject "SneakyBastard" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				C01FCF4F08A954540054247B /* Debug */,
-				C01FCF5008A954540054247B /* Release */,
+				1DBD214D08BA80EA00186707 /* Debug */,
+				1DBD214E08BA80EA00186707 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5BFD2DC8135FC9C100E35469 /* Build configuration list for PBXNativeTarget "SneakyBastard" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5BFD2DC6135FC9C100E35469 /* Debug */,
+				5BFD2DC7135FC9C100E35469 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 29B97313FDCFA39411CA2CEA /* Project object */;
+	rootObject = 089C1669FE841209C02AAC07 /* Project object */;
 }
