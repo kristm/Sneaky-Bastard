@@ -92,6 +92,10 @@
 			5B47EB301360484900095307 = 5B47EB301360484900095307 /* PlistBookmark */;
 			5B47EB48136049B200095307 /* PlistBookmark */ = 5B47EB48136049B200095307 /* PlistBookmark */;
 			5B47EB49136049B200095307 /* PlistBookmark */ = 5B47EB49136049B200095307 /* PlistBookmark */;
+			5B47EB5A13604E8B00095307 /* PBXBookmark */ = 5B47EB5A13604E8B00095307 /* PBXBookmark */;
+			5B47EB5B13604E8B00095307 /* PlistBookmark */ = 5B47EB5B13604E8B00095307 /* PlistBookmark */;
+			5B47EB5C13604E8B00095307 /* PlistBookmark */ = 5B47EB5C13604E8B00095307 /* PlistBookmark */;
+			5B47EB6213604FB500095307 /* PlistBookmark */ = 5B47EB6213604FB500095307 /* PlistBookmark */;
 			5BFD2EAE135FCB3800E35469 = 5BFD2EAE135FCB3800E35469 /* PBXBookmark */;
 			5BFD2EAF135FCB3800E35469 = 5BFD2EAF135FCB3800E35469 /* PBXBookmark */;
 			5BFD2EB0135FCB3800E35469 = 5BFD2EB0135FCB3800E35469 /* PBXTextBookmark */;
@@ -266,6 +270,46 @@
 		rLoc = 0;
 	};
 	5B47EB49136049B200095307 /* PlistBookmark */ = {
+		isa = PlistBookmark;
+		fRef = 8D202CF70486D31800D8A456 /* Info.plist */;
+		fallbackIsa = PBXBookmark;
+		isK = 0;
+		kPath = (
+			NSPrefPaneIconFile,
+		);
+		name = /Users/chrismenina/src/cocoa/SneakyBastard/Info.plist;
+		rLen = 0;
+		rLoc = 9223372036854775807;
+	};
+	5B47EB5A13604E8B00095307 /* PBXBookmark */ = {
+		isa = PBXBookmark;
+		fRef = F506C040013D9D8001CA16C8 /* SneakyPreferencesPref.tiff */;
+	};
+	5B47EB5B13604E8B00095307 /* PlistBookmark */ = {
+		isa = PlistBookmark;
+		fRef = 8D202CF70486D31800D8A456 /* Info.plist */;
+		fallbackIsa = PBXBookmark;
+		isK = 0;
+		kPath = (
+			NSPrefPaneIconFile,
+		);
+		name = /Users/chrismenina/src/cocoa/SneakyBastard/Info.plist;
+		rLen = 26;
+		rLoc = 0;
+	};
+	5B47EB5C13604E8B00095307 /* PlistBookmark */ = {
+		isa = PlistBookmark;
+		fRef = 8D202CF70486D31800D8A456 /* Info.plist */;
+		fallbackIsa = PBXBookmark;
+		isK = 0;
+		kPath = (
+			CFBundleInfoDictionaryVersion,
+		);
+		name = /Users/chrismenina/src/cocoa/SneakyBastard/Info.plist;
+		rLen = 0;
+		rLoc = 9223372036854775807;
+	};
+	5B47EB6213604FB500095307 /* PlistBookmark */ = {
 		isa = PlistBookmark;
 		fRef = 8D202CF70486D31800D8A456 /* Info.plist */;
 		fallbackIsa = PBXBookmark;
@@ -488,6 +532,11 @@
 			sepNavIntBoundsRect = "{{0, 0}, {691, 260}}";
 			sepNavSelRange = "{0, 0}";
 			sepNavVisRange = "{0, 296}";
+		};
+	};
+	F506C040013D9D8001CA16C8 /* SneakyPreferencesPref.tiff */ = {
+		uiCtxt = {
+			sepNavWindowFrame = "{{38, 85}, {1152, 667}}";
 		};
 	};
 }
