@@ -70,8 +70,8 @@
 					PBXFileDataSource_Warnings_ColumnID,
 				);
 			};
-			PBXPerProjectTemplateStateSaveDate = 325077282;
-			PBXWorkspaceStateSaveDate = 325077282;
+			PBXPerProjectTemplateStateSaveDate = 325087563;
+			PBXWorkspaceStateSaveDate = 325087563;
 		};
 		perUserProjectItems = {
 			5B47EAA01360451B00095307 = 5B47EAA01360451B00095307 /* PBXTextBookmark */;
@@ -90,12 +90,20 @@
 			5B47EB2B136047D300095307 = 5B47EB2B136047D300095307 /* PlistBookmark */;
 			5B47EB2C136047D300095307 = 5B47EB2C136047D300095307 /* PlistBookmark */;
 			5B47EB301360484900095307 = 5B47EB301360484900095307 /* PlistBookmark */;
-			5B47EB48136049B200095307 /* PlistBookmark */ = 5B47EB48136049B200095307 /* PlistBookmark */;
-			5B47EB49136049B200095307 /* PlistBookmark */ = 5B47EB49136049B200095307 /* PlistBookmark */;
-			5B47EB5A13604E8B00095307 /* PBXBookmark */ = 5B47EB5A13604E8B00095307 /* PBXBookmark */;
-			5B47EB5B13604E8B00095307 /* PlistBookmark */ = 5B47EB5B13604E8B00095307 /* PlistBookmark */;
-			5B47EB5C13604E8B00095307 /* PlistBookmark */ = 5B47EB5C13604E8B00095307 /* PlistBookmark */;
-			5B47EB6213604FB500095307 /* PlistBookmark */ = 5B47EB6213604FB500095307 /* PlistBookmark */;
+			5B47EB48136049B200095307 = 5B47EB48136049B200095307 /* PlistBookmark */;
+			5B47EB49136049B200095307 = 5B47EB49136049B200095307 /* PlistBookmark */;
+			5B47EB5A13604E8B00095307 = 5B47EB5A13604E8B00095307 /* PBXBookmark */;
+			5B47EB5B13604E8B00095307 = 5B47EB5B13604E8B00095307 /* PlistBookmark */;
+			5B47EB5C13604E8B00095307 = 5B47EB5C13604E8B00095307 /* PlistBookmark */;
+			5B47EB6213604FB500095307 = 5B47EB6213604FB500095307 /* PlistBookmark */;
+			5BAEEDA01360715000605901 /* PlistBookmark */ = 5BAEEDA01360715000605901 /* PlistBookmark */;
+			5BAEEDA71360717200605901 /* PlistBookmark */ = 5BAEEDA71360717200605901 /* PlistBookmark */;
+			5BAEEDAE1360749200605901 /* PlistBookmark */ = 5BAEEDAE1360749200605901 /* PlistBookmark */;
+			5BAEEDB41360753F00605901 /* PlistBookmark */ = 5BAEEDB41360753F00605901 /* PlistBookmark */;
+			5BAEEDB9136075E700605901 /* PlistBookmark */ = 5BAEEDB9136075E700605901 /* PlistBookmark */;
+			5BAEEDBE1360765900605901 /* PlistBookmark */ = 5BAEEDBE1360765900605901 /* PlistBookmark */;
+			5BAEEDC3136076BC00605901 /* PlistBookmark */ = 5BAEEDC3136076BC00605901 /* PlistBookmark */;
+			5BAEEDC81360779900605901 /* PlistBookmark */ = 5BAEEDC81360779900605901 /* PlistBookmark */;
 			5BFD2EAE135FCB3800E35469 = 5BFD2EAE135FCB3800E35469 /* PBXBookmark */;
 			5BFD2EAF135FCB3800E35469 = 5BFD2EAF135FCB3800E35469 /* PBXBookmark */;
 			5BFD2EB0135FCB3800E35469 = 5BFD2EB0135FCB3800E35469 /* PBXTextBookmark */;
@@ -279,7 +287,7 @@
 		);
 		name = /Users/chrismenina/src/cocoa/SneakyBastard/Info.plist;
 		rLen = 0;
-		rLoc = 9223372036854775807;
+		rLoc = 9223372036854775808;
 	};
 	5B47EB5A13604E8B00095307 /* PBXBookmark */ = {
 		isa = PBXBookmark;
@@ -307,9 +315,105 @@
 		);
 		name = /Users/chrismenina/src/cocoa/SneakyBastard/Info.plist;
 		rLen = 0;
-		rLoc = 9223372036854775807;
+		rLoc = 9223372036854775808;
 	};
 	5B47EB6213604FB500095307 /* PlistBookmark */ = {
+		isa = PlistBookmark;
+		fRef = 8D202CF70486D31800D8A456 /* Info.plist */;
+		fallbackIsa = PBXBookmark;
+		isK = 0;
+		kPath = (
+			NSPrefPaneIconFile,
+		);
+		name = /Users/chrismenina/src/cocoa/SneakyBastard/Info.plist;
+		rLen = 0;
+		rLoc = 9223372036854775808;
+	};
+	5BAEEDA01360715000605901 /* PlistBookmark */ = {
+		isa = PlistBookmark;
+		fRef = 8D202CF70486D31800D8A456 /* Info.plist */;
+		fallbackIsa = PBXBookmark;
+		isK = 0;
+		kPath = (
+			NSPrefPaneIconFile,
+		);
+		name = /Users/chrismenina/src/cocoa/SneakyBastard/Info.plist;
+		rLen = 0;
+		rLoc = 9223372036854775807;
+	};
+	5BAEEDA71360717200605901 /* PlistBookmark */ = {
+		isa = PlistBookmark;
+		fRef = 8D202CF70486D31800D8A456 /* Info.plist */;
+		fallbackIsa = PBXBookmark;
+		isK = 0;
+		kPath = (
+			NSPrefPaneIconFile,
+		);
+		name = /Users/chrismenina/src/cocoa/SneakyBastard/Info.plist;
+		rLen = 0;
+		rLoc = 9223372036854775807;
+	};
+	5BAEEDAE1360749200605901 /* PlistBookmark */ = {
+		isa = PlistBookmark;
+		fRef = 8D202CF70486D31800D8A456 /* Info.plist */;
+		fallbackIsa = PBXBookmark;
+		isK = 0;
+		kPath = (
+			NSPrefPaneIconFile,
+		);
+		name = /Users/chrismenina/src/cocoa/SneakyBastard/Info.plist;
+		rLen = 0;
+		rLoc = 9223372036854775807;
+	};
+	5BAEEDB41360753F00605901 /* PlistBookmark */ = {
+		isa = PlistBookmark;
+		fRef = 8D202CF70486D31800D8A456 /* Info.plist */;
+		fallbackIsa = PBXBookmark;
+		isK = 0;
+		kPath = (
+			NSPrefPaneIconFile,
+		);
+		name = /Users/chrismenina/src/cocoa/SneakyBastard/Info.plist;
+		rLen = 0;
+		rLoc = 9223372036854775807;
+	};
+	5BAEEDB9136075E700605901 /* PlistBookmark */ = {
+		isa = PlistBookmark;
+		fRef = 8D202CF70486D31800D8A456 /* Info.plist */;
+		fallbackIsa = PBXBookmark;
+		isK = 0;
+		kPath = (
+			NSPrefPaneIconFile,
+		);
+		name = /Users/chrismenina/src/cocoa/SneakyBastard/Info.plist;
+		rLen = 0;
+		rLoc = 9223372036854775807;
+	};
+	5BAEEDBE1360765900605901 /* PlistBookmark */ = {
+		isa = PlistBookmark;
+		fRef = 8D202CF70486D31800D8A456 /* Info.plist */;
+		fallbackIsa = PBXBookmark;
+		isK = 0;
+		kPath = (
+			NSPrefPaneIconFile,
+		);
+		name = /Users/chrismenina/src/cocoa/SneakyBastard/Info.plist;
+		rLen = 0;
+		rLoc = 9223372036854775807;
+	};
+	5BAEEDC3136076BC00605901 /* PlistBookmark */ = {
+		isa = PlistBookmark;
+		fRef = 8D202CF70486D31800D8A456 /* Info.plist */;
+		fallbackIsa = PBXBookmark;
+		isK = 0;
+		kPath = (
+			NSPrefPaneIconFile,
+		);
+		name = /Users/chrismenina/src/cocoa/SneakyBastard/Info.plist;
+		rLen = 0;
+		rLoc = 9223372036854775807;
+	};
+	5BAEEDC81360779900605901 /* PlistBookmark */ = {
 		isa = PlistBookmark;
 		fRef = 8D202CF70486D31800D8A456 /* Info.plist */;
 		fallbackIsa = PBXBookmark;
