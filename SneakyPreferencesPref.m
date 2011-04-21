@@ -38,7 +38,7 @@
     
     if ([sender state] == NO)
     {
-        CFPreferencesSetValue((CFStringRef) @"AutoLaunchedApplicationDictionary", loginItems,
+        /*CFPreferencesSetValue((CFStringRef) @"AutoLaunchedApplicationDictionary", loginItems,
                               (CFStringRef)@"loginwindow", kCFPreferencesCurrentUser, kCFPreferencesAnyHost);
         CFPreferencesSynchronize((CFStringRef) @"loginwindow", kCFPreferencesCurrentUser,
                                  kCFPreferencesAnyHost);
@@ -46,11 +46,11 @@
         [[NSDistributedNotificationCenter defaultCenter] postNotificationName: @"SBQuit"
                                                                        object: @"SneakyPreferences"
                                                                      userInfo: nil
-                                                           deliverImmediately: YES];
+                                                           deliverImmediately: YES];*/
     }
     else
     {
-        [loginItems addObject: myLoginItem];
+        /*[loginItems addObject: myLoginItem];
         CFPreferencesSetValue((CFStringRef) @"AutoLaunchedApplicationDictionary", loginItems,
                               (CFStringRef)@"loginwindow", kCFPreferencesCurrentUser, kCFPreferencesAnyHost);
         CFPreferencesSynchronize((CFStringRef) @"loginwindow", kCFPreferencesCurrentUser,
@@ -61,8 +61,9 @@
                               stringByAppendingPathComponent: @"Contents"]
                              stringByAppendingPathComponent: @"MacOS"]
                             stringByAppendingPathComponent: @"SneakyBastard"];
-        [NSTask launchedTaskWithLaunchPath: myPath arguments: [NSArray array]];
-		NSLog(@"mypath %@",myPath);
+        [NSTask launchedTaskWithLaunchPath: myPath arguments: [NSArray array]];*/
+		//NSLog(@"mypath %@",myPath);
+		NSLog(@"assign login items");
     }
     
 }
