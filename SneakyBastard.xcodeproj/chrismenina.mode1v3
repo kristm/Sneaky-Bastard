@@ -229,8 +229,6 @@
 			<key>Layout</key>
 			<array>
 				<dict>
-					<key>BecomeActive</key>
-					<true/>
 					<key>ContentConfiguration</key>
 					<dict>
 						<key>PBXBottomSmartGroupGIDs</key>
@@ -281,12 +279,13 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>36</integer>
-									<integer>35</integer>
+									<integer>3</integer>
+									<integer>1</integer>
+									<integer>0</integer>
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
-							<string>{{0, 370}, {286, 446}}</string>
+							<string>{{0, 0}, {286, 446}}</string>
 						</dict>
 						<key>PBXTopSmartGroupGIDs</key>
 						<array/>
@@ -305,7 +304,7 @@
 							<real>286</real>
 						</array>
 						<key>RubberWindowFrame</key>
-						<string>114 254 1060 505 0 0 1280 778 </string>
+						<string>47 163 1060 505 0 0 1280 778 </string>
 					</dict>
 					<key>Module</key>
 					<string>PBXSmartGroupTreeModule</string>
@@ -316,12 +315,14 @@
 					<key>Dock</key>
 					<array>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>Info.plist</string>
+								<string>SneakyPreferencesPref.m</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -329,20 +330,23 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>Info.plist</string>
+										<string>SneakyPreferencesPref.m</string>
 										<key>_historyCapacity</key>
 										<integer>20</integer>
 										<key>bookmark</key>
-										<string>5BAEEDC81360779900605901</string>
+										<string>5BAEEE7413608C5F00605901</string>
 										<key>history</key>
 										<array>
-											<string>5B47EAA01360451B00095307</string>
-											<string>5B47EAA11360451B00095307</string>
-											<string>5B47EAA21360451B00095307</string>
 											<string>5B47EB0D136046FC00095307</string>
 											<string>5B47EB2A136047D300095307</string>
 											<string>5B47EB5A13604E8B00095307</string>
-											<string>5B47EB6213604FB500095307</string>
+											<string>5BAEEDE9136078E100605901</string>
+											<string>5BAEEE301360823800605901</string>
+											<string>5BAEEE42136085F100605901</string>
+											<string>5BAEEE44136085F100605901</string>
+											<string>5BAEEE4E1360879300605901</string>
+											<string>5BAEEE51136087E800605901</string>
+											<string>5BAEEE52136087E800605901</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -356,7 +360,7 @@
 								<key>Frame</key>
 								<string>{{0, 0}, {752, 223}}</string>
 								<key>RubberWindowFrame</key>
-								<string>114 254 1060 505 0 0 1280 778 </string>
+								<string>47 163 1060 505 0 0 1280 778 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXNavigatorGroup</string>
@@ -376,7 +380,7 @@
 								<key>Frame</key>
 								<string>{{0, 228}, {752, 236}}</string>
 								<key>RubberWindowFrame</key>
-								<string>114 254 1060 505 0 0 1280 778 </string>
+								<string>47 163 1060 505 0 0 1280 778 </string>
 							</dict>
 							<key>Module</key>
 							<string>XCDetailModule</string>
@@ -540,11 +544,12 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
+		<string>1CD10A99069EF8BA00B06720</string>
 		<string>5BFD2D4A135FC7C700E35469</string>
 		<string>/Users/chrismenina/src/cocoa/SneakyBastard/SneakyBastard.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
-	<string>114 254 1060 505 0 0 1280 778 </string>
+	<string>47 163 1060 505 0 0 1280 778 </string>
 	<key>WindowToolsV3</key>
 	<array>
 		<dict>
@@ -565,7 +570,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CD0528F0623707200166675</string>
 								<key>PBXProjectModuleLabel</key>
-								<string></string>
+								<string>SneakyPreferencesPref.m</string>
 								<key>StatusBarVisibility</key>
 								<true/>
 							</dict>
@@ -582,6 +587,8 @@
 							<string>238pt</string>
 						</dict>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -743,13 +750,13 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1CD10A99069EF8BA00B06720</string>
-				<string>5B47EAE01360462500095307</string>
+				<string>5BAEEDE1136078CF00605901</string>
 				<string>1C162984064C10D400B95A72</string>
-				<string>5B47EAE11360462500095307</string>
-				<string>5B47EAE21360462500095307</string>
-				<string>5B47EAE31360462500095307</string>
-				<string>5B47EAE41360462500095307</string>
-				<string>5B47EAE51360462500095307</string>
+				<string>5BAEEDE2136078CF00605901</string>
+				<string>5BAEEDE3136078CF00605901</string>
+				<string>5BAEEDE4136078CF00605901</string>
+				<string>5BAEEDE5136078CF00605901</string>
+				<string>5BAEEDE6136078CF00605901</string>
 			</array>
 			<key>ToolbarConfiguration</key>
 			<string>xcode.toolbar.config.debugV3</string>

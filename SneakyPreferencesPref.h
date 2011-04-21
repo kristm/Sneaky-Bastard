@@ -11,9 +11,14 @@
 
 @interface SneakyPreferencesPref : NSPreferencePane 
 {
-
+	CFStringRef appID;
+	IBOutlet NSButton *btnEnable;
+	IBOutlet NSButton *btnShowinMenu;
 }
 
+- (id)initWithBundle:(NSBundle *)bundle;
 - (void) mainViewDidLoad;
+
+- (IBAction)toggleEnable:(id)sender;
 
 @end
