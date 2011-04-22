@@ -21,21 +21,33 @@
 
 - (void) mainViewDidLoad
 {
+	appPath = [[self bundle] pathForResource:@"SneakyBastard" ofType:@"app"];	
+	NSLog(@"main load %@",appPath);
+	[appPath retain];
 }
 
 - (IBAction)toggleEnable:(id)sender
 {
 	//NSLog(@"toggle sneaky %@",[sender state]);
+	NSLog(@"app path %@ %@",appPath, appID);
+	NSMutableDictionary * myDict=[[NSMutableDictionary alloc]init];
+    NSUserDefaults * defaults = [[NSUserDefaults alloc] init];
+    NSMutableArray * loginItems;
 	
-    NSMutableArray *loginItems = (NSMutableArray*) CFPreferencesCopyValue((CFStringRef)@"AutoLaunchedApplicationDictionary", (CFStringRef) @"loginwindow",
-                                                                          kCFPreferencesCurrentUser, kCFPreferencesAnyHost);
-    NSDictionary *myLoginItem = [NSDictionary dictionaryWithObjectsAndKeys: [NSNumber numberWithBool: NO],
-                                 @"Hide",
-                                 [[self bundle] pathForResource:@"SneakyBastard" ofType: @"app"],@"Path",
-                                 nil];
-    loginItems = [[loginItems autorelease] mutableCopy];
-    [loginItems removeObject: myLoginItem];
-    
+	loginItems=[[NSMutableArray arrayWithArray:[[defaults
+												 persistentDomainForName:@"loginwindow"]
+												objectForKey:@"AutoLaunchedApplicationDictionary"]]
+				retain];
+    [myDict setObject:[NSNumber numberWithBool:NO] forKey:@"Hide"];
+    [myDict setObject:appPath forKey:@"Path"];  
+
+	
+	//[loginItems removeObject:myDict];
+	//[loginItems addObject:myDict];
+
+	[loginItems autorelease];
+
+
     if ([sender state] == NO)
     {
         /*CFPreferencesSetValue((CFStringRef) @"AutoLaunchedApplicationDictionary", loginItems,

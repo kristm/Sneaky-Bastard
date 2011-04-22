@@ -14,6 +14,8 @@
 	CFStringRef appID;
 	IBOutlet NSButton *btnEnable;
 	IBOutlet NSButton *btnShowinMenu;
+	NSString *appPath;
+	NSString *bundlePath;
 }
 
 - (id)initWithBundle:(NSBundle *)bundle;
