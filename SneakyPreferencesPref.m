@@ -29,55 +29,49 @@
 - (IBAction)toggleEnable:(id)sender
 {
 	//NSLog(@"toggle sneaky %@",[sender state]);
-	NSLog(@"app path %@ %@",appPath, appID);
-	NSMutableDictionary * myDict=[[NSMutableDictionary alloc]init];
-    NSUserDefaults * defaults = [[NSUserDefaults alloc] init];
-    NSMutableArray * loginItems;
+	NSLog(@"app path %@",appPath);
+	CFURLRef url = (CFURLRef)[NSURL fileURLWithPath:appPath];
+	LSSharedFileListRef loginItems = LSSharedFileListCreate(NULL,
+															kLSSharedFileListSessionLoginItems, NULL);
 	
-	loginItems=[[NSMutableArray arrayWithArray:[[defaults
-												 persistentDomainForName:@"loginwindow"]
-												objectForKey:@"AutoLaunchedApplicationDictionary"]]
-				retain];
-    [myDict setObject:[NSNumber numberWithBool:NO] forKey:@"Hide"];
-    [myDict setObject:appPath forKey:@"Path"];  
-
-	
-	//[loginItems removeObject:myDict];
-	//[loginItems addObject:myDict];
-
-	[loginItems autorelease];
-
 
     if ([sender state] == NO)
     {
-        /*CFPreferencesSetValue((CFStringRef) @"AutoLaunchedApplicationDictionary", loginItems,
-                              (CFStringRef)@"loginwindow", kCFPreferencesCurrentUser, kCFPreferencesAnyHost);
-        CFPreferencesSynchronize((CFStringRef) @"loginwindow", kCFPreferencesCurrentUser,
-                                 kCFPreferencesAnyHost);
-        [loginItems release];
-        [[NSDistributedNotificationCenter defaultCenter] postNotificationName: @"SBQuit"
-                                                                       object: @"SneakyPreferences"
-                                                                     userInfo: nil
-                                                           deliverImmediately: YES];*/
+		if (loginItems) {
+			UInt32 seedValue;
+			//Retrieve the list of Login Items and cast them to
+			// a NSArray so that it will be easier to iterate.
+			NSArray  *loginItemsArray = (NSArray *)LSSharedFileListCopySnapshot(loginItems, &seedValue);
+			int i = 0;
+			for(i ; i< [loginItemsArray count]; i++){
+				LSSharedFileListItemRef itemRef = (LSSharedFileListItemRef)[loginItemsArray
+																			objectAtIndex:i];
+				//Resolve the item with URL
+				if (LSSharedFileListItemResolve(itemRef, 0, (CFURLRef*) &url, NULL) == noErr) {
+					NSString * urlPath = [(NSURL*)url path];
+					if ([urlPath compare:appPath] == NSOrderedSame){
+						LSSharedFileListItemRemove(loginItems,itemRef);
+					}
+				}
+			}
+			[loginItemsArray release];
+		}		
     }
     else
     {
-        /*[loginItems addObject: myLoginItem];
-        CFPreferencesSetValue((CFStringRef) @"AutoLaunchedApplicationDictionary", loginItems,
-                              (CFStringRef)@"loginwindow", kCFPreferencesCurrentUser, kCFPreferencesAnyHost);
-        CFPreferencesSynchronize((CFStringRef) @"loginwindow", kCFPreferencesCurrentUser,
-                                 kCFPreferencesAnyHost);
-        [loginItems release];
-
-        NSString *myPath = [[[[[self bundle] pathForResource:@"SneakyBastard" ofType: @"app"]
-                              stringByAppendingPathComponent: @"Contents"]
-                             stringByAppendingPathComponent: @"MacOS"]
-                            stringByAppendingPathComponent: @"SneakyBastard"];
-        [NSTask launchedTaskWithLaunchPath: myPath arguments: [NSArray array]];*/
-		//NSLog(@"mypath %@",myPath);
+		if (loginItems) {
+			//Insert an item to the list.
+			LSSharedFileListItemRef item = LSSharedFileListInsertItemURL(loginItems,
+																		 kLSSharedFileListItemLast, NULL, NULL,
+																		 url, NULL, NULL);
+			if (item){
+				CFRelease(item);
+			}
+		}	
+		
 		NSLog(@"assign login items");
     }
-    
+    CFRelease(loginItems);	
 }
 
 @end
