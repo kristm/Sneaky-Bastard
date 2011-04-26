@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5B47EAE71360462900095307 /* SneakyBastard.app in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5BFD2DC3135FC9C000E35469 /* SneakyBastard.app */; };
+		5BC9A31A13670CA100630FFF /* SecurityInterface.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BC9A31913670CA100630FFF /* SecurityInterface.framework */; };
 		5BFD2DE9135FCA2700E35469 /* EDCommon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BFD2D50135FC95F00E35469 /* EDCommon.framework */; };
 		5BFD2DEA135FCA2700E35469 /* EDMessage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BFD2D51135FC95F00E35469 /* EDMessage.framework */; };
 		5BFD2DED135FCA3000E35469 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7ADFEA557BF11CA2CBB /* Cocoa.framework */; };
@@ -75,6 +76,7 @@
 		089C167FFE841241C02AAC07 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		1058C7ADFEA557BF11CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
 		32DBCFA20370C41700C91783 /* SneakyPreferences_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SneakyPreferences_Prefix.pch; sourceTree = "<group>"; };
+		5BC9A31913670CA100630FFF /* SecurityInterface.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SecurityInterface.framework; path = System/Library/Frameworks/SecurityInterface.framework; sourceTree = SDKROOT; };
 		5BFD2D50135FC95F00E35469 /* EDCommon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = EDCommon.framework; sourceTree = "<group>"; };
 		5BFD2D51135FC95F00E35469 /* EDMessage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = EDMessage.framework; sourceTree = "<group>"; };
 		5BFD2DC3135FC9C000E35469 /* SneakyBastard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SneakyBastard.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -123,6 +125,7 @@
 			files = (
 				8D202CF30486D31800D8A456 /* Cocoa.framework in Frameworks */,
 				8D202CF40486D31800D8A456 /* PreferencePanes.framework in Frameworks */,
+				5BC9A31A13670CA100630FFF /* SecurityInterface.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -190,6 +193,7 @@
 				5BFD2DF6135FCA9D00E35469 /* SystemConfiguration.framework */,
 				1058C7ADFEA557BF11CA2CBB /* Cocoa.framework */,
 				F506C035013D953901CA16C8 /* PreferencePanes.framework */,
+				5BC9A31913670CA100630FFF /* SecurityInterface.framework */,
 			);
 			name = "Linked Frameworks";
 			sourceTree = "<group>";

@@ -24,6 +24,12 @@
 	appPath = [[self bundle] pathForResource:@"SneakyBastard" ofType:@"app"];	
 	NSLog(@"main load %@",appPath);
 	[appPath retain];
+	
+	AuthorizationItem items = {kAuthorizationRightExecute, 0, NULL, 0};
+    AuthorizationRights rights = {1, &items};
+    [authView setAuthorizationRights:&rights];
+    authView.delegate = self;
+    [authView updateStatus:nil];
 }
 
 - (IBAction)toggleEnable:(id)sender
@@ -72,6 +78,58 @@
 		NSLog(@"assign login items");
     }
     CFRelease(loginItems);	
+}
+
+- (BOOL)isUnlocked {
+    return [authView authorizationState] == SFAuthorizationViewUnlockedState;
+}
+
+//
+// SFAuthorization delegates
+//
+
+- (void)authorizationViewDidAuthorize:(SFAuthorizationView *)view {
+	
+	BOOL unlock = [self isUnlocked];
+    
+	[btnEnable setEnabled:unlock];
+	[btnShowinMenu setEnabled:unlock];
+	[snapshotNumber setEnabled:unlock];
+	[delaySeconds setEnabled:unlock];
+	[delaySecondsStepper setEnabled:unlock];
+	[delayOnWakeup setEnabled:unlock];
+	[alertLevel setEnabled:unlock];
+	[mailServerUrl setEnabled:unlock];
+	[mailPort setEnabled:unlock];
+	[mailUsername setEnabled:unlock];
+	[mailPassword setEnabled:unlock];
+	[mailFrom setEnabled:unlock];
+	[mailTo	setEnabled:unlock];
+	[mailSubject setEnabled:unlock];
+	[mailIPAddress setEnabled:unlock];
+	
+}
+
+- (void)authorizationViewDidDeauthorize:(SFAuthorizationView *)view {
+    //[touchButton setEnabled:[self isUnlocked]];
+	BOOL unlock = [self isUnlocked];
+    
+	[btnEnable setEnabled:unlock];
+	[btnShowinMenu setEnabled:unlock];
+	[snapshotNumber setEnabled:unlock];
+	[delaySeconds setEnabled:unlock];
+	[delaySecondsStepper setEnabled:unlock];
+	[delayOnWakeup setEnabled:unlock];
+	[alertLevel setEnabled:unlock];
+	[mailServerUrl setEnabled:unlock];
+	[mailPort setEnabled:unlock];
+	[mailUsername setEnabled:unlock];
+	[mailPassword setEnabled:unlock];
+	[mailFrom setEnabled:unlock];
+	[mailTo	setEnabled:unlock];
+	[mailSubject setEnabled:unlock];
+	[mailIPAddress setEnabled:unlock];
+	
 }
 
 @end
