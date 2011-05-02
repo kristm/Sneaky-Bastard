@@ -140,7 +140,6 @@
 				089C167CFE841241C02AAC07 /* Resources */,
 				089C1671FE841209C02AAC07 /* Frameworks and Libraries */,
 				19C28FB8FE9D52D311CA2CBB /* Products */,
-				5BFD2DC5135FC9C000E35469 /* SneakyBastard-Info.plist */,
 			);
 			name = SneakyPreferences;
 			sourceTree = "<group>";
@@ -157,6 +156,7 @@
 		089C167CFE841241C02AAC07 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				5BFD2DC5135FC9C000E35469 /* SneakyBastard-Info.plist */,
 				5BFD2EB4135FCC0200E35469 /* MainMenu.xib */,
 				5BFD2DEE135FCA4E00E35469 /* sbastard.icns */,
 				5BFD2DF0135FCA5200E35469 /* smile.tiff */,

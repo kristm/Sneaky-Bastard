@@ -299,7 +299,7 @@
 			
 			NSLog(@"machine id: %@",ipAddress);
 		}else{
-			[ipAddress addObject:@"Sneaky Bastard version 0.1.6"];
+			[ipAddress addObject:@"Sneaky Bastard version 0.1.7"];
 		}
 		
 		secs = to = 0;
