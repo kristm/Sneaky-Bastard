@@ -12,7 +12,7 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="103"/>
+			<integer value="126"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -60,7 +60,7 @@
 								<object class="NSTabViewItem" id="499579728">
 									<string key="NSIdentifier">1</string>
 									<object class="NSView" key="NSView" id="455507704">
-										<reference key="NSNextResponder" ref="812903398"/>
+										<nil key="NSNextResponder"/>
 										<int key="NSvFlags">256</int>
 										<object class="NSMutableArray" key="NSSubviews">
 											<bool key="EncodedWithXMLCoder">YES</bool>
@@ -592,7 +592,6 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 											</object>
 										</object>
 										<string key="NSFrame">{{10, 33}, {622, 237}}</string>
-										<reference key="NSSuperview" ref="812903398"/>
 									</object>
 									<string key="NSLabel">General</string>
 									<reference key="NSColor" ref="974004470"/>
@@ -601,7 +600,7 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 								<object class="NSTabViewItem" id="246374064">
 									<string key="NSIdentifier">2</string>
 									<object class="NSView" key="NSView" id="33884595">
-										<nil key="NSNextResponder"/>
+										<reference key="NSNextResponder" ref="812903398"/>
 										<int key="NSvFlags">256</int>
 										<object class="NSMutableArray" key="NSSubviews">
 											<bool key="EncodedWithXMLCoder">YES</bool>
@@ -899,20 +898,21 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 											</object>
 										</object>
 										<string key="NSFrame">{{10, 33}, {622, 237}}</string>
+										<reference key="NSSuperview" ref="812903398"/>
 									</object>
 									<string key="NSLabel">Email</string>
 									<reference key="NSColor" ref="974004470"/>
 									<reference key="NSTabView" ref="812903398"/>
 								</object>
 							</object>
-							<reference key="NSSelectedTabViewItem" ref="499579728"/>
+							<reference key="NSSelectedTabViewItem" ref="246374064"/>
 							<reference key="NSFont" ref="256407295"/>
 							<int key="NSTvFlags">0</int>
 							<bool key="NSAllowTruncatedLabels">YES</bool>
 							<bool key="NSDrawsBackground">YES</bool>
 							<object class="NSMutableArray" key="NSSubviews">
 								<bool key="EncodedWithXMLCoder">YES</bool>
-								<reference ref="455507704"/>
+								<reference ref="33884595"/>
 							</object>
 						</object>
 						<object class="NSCustomView" id="995198651">
@@ -931,6 +931,22 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 				<string key="NSMaxSize">{3.40282e+38, 3.40282e+38}</string>
 			</object>
 			<object class="NSUserDefaultsController" id="656506774">
+				<object class="NSMutableArray" key="NSDeclaredKeys">
+					<bool key="EncodedWithXMLCoder">YES</bool>
+					<string>overwriteSnapshots</string>
+					<string>overwriteSnapshot</string>
+					<string>snapshotDelay</string>
+					<string>isDelayOnlyWakeup</string>
+					<string>alertLevel</string>
+					<string>smtpURL</string>
+					<string>smtpPort</string>
+					<string>smtpUsername</string>
+					<string>smtpPassword</string>
+					<string>emailFrom</string>
+					<string>emailAddress</string>
+					<string>emailSubject</string>
+					<string>includeNetwork</string>
+				</object>
 				<bool key="NSSharedInstance">YES</bool>
 			</object>
 		</object>
@@ -1096,6 +1112,198 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 						<reference key="destination" ref="376972479"/>
 					</object>
 					<int key="connectionID">196</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">selectedTag: values.overwriteSnapshot</string>
+						<reference key="source" ref="450378718"/>
+						<reference key="destination" ref="656506774"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="450378718"/>
+							<reference key="NSDestination" ref="656506774"/>
+							<string key="NSLabel">selectedTag: values.overwriteSnapshot</string>
+							<string key="NSBinding">selectedTag</string>
+							<string key="NSKeyPath">values.overwriteSnapshot</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">199</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">value: values.snapshotDelay</string>
+						<reference key="source" ref="356098970"/>
+						<reference key="destination" ref="656506774"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="356098970"/>
+							<reference key="NSDestination" ref="656506774"/>
+							<string key="NSLabel">value: values.snapshotDelay</string>
+							<string key="NSBinding">value</string>
+							<string key="NSKeyPath">values.snapshotDelay</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">201</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">value: values.isDelayOnlyWakeup</string>
+						<reference key="source" ref="209626361"/>
+						<reference key="destination" ref="656506774"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="209626361"/>
+							<reference key="NSDestination" ref="656506774"/>
+							<string key="NSLabel">value: values.isDelayOnlyWakeup</string>
+							<string key="NSBinding">value</string>
+							<string key="NSKeyPath">values.isDelayOnlyWakeup</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">203</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">value: values.alertLevel</string>
+						<reference key="source" ref="618323139"/>
+						<reference key="destination" ref="656506774"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="618323139"/>
+							<reference key="NSDestination" ref="656506774"/>
+							<string key="NSLabel">value: values.alertLevel</string>
+							<string key="NSBinding">value</string>
+							<string key="NSKeyPath">values.alertLevel</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">205</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">value: values.smtpURL</string>
+						<reference key="source" ref="215345705"/>
+						<reference key="destination" ref="656506774"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="215345705"/>
+							<reference key="NSDestination" ref="656506774"/>
+							<string key="NSLabel">value: values.smtpURL</string>
+							<string key="NSBinding">value</string>
+							<string key="NSKeyPath">values.smtpURL</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">207</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">value: values.smtpPort</string>
+						<reference key="source" ref="292881846"/>
+						<reference key="destination" ref="656506774"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="292881846"/>
+							<reference key="NSDestination" ref="656506774"/>
+							<string key="NSLabel">value: values.smtpPort</string>
+							<string key="NSBinding">value</string>
+							<string key="NSKeyPath">values.smtpPort</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">208</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">value: values.smtpUsername</string>
+						<reference key="source" ref="36477549"/>
+						<reference key="destination" ref="656506774"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="36477549"/>
+							<reference key="NSDestination" ref="656506774"/>
+							<string key="NSLabel">value: values.smtpUsername</string>
+							<string key="NSBinding">value</string>
+							<string key="NSKeyPath">values.smtpUsername</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">209</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">value: values.smtpPassword</string>
+						<reference key="source" ref="600419451"/>
+						<reference key="destination" ref="656506774"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="600419451"/>
+							<reference key="NSDestination" ref="656506774"/>
+							<string key="NSLabel">value: values.smtpPassword</string>
+							<string key="NSBinding">value</string>
+							<string key="NSKeyPath">values.smtpPassword</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">210</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">value: values.emailFrom</string>
+						<reference key="source" ref="489475676"/>
+						<reference key="destination" ref="656506774"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="489475676"/>
+							<reference key="NSDestination" ref="656506774"/>
+							<string key="NSLabel">value: values.emailFrom</string>
+							<string key="NSBinding">value</string>
+							<string key="NSKeyPath">values.emailFrom</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">211</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">value: values.emailAddress</string>
+						<reference key="source" ref="237957848"/>
+						<reference key="destination" ref="656506774"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="237957848"/>
+							<reference key="NSDestination" ref="656506774"/>
+							<string key="NSLabel">value: values.emailAddress</string>
+							<string key="NSBinding">value</string>
+							<string key="NSKeyPath">values.emailAddress</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">212</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">value: values.emailSubject</string>
+						<reference key="source" ref="199446647"/>
+						<reference key="destination" ref="656506774"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="199446647"/>
+							<reference key="NSDestination" ref="656506774"/>
+							<string key="NSLabel">value: values.emailSubject</string>
+							<string key="NSBinding">value</string>
+							<string key="NSKeyPath">values.emailSubject</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">213</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">value: values.includeNetwork</string>
+						<reference key="source" ref="376972479"/>
+						<reference key="destination" ref="656506774"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="376972479"/>
+							<reference key="NSDestination" ref="656506774"/>
+							<string key="NSLabel">value: values.includeNetwork</string>
+							<string key="NSBinding">value</string>
+							<string key="NSKeyPath">values.includeNetwork</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">214</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -1769,9 +1977,9 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{344, 173}, {687, 351}}</string>
+					<string>{{308, 111}, {687, 351}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{344, 173}, {687, 351}}</string>
+					<string>{{308, 111}, {687, 351}}</string>
 					<integer value="1"/>
 					<integer value="1"/>
 					<string>{224.664, 10}</string>
@@ -1862,7 +2070,7 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">196</int>
+			<int key="maxID">214</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
