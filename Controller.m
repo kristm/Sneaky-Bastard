@@ -74,7 +74,8 @@
 
 	}
 	
-
+	prefsPath = [[ self searchPrefsPath ] retain ];
+	
 	// retain or use getter/setter
 	[sbDir retain];
 	[path retain];
@@ -98,6 +99,7 @@
 	//NSDictionary *defaults = [NSDictionary dictionaryWithObject:[NSNumber numberWithBool:NO] forKey:@"includeNetwork"];
 	NSDictionary *defaults = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:NO],@"includeNetwork",[NSNumber numberWithInt:120],@"snapshotDelay",[NSNumber numberWithBool:YES],@"isDelayOnlyWakeup",[NSNumber numberWithInt:0],@"alertLevel",nil];
 	[[NSUserDefaults standardUserDefaults] registerDefaults: defaults];	
+
 	
 	return self;
 }
@@ -551,10 +553,9 @@
 
 - (id)statusItem
 {
+	NSLog(@"status item");
 	if (_statusItem == nil)
 	{
-		//NSMenu		*menu;
-		//NSMenuItem *bmenu;
 		NSImage *img;
 		
 
@@ -575,6 +576,29 @@
 	return _statusItem;
 }
 
+- (void) showInMenuBar:(id)sender{
+	
+	NSLog(@"sender %@",[sender state]);
+}
+
+- (NSString*)searchPrefsPath
+{
+    NSString *home = [[ NSString stringWithString: @"~/Library/PreferencePanes/" ] stringByExpandingTildeInPath ];
+	
+    NSArray *testArray = [ NSArray arrayWithObjects:
+						  [ home stringByAppendingPathComponent: @"SneakyBastard.prefPane/" ],
+						  @"/Library/PreferencePanes/SneakyBastard.prefPane/",
+						  @"/System/Library/PreferencePanes/SneakyBastard.prefPane/",
+						  nil ];
+    NSEnumerator *e = [ testArray objectEnumerator ];
+    NSString *path;
+    BOOL isDir;
+    while (path = [ e nextObject ])
+        if ([[ NSFileManager defaultManager ] fileExistsAtPath: path isDirectory: &isDir ])
+            if (isDir)
+                return path;
+    return nil;
+}
 
 - (IBAction) setOverwriteSnapshot:(id)sender{
 	
@@ -618,11 +642,8 @@
 
 - (IBAction) prefWindowController: (id) sender
 {
-	[prefWindow setLevel:NSStatusWindowLevel];
-	[prefWindow makeKeyAndOrderFront:nil];
-	[prefWindow center];
-
-	//[versionText setStringValue:[self printVersion]];	
+	NSLog(@"open prefs %@",prefsPath);
+	//[NSTask launchedTaskWithLaunchPath:@"/usr/bin/open" arguments:[NSArray arrayWithObject: prefsPath ]];
 }
 
 - (IBAction) prefTestEmail:(id)sender

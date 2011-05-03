@@ -39,6 +39,7 @@
 	NSString			*path;
 	NSString			*sbDir;
 	NSString			*fullPath;
+	NSString			*prefsPath;
 	NSNumber			*snapCount;
 	NSOperationQueue	*queue;	
 	NSMutableArray		*tableRecord;
@@ -64,7 +65,7 @@
 - (void)actionQuit:(id)sender;
 - (void)quickSnap:(id)sender;
 
-
+- (void) showInMenuBar: (id)sender;
 
 - (IBAction) setOverwriteSnapshot:(id)sender;
 - (IBAction) aboutWindowController: (id) sender;
