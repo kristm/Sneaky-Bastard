@@ -12,7 +12,7 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="126"/>
+			<integer value="104"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -60,7 +60,7 @@
 								<object class="NSTabViewItem" id="499579728">
 									<string key="NSIdentifier">1</string>
 									<object class="NSView" key="NSView" id="455507704">
-										<nil key="NSNextResponder"/>
+										<reference key="NSNextResponder" ref="812903398"/>
 										<int key="NSvFlags">256</int>
 										<object class="NSMutableArray" key="NSSubviews">
 											<bool key="EncodedWithXMLCoder">YES</bool>
@@ -592,6 +592,7 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 											</object>
 										</object>
 										<string key="NSFrame">{{10, 33}, {622, 237}}</string>
+										<reference key="NSSuperview" ref="812903398"/>
 									</object>
 									<string key="NSLabel">General</string>
 									<reference key="NSColor" ref="974004470"/>
@@ -600,7 +601,7 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 								<object class="NSTabViewItem" id="246374064">
 									<string key="NSIdentifier">2</string>
 									<object class="NSView" key="NSView" id="33884595">
-										<reference key="NSNextResponder" ref="812903398"/>
+										<nil key="NSNextResponder"/>
 										<int key="NSvFlags">256</int>
 										<object class="NSMutableArray" key="NSSubviews">
 											<bool key="EncodedWithXMLCoder">YES</bool>
@@ -898,21 +899,20 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 											</object>
 										</object>
 										<string key="NSFrame">{{10, 33}, {622, 237}}</string>
-										<reference key="NSSuperview" ref="812903398"/>
 									</object>
 									<string key="NSLabel">Email</string>
 									<reference key="NSColor" ref="974004470"/>
 									<reference key="NSTabView" ref="812903398"/>
 								</object>
 							</object>
-							<reference key="NSSelectedTabViewItem" ref="246374064"/>
+							<reference key="NSSelectedTabViewItem" ref="499579728"/>
 							<reference key="NSFont" ref="256407295"/>
 							<int key="NSTvFlags">0</int>
 							<bool key="NSAllowTruncatedLabels">YES</bool>
 							<bool key="NSDrawsBackground">YES</bool>
 							<object class="NSMutableArray" key="NSSubviews">
 								<bool key="EncodedWithXMLCoder">YES</bool>
-								<reference ref="33884595"/>
+								<reference ref="455507704"/>
 							</object>
 						</object>
 						<object class="NSCustomView" id="995198651">
@@ -931,22 +931,6 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 				<string key="NSMaxSize">{3.40282e+38, 3.40282e+38}</string>
 			</object>
 			<object class="NSUserDefaultsController" id="656506774">
-				<object class="NSMutableArray" key="NSDeclaredKeys">
-					<bool key="EncodedWithXMLCoder">YES</bool>
-					<string>overwriteSnapshots</string>
-					<string>overwriteSnapshot</string>
-					<string>snapshotDelay</string>
-					<string>isDelayOnlyWakeup</string>
-					<string>alertLevel</string>
-					<string>smtpURL</string>
-					<string>smtpPort</string>
-					<string>smtpUsername</string>
-					<string>smtpPassword</string>
-					<string>emailFrom</string>
-					<string>emailAddress</string>
-					<string>emailSubject</string>
-					<string>includeNetwork</string>
-				</object>
 				<bool key="NSSharedInstance">YES</bool>
 			</object>
 		</object>
@@ -1304,6 +1288,14 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 						</object>
 					</object>
 					<int key="connectionID">214</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">toggleShowInMenu:</string>
+						<reference key="source" ref="294453543"/>
+						<reference key="destination" ref="21696791"/>
+					</object>
+					<int key="connectionID">215</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -1977,9 +1969,9 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{308, 111}, {687, 351}}</string>
+					<string>{{312, 323}, {687, 351}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{308, 111}, {687, 351}}</string>
+					<string>{{312, 323}, {687, 351}}</string>
 					<integer value="1"/>
 					<integer value="1"/>
 					<string>{224.664, 10}</string>
@@ -2070,7 +2062,7 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">214</int>
+			<int key="maxID">215</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -2095,14 +2087,35 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 					<string key="className">SneakyPreferencesPref</string>
 					<string key="superclassName">NSPreferencePane</string>
 					<object class="NSMutableDictionary" key="actions">
-						<string key="NS.key.0">toggleEnable:</string>
-						<string key="NS.object.0">id</string>
+						<bool key="EncodedWithXMLCoder">YES</bool>
+						<object class="NSArray" key="dict.sortedKeys">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>toggleEnable:</string>
+							<string>toggleShowInMenu:</string>
+						</object>
+						<object class="NSMutableArray" key="dict.values">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
+							<string>id</string>
+						</object>
 					</object>
 					<object class="NSMutableDictionary" key="actionInfosByName">
-						<string key="NS.key.0">toggleEnable:</string>
-						<object class="IBActionInfo" key="NS.object.0">
-							<string key="name">toggleEnable:</string>
-							<string key="candidateClassName">id</string>
+						<bool key="EncodedWithXMLCoder">YES</bool>
+						<object class="NSArray" key="dict.sortedKeys">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>toggleEnable:</string>
+							<string>toggleShowInMenu:</string>
+						</object>
+						<object class="NSMutableArray" key="dict.values">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<object class="IBActionInfo">
+								<string key="name">toggleEnable:</string>
+								<string key="candidateClassName">id</string>
+							</object>
+							<object class="IBActionInfo">
+								<string key="name">toggleShowInMenu:</string>
+								<string key="candidateClassName">id</string>
+							</object>
 						</object>
 					</object>
 					<object class="NSMutableDictionary" key="outlets">

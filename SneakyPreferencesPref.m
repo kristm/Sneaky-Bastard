@@ -80,6 +80,15 @@
     CFRelease(loginItems);	
 }
 
+- (IBAction)toggleShowInMenu:(id)sender{
+	NSLog(@"toggle show menu %d",[sender state]);
+	[[ NSDistributedNotificationCenter defaultCenter ] postNotificationName: @"SBShowMenubar"
+																	 object: @"SneakyPreferencesPref"
+																   userInfo: nil
+														 deliverImmediately: YES
+	 ];	
+}
+
 - (BOOL)isUnlocked {
     return [authView authorizationState] == SFAuthorizationViewUnlockedState;
 }

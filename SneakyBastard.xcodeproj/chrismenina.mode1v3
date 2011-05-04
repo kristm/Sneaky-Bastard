@@ -280,13 +280,12 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>3</integer>
-									<integer>1</integer>
-									<integer>0</integer>
+									<integer>52</integer>
+									<integer>50</integer>
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
-							<string>{{0, 0}, {286, 572}}</string>
+							<string>{{0, 346}, {286, 572}}</string>
 						</dict>
 						<key>PBXTopSmartGroupGIDs</key>
 						<array/>
@@ -316,62 +315,6 @@
 					<key>Dock</key>
 					<array>
 						<dict>
-							<key>ContentConfiguration</key>
-							<dict>
-								<key>PBXProjectModuleGUID</key>
-								<string>1CE0B20306471E060097A5F4</string>
-								<key>PBXProjectModuleLabel</key>
-								<string>Controller.m</string>
-								<key>PBXSplitModuleInNavigatorKey</key>
-								<dict>
-									<key>Split0</key>
-									<dict>
-										<key>PBXProjectModuleGUID</key>
-										<string>1CE0B20406471E060097A5F4</string>
-										<key>PBXProjectModuleLabel</key>
-										<string>Controller.m</string>
-										<key>_historyCapacity</key>
-										<integer>20</integer>
-										<key>bookmark</key>
-										<string>5BC2685213717B7B00606594</string>
-										<key>history</key>
-										<array>
-											<string>5B47EB0D136046FC00095307</string>
-											<string>5B47EB5A13604E8B00095307</string>
-											<string>5BAEEE301360823800605901</string>
-											<string>5BAEEE4E1360879300605901</string>
-											<string>5B945441136EF6F800FC0C67</string>
-											<string>5B945442136EF6F800FC0C67</string>
-											<string>5B945443136EF6F800FC0C67</string>
-											<string>5BFC0AF3136F69D5009B4F69</string>
-											<string>5B378912136F6C9C0087F1FF</string>
-											<string>5B2CE54F137039F60058EFFC</string>
-											<string>5B2CE57013703EE20058EFFC</string>
-											<string>5B2CE57113703EE20058EFFC</string>
-											<string>5B2CE5E0137059870058EFFC</string>
-											<string>5BC2684513717A0B00606594</string>
-											<string>5B2CE5D0137047570058EFFC</string>
-										</array>
-									</dict>
-									<key>SplitCount</key>
-									<string>1</string>
-								</dict>
-								<key>StatusBarVisibility</key>
-								<true/>
-							</dict>
-							<key>GeometryConfiguration</key>
-							<dict>
-								<key>Frame</key>
-								<string>{{0, 0}, {792, 262}}</string>
-								<key>RubberWindowFrame</key>
-								<string>103 134 1100 631 0 0 1280 778 </string>
-							</dict>
-							<key>Module</key>
-							<string>PBXNavigatorGroup</string>
-							<key>Proportion</key>
-							<string>262pt</string>
-						</dict>
-						<dict>
 							<key>BecomeActive</key>
 							<true/>
 							<key>ContentConfiguration</key>
@@ -391,7 +334,63 @@
 										<key>_historyCapacity</key>
 										<integer>20</integer>
 										<key>bookmark</key>
-										<string>5BC2685313717B7B00606594</string>
+										<string>5BC2687113719C4900606594</string>
+										<key>history</key>
+										<array>
+											<string>5B47EB0D136046FC00095307</string>
+											<string>5B47EB5A13604E8B00095307</string>
+											<string>5BAEEE301360823800605901</string>
+											<string>5BAEEE4E1360879300605901</string>
+											<string>5B945441136EF6F800FC0C67</string>
+											<string>5B945442136EF6F800FC0C67</string>
+											<string>5B945443136EF6F800FC0C67</string>
+											<string>5BFC0AF3136F69D5009B4F69</string>
+											<string>5B378912136F6C9C0087F1FF</string>
+											<string>5B2CE54F137039F60058EFFC</string>
+											<string>5B2CE57013703EE20058EFFC</string>
+											<string>5B2CE5E0137059870058EFFC</string>
+											<string>5BC26855137195FC00606594</string>
+											<string>5BC26856137195FC00606594</string>
+											<string>5B2CE57113703EE20058EFFC</string>
+										</array>
+									</dict>
+									<key>SplitCount</key>
+									<string>1</string>
+								</dict>
+								<key>StatusBarVisibility</key>
+								<true/>
+							</dict>
+							<key>GeometryConfiguration</key>
+							<dict>
+								<key>Frame</key>
+								<string>{{0, 0}, {792, 359}}</string>
+								<key>RubberWindowFrame</key>
+								<string>103 134 1100 631 0 0 1280 778 </string>
+							</dict>
+							<key>Module</key>
+							<string>PBXNavigatorGroup</string>
+							<key>Proportion</key>
+							<string>359pt</string>
+						</dict>
+						<dict>
+							<key>ContentConfiguration</key>
+							<dict>
+								<key>PBXProjectModuleGUID</key>
+								<string>1CE0B20306471E060097A5F4</string>
+								<key>PBXProjectModuleLabel</key>
+								<string>SneakyPreferencesPref.h</string>
+								<key>PBXSplitModuleInNavigatorKey</key>
+								<dict>
+									<key>Split0</key>
+									<dict>
+										<key>PBXProjectModuleGUID</key>
+										<string>1CE0B20406471E060097A5F4</string>
+										<key>PBXProjectModuleLabel</key>
+										<string>SneakyPreferencesPref.h</string>
+										<key>_historyCapacity</key>
+										<integer>20</integer>
+										<key>bookmark</key>
+										<string>5BC2687213719C4900606594</string>
 										<key>history</key>
 										<array>
 											<string>5B47EB0D136046FC00095307</string>
@@ -404,8 +403,9 @@
 											<string>5B3788FA136F6BB80087F1FF</string>
 											<string>5B2CE5C51370468D0058EFFC</string>
 											<string>5B2CE61B1370FD9A0058EFFC</string>
-											<string>5B2CE61C1370FD9A0058EFFC</string>
-											<string>5B2CE63E1370FD9A0058EFFC</string>
+											<string>5BC26859137195FC00606594</string>
+											<string>5BC2686D13719B8000606594</string>
+											<string>5BC2685C1371978500606594</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -417,14 +417,14 @@
 							<key>GeometryConfiguration</key>
 							<dict>
 								<key>Frame</key>
-								<string>{{0, 267}, {792, 318}}</string>
+								<string>{{0, 364}, {792, 221}}</string>
 								<key>RubberWindowFrame</key>
 								<string>103 134 1100 631 0 0 1280 778 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXNavigatorGroup</string>
 							<key>Proportion</key>
-							<string>318pt</string>
+							<string>221pt</string>
 						</dict>
 						<dict>
 							<key>ContentConfiguration</key>

@@ -112,13 +112,16 @@
 	NSLog(@"delay: %d",[[NSUserDefaults standardUserDefaults] integerForKey:@"snapshotDelay"]);
 	NSLog(@"do i delay %d",[[NSUserDefaults standardUserDefaults] boolForKey:@"isDelayOnlyWakeup"]);
 	NSLog(@"alert level %d",[[NSUserDefaults standardUserDefaults] boolForKey:@"alertLevel"]);
-	//int delay = [[NSUserDefaults standardUserDefaults] integerForKey:@"snapshotDelay"];
-	/*if( [txtDelay stringValue] == nil){
-		[[NSUserDefaults standardUserDefaults] setInteger:120 forKey:@"snapshotDelay"];
 
-	}*/
-	//[checkOnlyonwakeup setEnabled:false];
-	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(anyThread_handleLoadedSnapshots:) name:LoadSnapshotsFinish object:nil];	
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(anyThread_handleLoadedSnapshots:) name:LoadSnapshotsFinish object:nil];
+	
+    [[ NSDistributedNotificationCenter defaultCenter ] addObserver: self
+														  selector: @selector(prefsNotification:)
+															  name: nil
+															object: @"SneakyPreferencesPref"
+												suspensionBehavior: NSNotificationSuspensionBehaviorCoalesce
+	 ];
+	
 	if([[NSUserDefaults standardUserDefaults] boolForKey:@"isDelayOnlyWakeup"]){
 		[self startSneaky:fullPath];		
 	}else{
@@ -127,7 +130,6 @@
 				   afterDelay:[[NSUserDefaults standardUserDefaults] integerForKey:@"snapshotDelay"]];			
 		
 	}
-	//[self startSneaky:fullPath];
 	
 }
 
@@ -646,6 +648,19 @@
 	//[NSTask launchedTaskWithLaunchPath:@"/usr/bin/open" arguments:[NSArray arrayWithObject: prefsPath ]];
 	[[NSWorkspace sharedWorkspace] openFile:prefsPath];
 }
+
+// This method handles all notifications sent by the preferencePane
+-(void)prefsNotification:(NSNotification*)aNotification
+{
+	NSLog(@"sb pref notify");
+//    if ([[ aNotification name ] isEqualTo: @"GTUpdateWindows" ]) // Preferences changed, update
+//		[ self updateWindows ];
+	if ([[ aNotification name ] isEqualTo: @"SBShowMenubar" ]) {
+		NSLog(@"show in menu bar notify");
+	}
+		
+}
+
 
 - (IBAction) prefTestEmail:(id)sender
 {
