@@ -643,7 +643,7 @@
 - (IBAction) prefWindowController: (id) sender
 {
 	NSLog(@"open prefs %@",prefsPath);
-	//[NSTask launchedTaskWithLaunchPath:@"/usr/bin/open" arguments:[NSArray arrayWithObject: prefsPath ]];
+	[NSTask launchedTaskWithLaunchPath:@"/usr/bin/open" arguments:[NSArray arrayWithObject: prefsPath ]];
 }
 
 - (IBAction) prefTestEmail:(id)sender
