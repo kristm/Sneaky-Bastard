@@ -97,7 +97,7 @@
 			name:@"com.apple.screensaver.didstop" object:nil];
 	
 	//NSDictionary *defaults = [NSDictionary dictionaryWithObject:[NSNumber numberWithBool:NO] forKey:@"includeNetwork"];
-	NSDictionary *defaults = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:NO],@"includeNetwork",[NSNumber numberWithInt:120],@"snapshotDelay",[NSNumber numberWithBool:YES],@"isDelayOnlyWakeup",[NSNumber numberWithInt:0],@"alertLevel",nil];
+	NSDictionary *defaults = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:NO],@"includeNetwork",[NSNumber numberWithInt:120],@"snapshotDelay",[NSNumber numberWithBool:YES],@"isDelayOnlyWakeup",[NSNumber numberWithInt:0],@"alertLevel",[NSNumber numberWithBool:YES], @"showInMenubar",nil];
 	[[NSUserDefaults standardUserDefaults] registerDefaults: defaults];	
 
 	
@@ -558,21 +558,22 @@
 	NSLog(@"status item");
 	if (_statusItem == nil)
 	{
-		NSImage *img;
-		
+		if([[NSUserDefaults standardUserDefaults] boolForKey:@"showInMenubar"]){
+			NSImage *img;
+			
 
-		img = [NSImage imageNamed:@"smile"];
-		_statusItem = [[[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength] retain];
-		[_statusItem setImage:img];
-		[_statusItem setHighlightMode:YES];
-		[_statusItem setEnabled:YES];
-		
+			img = [NSImage imageNamed:@"smile"];
+			_statusItem = [[[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength] retain];
+			[_statusItem setImage:img];
+			[_statusItem setHighlightMode:YES];
+			[_statusItem setEnabled:YES];
+			
 
-		[_statusItem setMenu:menuItemMenu];
-		
-		[img release];
-		//[menu release];		
-
+			[_statusItem setMenu:menuItemMenu];
+			
+			[img release];
+			//[menu release];		
+		}
 		
 	}
 	return _statusItem;
@@ -580,7 +581,7 @@
 
 - (void) showInMenuBar:(id)sender{
 	
-	NSLog(@"sender %@",[sender state]);
+	
 }
 
 - (NSString*)searchPrefsPath
@@ -652,11 +653,18 @@
 // This method handles all notifications sent by the preferencePane
 -(void)prefsNotification:(NSNotification*)aNotification
 {
-	NSLog(@"sb pref notify");
 //    if ([[ aNotification name ] isEqualTo: @"GTUpdateWindows" ]) // Preferences changed, update
 //		[ self updateWindows ];
 	if ([[ aNotification name ] isEqualTo: @"SBShowMenubar" ]) {
 		NSLog(@"show in menu bar notify");
+		[self statusItem];
+	}else if([[ aNotification name] isEqualTo: @"SBHideMenubar" ]){
+		NSLog(@"hide menubar notify");
+		if(_statusItem != nil){
+			[[NSStatusBar systemStatusBar] removeStatusItem:_statusItem];
+			[_statusItem release];
+			_statusItem = nil;
+		}
 	}
 		
 }

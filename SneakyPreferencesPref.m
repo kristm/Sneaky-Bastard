@@ -25,6 +25,9 @@
 	NSLog(@"main load %@",appPath);
 	[appPath retain];
 	
+	NSLog(@"show in menubar %d",[[NSUserDefaults standardUserDefaults] boolForKey:@"showInMenubar"]);
+	//[btnShowinMenu setState:[[NSUserDefaults standardUserDefaults] boolForKey:@"showInMenubar"]];
+	
 	AuthorizationItem items = {kAuthorizationRightExecute, 0, NULL, 0};
     AuthorizationRights rights = {1, &items};
     [authView setAuthorizationRights:&rights];
@@ -82,11 +85,19 @@
 
 - (IBAction)toggleShowInMenu:(id)sender{
 	NSLog(@"toggle show menu %d",[sender state]);
-	[[ NSDistributedNotificationCenter defaultCenter ] postNotificationName: @"SBShowMenubar"
-																	 object: @"SneakyPreferencesPref"
-																   userInfo: nil
-														 deliverImmediately: YES
-	 ];	
+	if([sender state] == 1){
+		[[ NSDistributedNotificationCenter defaultCenter ] postNotificationName: @"SBShowMenubar"
+																		 object: @"SneakyPreferencesPref"
+																	   userInfo: nil
+															 deliverImmediately: YES
+		 ];	
+	}else if([sender state] == 0){
+		[[ NSDistributedNotificationCenter defaultCenter ] postNotificationName: @"SBHideMenubar"
+																		 object: @"SneakyPreferencesPref"
+																	   userInfo: nil
+															 deliverImmediately: YES
+		 ];			
+	}
 }
 
 - (BOOL)isUnlocked {
