@@ -315,8 +315,6 @@
 					<key>Dock</key>
 					<array>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -334,7 +332,7 @@
 										<key>_historyCapacity</key>
 										<integer>20</integer>
 										<key>bookmark</key>
-										<string>5BD06F601377010F00AAA015</string>
+										<string>5BD06F8B1377069900AAA015</string>
 										<key>history</key>
 										<array>
 											<string>5B47EB0D136046FC00095307</string>
@@ -373,6 +371,8 @@
 							<string>384pt</string>
 						</dict>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -390,7 +390,7 @@
 										<key>_historyCapacity</key>
 										<integer>20</integer>
 										<key>bookmark</key>
-										<string>5BD06F611377010F00AAA015</string>
+										<string>5BD06F8C1377069900AAA015</string>
 										<key>history</key>
 										<array>
 											<string>5B47EB0D136046FC00095307</string>
@@ -606,6 +606,7 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
+		<string>1CD10A99069EF8BA00B06720</string>
 		<string>5BFD2D4A135FC7C700E35469</string>
 		<string>/Users/chrismenina/src/cocoa/SneakyBastard/SneakyBastard.xcodeproj</string>
 	</array>
@@ -811,13 +812,13 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1CD10A99069EF8BA00B06720</string>
-				<string>5BB46C521376100C006E9F91</string>
+				<string>5BD06F731377050000AAA015</string>
 				<string>1C162984064C10D400B95A72</string>
-				<string>5BB46C531376100C006E9F91</string>
-				<string>5BB46C541376100C006E9F91</string>
-				<string>5BB46C551376100C006E9F91</string>
-				<string>5BB46C561376100C006E9F91</string>
-				<string>5BB46C571376100C006E9F91</string>
+				<string>5BD06F741377050000AAA015</string>
+				<string>5BD06F751377050000AAA015</string>
+				<string>5BD06F761377050000AAA015</string>
+				<string>5BD06F771377050000AAA015</string>
+				<string>5BD06F781377050000AAA015</string>
 			</array>
 			<key>ToolbarConfiguration</key>
 			<string>xcode.toolbar.config.debugV3</string>

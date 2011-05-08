@@ -110,9 +110,11 @@
 {
 
 	NSLog(@"awake from nib");
+	NSInteger *pref_delay = (NSNumber*)CFPreferencesCopyAppValue( CFSTR("snapshotDelay"), appID);
+	NSInteger *pref_delayOnlyWakeup = (NSNumber*)CFPreferencesCopyAppValue( CFSTR("isDelayOnlyWakeup"), appID );
 	//NSLog(@"network? %d",[[NSUserDefaults standardUserDefaults] boolForKey:@"includeNetwork"]);	
-	NSLog(@"delay: %d",(NSNumber*)CFPreferencesCopyAppValue( CFSTR("snapshotDelay"), appID ));
-	NSLog(@"do i delay %d",(NSNumber*)CFPreferencesCopyAppValue( CFSTR("isDelayOnlyWakeup"), appID ));
+	NSLog(@"delay: %d",[pref_delay intValue] );
+	NSLog(@"do i delay %d",[pref_delayOnlyWakeup boolValue] );
 	//NSLog(@"alert level %d",[[NSUserDefaults standardUserDefaults] boolForKey:@"alertLevel"]);
 	
 

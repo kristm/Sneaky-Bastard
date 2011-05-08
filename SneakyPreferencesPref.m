@@ -188,12 +188,14 @@
 	CFPreferencesSetAppValue( CFSTR("overwriteSnapshot"), [NSNumber numberWithBool:[snapshotNumber selectedRow]], appID );
 	CFPreferencesSetAppValue( CFSTR("snapshotDelay"), [NSNumber numberWithInt:[delaySeconds intValue]], appID );
 	CFPreferencesSetAppValue( CFSTR("isDelayOnlyWakeup"), [NSNumber numberWithBool:[delayOnWakeup  state]], appID );
+		CFPreferencesAppSynchronize( appID );
 }
 
 - (void)didUnselect
 {
 	NSLog(@"quit prefpane");
 	[self updatePrefs];
+
 }
 
 @end
