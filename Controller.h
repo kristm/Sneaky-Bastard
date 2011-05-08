@@ -32,6 +32,7 @@
 
 @interface Controller : NSObject {
 @private
+	CFStringRef appID;
 	NSStatusItem		*_statusItem;
 	//NSTimer				*ctimer;
 
@@ -65,7 +66,6 @@
 - (void)actionQuit:(id)sender;
 - (void)quickSnap:(id)sender;
 
-- (void) showInMenuBar: (id)sender;
 - (void)prefsNotification:(NSNotification*)aNotification;
 
 - (IBAction) setOverwriteSnapshot:(id)sender;

@@ -37,8 +37,11 @@
 - (id)initWithBundle:(NSBundle *)bundle;
 - (void) mainViewDidLoad;
 - (void)appNotification:(NSNotification*)aNotification;
+- (void)updatePrefs;
 
 - (IBAction)toggleEnable:(id)sender;
 - (IBAction)toggleShowInMenu:(id)sender;
+
+- (void)didUnselect;
 
 @end

@@ -36,6 +36,8 @@
 - (void)startSneaky:(NSString *)fpath;
 - (BOOL) useSmtpSettings;
 - (void)alertTimeOut:(NSTimer *)mTimer;
+- (NSString*)searchPrefsPath;
+
 @end
 
 #define	TIMEOUT 30
@@ -48,6 +50,8 @@
 	NSLog(@"init");
 	
 	self = [super init];
+	
+	appID = CFSTR("org.hellowala.sneakybastard");
 	
 	NSFileManager *fm = [NSFileManager defaultManager];
 	snapCount = 0;
@@ -106,13 +110,11 @@
 {
 
 	NSLog(@"awake from nib");
-	NSLog(@"network? %d",[[NSUserDefaults standardUserDefaults] boolForKey:@"includeNetwork"]);	
-	NSLog(@"delay: %d",[[NSUserDefaults standardUserDefaults] integerForKey:@"snapshotDelay"]);
-	NSLog(@"do i delay %d",[[NSUserDefaults standardUserDefaults] boolForKey:@"isDelayOnlyWakeup"]);
-	NSLog(@"alert level %d",[[NSUserDefaults standardUserDefaults] boolForKey:@"alertLevel"]);
+	//NSLog(@"network? %d",[[NSUserDefaults standardUserDefaults] boolForKey:@"includeNetwork"]);	
+	NSLog(@"delay: %d",(NSNumber*)CFPreferencesCopyAppValue( CFSTR("snapshotDelay"), appID ));
+	NSLog(@"do i delay %d",(NSNumber*)CFPreferencesCopyAppValue( CFSTR("isDelayOnlyWakeup"), appID ));
+	//NSLog(@"alert level %d",[[NSUserDefaults standardUserDefaults] boolForKey:@"alertLevel"]);
 	
-	NSDictionary *defaults = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:NO],@"includeNetwork",[NSNumber numberWithInt:120],@"snapshotDelay",[NSNumber numberWithBool:YES],@"isDelayOnlyWakeup",[NSNumber numberWithInt:0],@"alertLevel",[NSNumber numberWithBool:NO], @"showInMenubar",[NSNumber numberWithBool:NO],@"enableSneaky", nil];
-	[[NSUserDefaults standardUserDefaults] registerDefaults: defaults];	
 
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(anyThread_handleLoadedSnapshots:) name:LoadSnapshotsFinish object:nil];
 	
@@ -563,14 +565,13 @@
 - (id)statusItem
 {
 	NSLog(@"status item");
+	NSNumber *showMenu = (NSNumber*)CFPreferencesCopyAppValue( CFSTR("showInMenubar"), appID );
 	if (_statusItem == nil)
 	{
-		NSLog(@"status item is nil %d",[[NSUserDefaults standardUserDefaults] boolForKey:@"showInMenubar"]);
-		if([[NSUserDefaults standardUserDefaults] boolForKey:@"showInMenubar"]){
+		if(showMenu){
 			NSLog(@"showing menubar icon");
 			NSImage *img;
 			
-
 			img = [NSImage imageNamed:@"smile"];
 			_statusItem = [[[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength] retain];
 			[_statusItem setImage:img];
@@ -588,10 +589,6 @@
 	return _statusItem;
 }
 
-- (void) showInMenuBar:(id)sender{
-	
-	
-}
 
 - (NSString*)searchPrefsPath
 {

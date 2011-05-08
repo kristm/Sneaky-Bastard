@@ -26,15 +26,15 @@
 	NSLog(@"main load %@",appPath);
 	[appPath retain];
 	
-	NSLog(@"show in menubar %d",[[NSUserDefaults standardUserDefaults] boolForKey:@"showInMenubar"]);
-	//[btnShowinMenu setState:[[NSUserDefaults standardUserDefaults] boolForKey:@"showInMenubar"]];
-	
     [[ NSDistributedNotificationCenter defaultCenter ] addObserver: self
 														  selector: @selector(appNotification:)
 															  name: nil
 															object: @"Controller"
 												suspensionBehavior: NSNotificationSuspensionBehaviorCoalesce
 	 ];
+	
+	NSDictionary *defaults = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:NO],@"includeNetwork",[NSNumber numberWithInt:120],@"snapshotDelay",[NSNumber numberWithBool:YES],@"isDelayOnlyWakeup",[NSNumber numberWithInt:0],@"alertLevel",[NSNumber numberWithBool:NO], @"showInMenubar",[NSNumber numberWithBool:NO],@"enableSneaky", nil];
+	[[NSUserDefaults standardUserDefaults] registerDefaults: defaults];	
 	
 	AuthorizationItem items = {kAuthorizationRightExecute, 0, NULL, 0};
     AuthorizationRights rights = {1, &items};
@@ -51,8 +51,8 @@
 	LSSharedFileListRef loginItems = LSSharedFileListCreate(NULL,
 															kLSSharedFileListSessionLoginItems, NULL);
 	
-	[[NSUserDefaults standardUserDefaults] setBool:[sender state] forKey:@"enableSneaky"];
-
+	CFPreferencesSetAppValue( CFSTR("enableSneaky"), [NSNumber numberWithBool:[sender state]], appID );
+	
     if ([sender state] == NO)
     {
 		if (loginItems) {
@@ -105,6 +105,7 @@
 
 - (IBAction)toggleShowInMenu:(id)sender{
 	NSLog(@"toggle show menu %d",[sender state]);
+	CFPreferencesSetAppValue( CFSTR("showInMenubar"), [NSNumber numberWithBool:[sender state]], appID );
 	if([sender state] == 1){
 		[[ NSDistributedNotificationCenter defaultCenter ] postNotificationName: @"SBShowMenubar"
 																		 object: @"SneakyPreferencesPref"
@@ -119,6 +120,7 @@
 		 ];			
 	}
 }
+
 
 - (void)appNotification:(NSNotification*)aNotification
 {
@@ -178,6 +180,20 @@
 	[mailSubject setEnabled:unlock];
 	[mailIPAddress setEnabled:unlock];
 	
+}
+
+- (void)updatePrefs
+{
+	NSLog(@"update prefs %d %d %d",[snapshotNumber selectedRow],[delaySeconds intValue],[delayOnWakeup state]);
+	CFPreferencesSetAppValue( CFSTR("overwriteSnapshot"), [NSNumber numberWithBool:[snapshotNumber selectedRow]], appID );
+	CFPreferencesSetAppValue( CFSTR("snapshotDelay"), [NSNumber numberWithInt:[delaySeconds intValue]], appID );
+	CFPreferencesSetAppValue( CFSTR("isDelayOnlyWakeup"), [NSNumber numberWithBool:[delayOnWakeup  state]], appID );
+}
+
+- (void)didUnselect
+{
+	NSLog(@"quit prefpane");
+	[self updatePrefs];
 }
 
 @end
