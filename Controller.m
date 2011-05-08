@@ -110,6 +110,9 @@
 	NSLog(@"delay: %d",[[NSUserDefaults standardUserDefaults] integerForKey:@"snapshotDelay"]);
 	NSLog(@"do i delay %d",[[NSUserDefaults standardUserDefaults] boolForKey:@"isDelayOnlyWakeup"]);
 	NSLog(@"alert level %d",[[NSUserDefaults standardUserDefaults] boolForKey:@"alertLevel"]);
+	
+	NSDictionary *defaults = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:NO],@"includeNetwork",[NSNumber numberWithInt:120],@"snapshotDelay",[NSNumber numberWithBool:YES],@"isDelayOnlyWakeup",[NSNumber numberWithInt:0],@"alertLevel",[NSNumber numberWithBool:NO], @"showInMenubar",[NSNumber numberWithBool:NO],@"enableSneaky", nil];
+	[[NSUserDefaults standardUserDefaults] registerDefaults: defaults];	
 
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(anyThread_handleLoadedSnapshots:) name:LoadSnapshotsFinish object:nil];
 	
@@ -128,6 +131,7 @@
 				   afterDelay:[[NSUserDefaults standardUserDefaults] integerForKey:@"snapshotDelay"]];			
 		
 	}
+	
 	
 }
 
@@ -478,6 +482,11 @@
 
 
 - (void) actionQuit:(id)sender {
+	[[ NSDistributedNotificationCenter defaultCenter ] postNotificationName: @"SBQuit"
+																	 object: @"Controller"
+																   userInfo: nil
+														 deliverImmediately: YES
+	 ];	
 	[NSApp terminate:sender];
 }
 
@@ -656,10 +665,12 @@
 {
 	NSLog(@"notification from prefpane %@",[aNotification name]);
 	if ([[ aNotification name ] isEqualTo: @"SBShowMenubar" ]) {
+		[[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"showInMenubar"];
 		NSLog(@"show in menu bar notify");
 		[self statusItem];
 	}else if([[ aNotification name] isEqualTo: @"SBHideMenubar" ]){
 		NSLog(@"hide menubar notify");
+		[[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"showInMenubar"];
 		if(_statusItem != nil){
 			[[NSStatusBar systemStatusBar] removeStatusItem:_statusItem];
 			[_statusItem release];

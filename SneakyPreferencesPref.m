@@ -22,15 +22,19 @@
 - (void) mainViewDidLoad
 {
 	
-	NSDictionary *defaults = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:NO],@"includeNetwork",[NSNumber numberWithInt:120],@"snapshotDelay",[NSNumber numberWithBool:YES],@"isDelayOnlyWakeup",[NSNumber numberWithInt:0],@"alertLevel",[NSNumber numberWithBool:NO], @"showInMenubar",[NSNumber numberWithBool:NO],@"enableSneaky", nil];
-	[[NSUserDefaults standardUserDefaults] registerDefaults: defaults];	
-	
 	appPath = [[self bundle] pathForResource:@"SneakyBastard" ofType:@"app"];	
 	NSLog(@"main load %@",appPath);
 	[appPath retain];
 	
 	NSLog(@"show in menubar %d",[[NSUserDefaults standardUserDefaults] boolForKey:@"showInMenubar"]);
 	//[btnShowinMenu setState:[[NSUserDefaults standardUserDefaults] boolForKey:@"showInMenubar"]];
+	
+    [[ NSDistributedNotificationCenter defaultCenter ] addObserver: self
+														  selector: @selector(appNotification:)
+															  name: nil
+															object: @"Controller"
+												suspensionBehavior: NSNotificationSuspensionBehaviorCoalesce
+	 ];
 	
 	AuthorizationItem items = {kAuthorizationRightExecute, 0, NULL, 0};
     AuthorizationRights rights = {1, &items};
@@ -113,6 +117,14 @@
 																	   userInfo: nil
 															 deliverImmediately: YES
 		 ];			
+	}
+}
+
+- (void)appNotification:(NSNotification*)aNotification
+{
+	NSLog(@"notification from main app %@",[aNotification name]);
+	if([[ aNotification name] isEqualTo:@"SBQuit"]){
+		[btnEnable setState:NO];
 	}
 }
 
