@@ -21,6 +21,10 @@
 
 - (void) mainViewDidLoad
 {
+	
+	NSDictionary *defaults = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:NO],@"includeNetwork",[NSNumber numberWithInt:120],@"snapshotDelay",[NSNumber numberWithBool:YES],@"isDelayOnlyWakeup",[NSNumber numberWithInt:0],@"alertLevel",[NSNumber numberWithBool:NO], @"showInMenubar",[NSNumber numberWithBool:NO],@"enableSneaky", nil];
+	[[NSUserDefaults standardUserDefaults] registerDefaults: defaults];	
+	
 	appPath = [[self bundle] pathForResource:@"SneakyBastard" ofType:@"app"];	
 	NSLog(@"main load %@",appPath);
 	[appPath retain];
@@ -43,6 +47,7 @@
 	LSSharedFileListRef loginItems = LSSharedFileListCreate(NULL,
 															kLSSharedFileListSessionLoginItems, NULL);
 	
+	[[NSUserDefaults standardUserDefaults] setBool:[sender state] forKey:@"enableSneaky"];
 
     if ([sender state] == NO)
     {
@@ -64,7 +69,13 @@
 				}
 			}
 			[loginItemsArray release];
-		}		
+					
+		}	
+		[[ NSDistributedNotificationCenter defaultCenter ] postNotificationName: @"SBQuit"
+																		 object: @"SneakyPreferencesPref"
+																	   userInfo: nil
+															 deliverImmediately: YES
+		 ];
     }
     else
     {
@@ -76,6 +87,11 @@
 			if (item){
 				CFRelease(item);
 			}
+
+			//[NSTask launchedTaskWithLaunchPath:appPath arguments:[NSArray array]];
+			[[NSWorkspace sharedWorkspace] openFile:appPath];
+
+			NSLog(@"enable sb %@",appPath);
 		}	
 		
 		NSLog(@"assign login items");

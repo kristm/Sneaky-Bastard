@@ -96,9 +96,7 @@
 			selector:@selector(screenSaverDidStop:)
 			name:@"com.apple.screensaver.didstop" object:nil];
 	
-	//NSDictionary *defaults = [NSDictionary dictionaryWithObject:[NSNumber numberWithBool:NO] forKey:@"includeNetwork"];
-	NSDictionary *defaults = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:NO],@"includeNetwork",[NSNumber numberWithInt:120],@"snapshotDelay",[NSNumber numberWithBool:YES],@"isDelayOnlyWakeup",[NSNumber numberWithInt:0],@"alertLevel",[NSNumber numberWithBool:YES], @"showInMenubar",nil];
-	[[NSUserDefaults standardUserDefaults] registerDefaults: defaults];	
+
 
 	
 	return self;
@@ -558,7 +556,9 @@
 	NSLog(@"status item");
 	if (_statusItem == nil)
 	{
+		NSLog(@"status item is nil %d",[[NSUserDefaults standardUserDefaults] boolForKey:@"showInMenubar"]);
 		if([[NSUserDefaults standardUserDefaults] boolForKey:@"showInMenubar"]){
+			NSLog(@"showing menubar icon");
 			NSImage *img;
 			
 
@@ -622,7 +622,7 @@
 
 - (NSString*)copyrightString
 {
-    return @"Copyright © 2010 \nKrist Menina\nkrist@hellowala.org";
+    return @"Copyright © 2011 \nKrist Menina\nkrist@hellowala.org";
 }
 - (float)appNameLabelFontSize
 {
@@ -648,13 +648,13 @@
 	NSLog(@"open prefs %@",prefsPath);
 	//[NSTask launchedTaskWithLaunchPath:@"/usr/bin/open" arguments:[NSArray arrayWithObject: prefsPath ]];
 	[[NSWorkspace sharedWorkspace] openFile:prefsPath];
+
 }
 
 // This method handles all notifications sent by the preferencePane
 -(void)prefsNotification:(NSNotification*)aNotification
 {
-//    if ([[ aNotification name ] isEqualTo: @"GTUpdateWindows" ]) // Preferences changed, update
-//		[ self updateWindows ];
+	NSLog(@"notification from prefpane %@",[aNotification name]);
 	if ([[ aNotification name ] isEqualTo: @"SBShowMenubar" ]) {
 		NSLog(@"show in menu bar notify");
 		[self statusItem];
@@ -665,6 +665,10 @@
 			[_statusItem release];
 			_statusItem = nil;
 		}
+	}else if([[aNotification name] isEqualTo:@"SBQuit" ]){
+		NSLog(@"sb quit notification received");
+		//[[NSApplication sharedApplication] terminate:self];
+		[NSApp terminate:self];
 	}
 		
 }
