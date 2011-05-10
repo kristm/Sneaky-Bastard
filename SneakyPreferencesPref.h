@@ -37,6 +37,7 @@
 - (id)initWithBundle:(NSBundle *)bundle;
 - (void) mainViewDidLoad;
 - (void)appNotification:(NSNotification*)aNotification;
+- (void)defaultPrefs;
 - (void)updatePrefs;
 
 - (IBAction)toggleEnable:(id)sender;

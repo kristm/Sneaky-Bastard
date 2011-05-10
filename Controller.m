@@ -110,13 +110,14 @@
 {
 
 	NSLog(@"awake from nib");
-	NSInteger *pref_delay = (NSNumber*)CFPreferencesCopyAppValue( CFSTR("snapshotDelay"), appID);
-	NSInteger *pref_delayOnlyWakeup = (NSNumber*)CFPreferencesCopyAppValue( CFSTR("isDelayOnlyWakeup"), appID );
+	NSNumber *pref_delay = (NSNumber*)CFPreferencesCopyAppValue( CFSTR("snapshotDelay"), appID);
+	NSNumber *pref_delayOnlyWakeup = (NSNumber*)CFPreferencesCopyAppValue( CFSTR("isDelayOnlyWakeup"), appID );
+	NSNumber *alertMeter = (NSNumber *)CFPreferencesCopyAppValue(CFSTR("alertLevel"), appID);
 	//NSLog(@"network? %d",[[NSUserDefaults standardUserDefaults] boolForKey:@"includeNetwork"]);	
 	NSLog(@"delay: %d",[pref_delay intValue] );
 	NSLog(@"do i delay %d",[pref_delayOnlyWakeup boolValue] );
-	//NSLog(@"alert level %d",[[NSUserDefaults standardUserDefaults] boolForKey:@"alertLevel"]);
-	
+	NSLog(@"alert level %d",[alertMeter intValue]);
+	NSLog(@"email server %@",(NSString *)CFPreferencesCopyAppValue(CFSTR("smtpURL"), appID));
 
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(anyThread_handleLoadedSnapshots:) name:LoadSnapshotsFinish object:nil];
 	
@@ -348,8 +349,14 @@
 
 - (BOOL) useSmtpSettings
 {
-	//[[NSUserDefaults standardUserDefaults] boolForKey:@"overwriteSnapshot"]
-	return ([[NSUserDefaults standardUserDefaults] stringForKey:@"smtpURL"] != nil && [[NSUserDefaults standardUserDefaults] stringForKey:@"smtpPort"] != nil && [[NSUserDefaults standardUserDefaults] stringForKey:@"smtpUsername"] != nil && [[NSUserDefaults standardUserDefaults] stringForKey:@"smtpPassword"] != nil && [[NSUserDefaults standardUserDefaults] stringForKey:@"emailAddress"] != nil && [[NSUserDefaults standardUserDefaults] stringForKey:@"emailSubject"] != nil );
+	return ((NSString *)CFPreferencesCopyAppValue(CFSTR("smtpURL"), appID) != nil && 
+			(NSNumber *)CFPreferencesCopyAppValue(CFSTR("smtpPort"), appID) != nil &&
+			(NSString *)CFPreferencesCopyAppValue(CFSTR("smtpUsername"), appID) != nil &&
+			(NSString *)CFPreferencesCopyAppValue(CFSTR("smtpPassword"), appID) != nil &&
+			(NSString *)CFPreferencesCopyAppValue(CFSTR("emailAddress"), appID) != nil &&
+			(NSString *)CFPreferencesCopyAppValue(CFSTR("emailAddressTo"), appID) != nil &&
+			(NSString *)CFPreferencesCopyAppValue(CFSTR("emailSubject"), appID) != nil &&
+			(NSNumber *)CFPreferencesCopyAppValue(CFSTR("includeNetwork"), appID) != nil);
 }
 
 

@@ -33,8 +33,9 @@
 												suspensionBehavior: NSNotificationSuspensionBehaviorCoalesce
 	 ];
 	
-	NSDictionary *defaults = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:NO],@"includeNetwork",[NSNumber numberWithInt:120],@"snapshotDelay",[NSNumber numberWithBool:YES],@"isDelayOnlyWakeup",[NSNumber numberWithInt:0],@"alertLevel",[NSNumber numberWithBool:NO], @"showInMenubar",[NSNumber numberWithBool:NO],@"enableSneaky", nil];
-	[[NSUserDefaults standardUserDefaults] registerDefaults: defaults];	
+	//NSDictionary *defaults = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:NO],@"includeNetwork",[NSNumber numberWithInt:120],@"snapshotDelay",[NSNumber numberWithBool:YES],@"isDelayOnlyWakeup",[NSNumber numberWithInt:0],@"alertLevel",[NSNumber numberWithBool:NO], @"showInMenubar",[NSNumber numberWithBool:NO],@"enableSneaky", nil];
+//	[[NSUserDefaults standardUserDefaults] registerDefaults: defaults];	
+	[self defaultPrefs];
 	
 	AuthorizationItem items = {kAuthorizationRightExecute, 0, NULL, 0};
     AuthorizationRights rights = {1, &items};
@@ -182,13 +183,59 @@
 	
 }
 
+- (void)defaultPrefs
+{
+	//NSInteger *includeNetwork = CFPreferencesCopyAppValue(CFSTR("includeNetwork"), appID);
+	NSNumber *numSnapshots = (NSNumber *)CFPreferencesCopyAppValue(CFSTR("overwriteSnapshot"), appID);
+	NSNumber *snapshotDelay = (NSNumber *)CFPreferencesCopyAppValue(CFSTR("snapshotDelay"), appID);
+	NSNumber *isDelayOnWakeup = (NSNumber *)CFPreferencesCopyAppValue(CFSTR("isDelayOnlyWakeup"), appID);
+	NSNumber *alertMeter = (NSNumber *)CFPreferencesCopyAppValue(CFSTR("alertLevel"), appID);
+	
+	if(numSnapshots){
+		[snapshotNumber setState:YES atRow:[numSnapshots intValue] column:0];
+		[snapshotNumber setState:NO atRow:![numSnapshots intValue] column:0];
+	}
+	if(snapshotDelay) [delaySeconds setIntValue:[snapshotDelay intValue]];
+	if(isDelayOnWakeup) [delayOnWakeup setState:[isDelayOnWakeup boolValue]];
+	if(alertMeter) [alertLevel setIntValue:[alertMeter intValue]];
+	
+	NSString *smtpURL = (NSString *)CFPreferencesCopyAppValue(CFSTR("smtpURL"), appID);
+	NSNumber *smtpPort = (NSNumber *)CFPreferencesCopyAppValue(CFSTR("smtpPort"), appID);
+	NSString *smtpUsername = (NSString *)CFPreferencesCopyAppValue(CFSTR("smtpUsername"), appID);
+	NSString *smtpPassword = (NSString *)CFPreferencesCopyAppValue(CFSTR("smtpPassword"), appID);
+	NSString *emailAddress = (NSString *)CFPreferencesCopyAppValue(CFSTR("emailAddress"), appID);
+	NSString *emailAddressTo = (NSString *)CFPreferencesCopyAppValue(CFSTR("emailAddressTo"), appID);
+	NSString *emailSubject = (NSString *)CFPreferencesCopyAppValue(CFSTR("emailSubject"), appID);
+	NSNumber *includeNetwork = (NSNumber *)CFPreferencesCopyAppValue(CFSTR("includeNetwork"), appID);
+
+	if(smtpURL) [mailServerUrl setStringValue:smtpURL];
+	if(smtpPort) [mailPort setIntValue:[smtpPort intValue]];
+	if(smtpUsername) [mailUsername setStringValue:smtpUsername];
+	if(smtpPassword) [mailPassword setStringValue:smtpPassword];
+	if(emailAddress) [mailFrom setStringValue:emailAddress];
+	if(emailAddressTo) [mailFrom setStringValue:emailAddressTo];	
+	if(emailSubject) [mailSubject setStringValue:emailSubject];
+	if(includeNetwork) [mailIPAddress setState:[includeNetwork boolValue]];
+																	 
+	NSLog(@"num snaps %d",[numSnapshots intValue]);
+	NSLog(@"snapshot delay %d",[snapshotDelay intValue]);
+	NSLog(@"delay On wake %d",[isDelayOnWakeup boolValue]);
+	NSLog(@"alert %@",alertMeter);
+
+}
+
 - (void)updatePrefs
 {
-	NSLog(@"update prefs %d %d %d",[snapshotNumber selectedRow],[delaySeconds intValue],[delayOnWakeup state]);
-	CFPreferencesSetAppValue( CFSTR("overwriteSnapshot"), [NSNumber numberWithBool:[snapshotNumber selectedRow]], appID );
+	NSLog(@"update prefs %d %d %d %d",[snapshotNumber selectedRow],[delaySeconds intValue],[delayOnWakeup state],[alertLevel integerValue]);
+	NSLog(@"unselected row %d",![snapshotNumber selectedRow]);
+	CFPreferencesAppSynchronize( appID );
+	CFPreferencesSetAppValue( CFSTR("overwriteSnapshot"), [NSNumber numberWithInt:[snapshotNumber selectedRow]], appID );
 	CFPreferencesSetAppValue( CFSTR("snapshotDelay"), [NSNumber numberWithInt:[delaySeconds intValue]], appID );
 	CFPreferencesSetAppValue( CFSTR("isDelayOnlyWakeup"), [NSNumber numberWithBool:[delayOnWakeup  state]], appID );
-		CFPreferencesAppSynchronize( appID );
+	CFPreferencesSetAppValue( CFSTR("alertLevel"), [NSNumber numberWithInt:[alertLevel integerValue]], appID);
+	CFPreferencesSetAppValue(CFSTR("smtpURL"), [mailServerUrl stringValue], appID);
+	CFPreferencesSetAppValue(CFSTR("smtpPort"), [mailPort stringValue], appID);
+	CFPreferencesAppSynchronize( appID );
 }
 
 - (void)didUnselect
