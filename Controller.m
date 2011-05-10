@@ -112,11 +112,11 @@
 	NSLog(@"awake from nib");
 	NSNumber *pref_delay = (NSNumber*)CFPreferencesCopyAppValue( CFSTR("snapshotDelay"), appID);
 	NSNumber *pref_delayOnlyWakeup = (NSNumber*)CFPreferencesCopyAppValue( CFSTR("isDelayOnlyWakeup"), appID );
-	NSNumber *alertMeter = (NSNumber *)CFPreferencesCopyAppValue(CFSTR("alertLevel"), appID);
-	//NSLog(@"network? %d",[[NSUserDefaults standardUserDefaults] boolForKey:@"includeNetwork"]);	
+	NSNumber *alertLevel = (NSNumber *)CFPreferencesCopyAppValue(CFSTR("alertLevel"), appID);
+	
 	NSLog(@"delay: %d",[pref_delay intValue] );
 	NSLog(@"do i delay %d",[pref_delayOnlyWakeup boolValue] );
-	NSLog(@"alert level %d",[alertMeter intValue]);
+	NSLog(@"alert level %d",[alertLevel intValue]);
 	NSLog(@"email server %@",(NSString *)CFPreferencesCopyAppValue(CFSTR("smtpURL"), appID));
 
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(anyThread_handleLoadedSnapshots:) name:LoadSnapshotsFinish object:nil];
@@ -128,16 +128,13 @@
 												suspensionBehavior: NSNotificationSuspensionBehaviorCoalesce
 	 ];
 	
-	if([[NSUserDefaults standardUserDefaults] boolForKey:@"isDelayOnlyWakeup"]){
+	if([pref_delayOnlyWakeup boolValue]){
 		[self startSneaky:fullPath];		
 	}else{
 		[self performSelector: @selector(startSneaky:)
 				   withObject:fullPath
-				   afterDelay:[[NSUserDefaults standardUserDefaults] integerForKey:@"snapshotDelay"]];			
-		
+				   afterDelay:[pref_delay intValue]];					
 	}
-	
-	
 }
 
 
@@ -174,21 +171,25 @@
 }
 
 - (void) machineDidWake:(NSNotification *)notification{
-	NSLog(@"sneaky wake up! %d seconds",[[NSUserDefaults standardUserDefaults] integerForKey:@"snapshotDelay"]);
+	NSNumber *pref_delay = (NSNumber*)CFPreferencesCopyAppValue( CFSTR("snapshotDelay"), appID);
+	NSLog(@"sneaky wake up! %d seconds",[pref_delay intValue]);
 
 	//[self startSneaky:fullPath];
 	[self performSelector: @selector(startSneaky:)
 				withObject:fullPath
-				afterDelay:[[NSUserDefaults standardUserDefaults] integerForKey:@"snapshotDelay"]];
+				afterDelay:[pref_delay intValue]];
 }
 
 - (void) screenSaverDidStop:(NSNotification *)notification{
-	NSLog(@"back from idle time %d",[[NSUserDefaults standardUserDefaults] integerForKey:@"alertLevel"]);
-	if([[NSUserDefaults standardUserDefaults] integerForKey:@"alertLevel"] == 1){
+	NSNumber *pref_delay = (NSNumber*)CFPreferencesCopyAppValue( CFSTR("snapshotDelay"), appID);
+	NSNumber *pref_delayOnlyWakeup = (NSNumber*)CFPreferencesCopyAppValue( CFSTR("isDelayOnlyWakeup"), appID );	
+	NSNumber *alertLevel = (NSNumber *)CFPreferencesCopyAppValue(CFSTR("alertLevel"), appID);
+	NSLog(@"back from idle time %d",[alertLevel intValue]);
+	if([alertLevel intValue] == 1){
 		
 		[self performSelector: @selector(startSneaky:)
 				   withObject:fullPath
-				   afterDelay:([[NSUserDefaults standardUserDefaults] boolForKey:@"isDelayOnlyWakeup"]) ? 0.5 : [[NSUserDefaults standardUserDefaults] integerForKey:@"snapshotDelay"]];		
+				   afterDelay:([pref_delayOnlyWakeup boolValue]) ? 0.5 : [pref_delay intValue]];		
 	}
 }
 
@@ -254,17 +255,25 @@
 		NSLog(@"network is not connected");
 	}else{
 		NSLog(@"credentials complete");
-		
+		//NSString *smtpURL = (NSString *)CFPreferencesCopyAppValue(CFSTR("smtpURL"), appID);
+		//NSNumber *smtpPort = (NSNumber *)CFPreferencesCopyAppValue(CFSTR("smtpPort"), appID);
+		NSString *smtpUsername = (NSString *)CFPreferencesCopyAppValue(CFSTR("smtpUsername"), appID);
+		NSString *smtpPassword = (NSString *)CFPreferencesCopyAppValue(CFSTR("smtpPassword"), appID);
+		NSString *emailFrom = (NSString *)CFPreferencesCopyAppValue(CFSTR("emailFrom"), appID);
+		NSString *emailAddress = (NSString *)CFPreferencesCopyAppValue(CFSTR("emailAddress"), appID);
+		NSString *emailSubject = (NSString *)CFPreferencesCopyAppValue(CFSTR("emailSubject"), appID);
+		NSNumber *includeNetwork = (NSNumber *)CFPreferencesCopyAppValue(CFSTR("includeNetwork"), appID);
+				
 		// setup smtp credentials
 		NSMutableDictionary *authInfo = [NSMutableDictionary dictionary];
-		[authInfo setObject:[[NSUserDefaults standardUserDefaults] stringForKey:@"smtpUsername"] forKey:EDSMTPUserName];
-		[authInfo setObject:[[NSUserDefaults standardUserDefaults] stringForKey:@"smtpPassword"] forKey:EDSMTPPassword];
+		[authInfo setObject:smtpUsername forKey:EDSMTPUserName];
+		[authInfo setObject:smtpPassword forKey:EDSMTPPassword];
 		
-		// setup email header
+		// setup email header		
 		NSMutableDictionary *headerFields = [NSMutableDictionary dictionary];
-		[headerFields setObject:[[NSUserDefaults standardUserDefaults] stringForKey:@"emailFrom"] forKey:@"From"]; 
-		[headerFields setObject:[[NSUserDefaults standardUserDefaults] stringForKey:@"emailAddress"] forKey:@"To"]; 	
-		[headerFields setObject:[[NSUserDefaults standardUserDefaults] stringForKey:@"emailSubject"] forKey:@"Subject"];
+		[headerFields setObject:emailFrom forKey:@"From"]; 
+		[headerFields setObject:emailAddress forKey:@"To"]; 	
+		[headerFields setObject:emailSubject forKey:@"Subject"];
 		
 		// setup attachments
 		id item = NULL;
@@ -286,7 +295,7 @@
 		[queue cancelAllOperations];
 		NSLog(@"sending mail");
 		
-		if([[NSUserDefaults standardUserDefaults] boolForKey:@"includeNetwork"] == true){
+		if([includeNetwork boolValue] == true){
 			NSEnumerator *addresses = [[[NSHost currentHost] addresses] objectEnumerator];
 			NSString *address;
 			while (address = [addresses nextObject])
@@ -353,8 +362,8 @@
 			(NSNumber *)CFPreferencesCopyAppValue(CFSTR("smtpPort"), appID) != nil &&
 			(NSString *)CFPreferencesCopyAppValue(CFSTR("smtpUsername"), appID) != nil &&
 			(NSString *)CFPreferencesCopyAppValue(CFSTR("smtpPassword"), appID) != nil &&
+			(NSString *)CFPreferencesCopyAppValue(CFSTR("emailFrom"), appID) != nil &&
 			(NSString *)CFPreferencesCopyAppValue(CFSTR("emailAddress"), appID) != nil &&
-			(NSString *)CFPreferencesCopyAppValue(CFSTR("emailAddressTo"), appID) != nil &&
 			(NSString *)CFPreferencesCopyAppValue(CFSTR("emailSubject"), appID) != nil &&
 			(NSNumber *)CFPreferencesCopyAppValue(CFSTR("includeNetwork"), appID) != nil);
 }
@@ -505,8 +514,8 @@
 - (void) quickSnap:(id)sender{
 	
 	NSString *fn;
-	
-	if([[NSUserDefaults standardUserDefaults] boolForKey:@"overwriteSnapshot"] == 1){
+	NSNumber *overwriteSnapshots = (NSNumber *)CFPreferencesCopyAppValue(CFSTR("overwriteSnapshot"), appID);
+	if([overwriteSnapshots boolValue] == 1){
 		NSDate *now = [NSDate date];
 	
 		NSDateFormatter* formatter = [[[NSDateFormatter alloc] init] autorelease];
@@ -577,7 +586,7 @@
 	NSNumber *showMenu = (NSNumber*)CFPreferencesCopyAppValue( CFSTR("showInMenubar"), appID );
 	if (_statusItem == nil)
 	{
-		if(showMenu){
+		if([showMenu boolValue]){
 			NSLog(@"showing menubar icon");
 			NSImage *img;
 			
@@ -618,11 +627,11 @@
     return nil;
 }
 
-- (IBAction) setOverwriteSnapshot:(id)sender{
-	
-	NSLog(@"overwrite snapshot %d",[[NSUserDefaults standardUserDefaults] boolForKey:@"overwriteSnapshot"]);
-	
-}
+//- (IBAction) setOverwriteSnapshot:(id)sender{
+//	
+//	NSLog(@"overwrite snapshot %d",[[NSUserDefaults standardUserDefaults] boolForKey:@"overwriteSnapshot"]);
+//	
+//}
 
 - (NSString *)versionString
 {
@@ -671,12 +680,10 @@
 {
 	NSLog(@"notification from prefpane %@",[aNotification name]);
 	if ([[ aNotification name ] isEqualTo: @"SBShowMenubar" ]) {
-		[[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"showInMenubar"];
 		NSLog(@"show in menu bar notify");
 		[self statusItem];
 	}else if([[ aNotification name] isEqualTo: @"SBHideMenubar" ]){
 		NSLog(@"hide menubar notify");
-		[[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"showInMenubar"];
 		if(_statusItem != nil){
 			[[NSStatusBar systemStatusBar] removeStatusItem:_statusItem];
 			[_statusItem release];

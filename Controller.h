@@ -68,7 +68,7 @@
 
 - (void)prefsNotification:(NSNotification*)aNotification;
 
-- (IBAction) setOverwriteSnapshot:(id)sender;
+//- (IBAction) setOverwriteSnapshot:(id)sender;
 - (IBAction) aboutWindowController: (id) sender;
 - (IBAction) prefWindowController: (id) sender;
 - (IBAction) prefTestEmail:(id)sender;
