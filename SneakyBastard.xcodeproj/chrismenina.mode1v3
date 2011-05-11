@@ -280,12 +280,13 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>51</integer>
-									<integer>50</integer>
+									<integer>3</integer>
+									<integer>1</integer>
+									<integer>0</integer>
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
-							<string>{{0, 352}, {241, 566}}</string>
+							<string>{{0, 0}, {241, 566}}</string>
 						</dict>
 						<key>PBXTopSmartGroupGIDs</key>
 						<array/>
@@ -334,7 +335,7 @@
 										<key>_historyCapacity</key>
 										<integer>20</integer>
 										<key>bookmark</key>
-										<string>5B876578137AD45400043A51</string>
+										<string>5BC0528C137BA31E00116DA5</string>
 										<key>history</key>
 										<array>
 											<string>5B47EB0D136046FC00095307</string>
@@ -351,8 +352,8 @@
 											<string>5B5ED2FC1379A4F000A177CF</string>
 											<string>5B5ED2FD1379A4F000A177CF</string>
 											<string>5B5ED31E1379A83100A177CF</string>
-											<string>5B648B17137A63A900029DC2</string>
-											<string>5B237F53137A66850073CA29</string>
+											<string>5BC0528A137BA31E00116DA5</string>
+											<string>5BC0528B137BA31E00116DA5</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -410,9 +411,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>5B876572137AD3D000043A51</string>
+				<string>5BC0528D137BA31E00116DA5</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>5B876573137AD3D000043A51</string>
+				<string>5BC0528E137BA31E00116DA5</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
 			</array>
@@ -650,7 +651,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>5BFD2D4A135FC7C700E35469</string>
-				<string>5B876574137AD3D100043A51</string>
+				<string>5BC0528F137BA31F00116DA5</string>
 				<string>1CD0528F0623707200166675</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 			</array>

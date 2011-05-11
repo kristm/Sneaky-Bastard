@@ -512,10 +512,11 @@
 
 
 - (void) quickSnap:(id)sender{
-	
 	NSString *fn;
+	CFPreferencesAppSynchronize(appID);
 	NSNumber *overwriteSnapshots = (NSNumber *)CFPreferencesCopyAppValue(CFSTR("overwriteSnapshot"), appID);
-	if([overwriteSnapshots boolValue] == 1){
+	NSLog(@"overwrite snaps %d",[overwriteSnapshots intValue]);
+	if([overwriteSnapshots intValue] == 1){
 		NSDate *now = [NSDate date];
 	
 		NSDateFormatter* formatter = [[[NSDateFormatter alloc] init] autorelease];
