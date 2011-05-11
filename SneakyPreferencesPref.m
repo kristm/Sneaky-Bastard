@@ -222,6 +222,7 @@
 	NSLog(@"snapshot delay %d",[snapshotDelay intValue]);
 	NSLog(@"delay On wake %d",[isDelayOnWakeup boolValue]);
 	NSLog(@"alert %@",alertMeter);
+	NSLog(@"email subject %@",emailSubject);
 
 }
 
@@ -235,6 +236,10 @@
 	CFPreferencesSetAppValue(CFSTR("alertLevel"), [NSNumber numberWithInt:[alertLevel integerValue]], appID);
 	CFPreferencesSetAppValue(CFSTR("smtpURL"), [mailServerUrl stringValue], appID);
 	CFPreferencesSetAppValue(CFSTR("smtpPort"), [mailPort stringValue], appID);
+	CFPreferencesSetAppValue(CFSTR("emailFrom"), [mailFrom stringValue], appID);
+	CFPreferencesSetAppValue(CFSTR("emailAddress"), [mailTo stringValue], appID);
+	CFPreferencesSetAppValue(CFSTR("emailSubject"), [mailSubject stringValue], appID);
+	CFPreferencesSetAppValue(CFSTR("includeNetwork"), [NSNumber numberWithInt:[mailIPAddress state]], appID);
 	CFPreferencesAppSynchronize( appID );
 }
 
