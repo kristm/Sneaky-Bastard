@@ -1044,14 +1044,6 @@
 						<reference key="NSOnImage" ref="35465992"/>
 						<reference key="NSMixedImage" ref="502551668"/>
 					</object>
-					<object class="NSMenuItem" id="265352883">
-						<reference key="NSMenu" ref="1008610563"/>
-						<string key="NSTitle">Quit</string>
-						<string key="NSKeyEquiv"/>
-						<int key="NSMnemonicLoc">2147483647</int>
-						<reference key="NSOnImage" ref="35465992"/>
-						<reference key="NSMixedImage" ref="502551668"/>
-					</object>
 				</object>
 			</object>
 			<object class="NSWindowTemplate" id="552219324">
@@ -1715,14 +1707,6 @@
 						<reference key="destination" ref="1008610563"/>
 					</object>
 					<int key="connectionID">469</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBActionConnection" key="connection">
-						<string key="label">actionQuit:</string>
-						<reference key="source" ref="540217780"/>
-						<reference key="destination" ref="265352883"/>
-					</object>
-					<int key="connectionID">474</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBActionConnection" key="connection">
@@ -2643,7 +2627,6 @@
 						<reference key="object" ref="1008610563"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="265352883"/>
 							<reference ref="576793481"/>
 							<reference ref="969376658"/>
 							<reference ref="12965269"/>
@@ -2660,11 +2643,6 @@
 					<object class="IBObjectRecord">
 						<int key="objectID">466</int>
 						<reference key="object" ref="12965269"/>
-						<reference key="parent" ref="1008610563"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">467</int>
-						<reference key="object" ref="265352883"/>
 						<reference key="parent" ref="1008610563"/>
 					</object>
 					<object class="IBObjectRecord">
@@ -2926,7 +2904,6 @@
 					<string>464.IBPluginDependency</string>
 					<string>465.IBPluginDependency</string>
 					<string>466.IBPluginDependency</string>
-					<string>467.IBPluginDependency</string>
 					<string>470.IBEditorWindowLastContentRect</string>
 					<string>470.IBPluginDependency</string>
 					<string>470.IBWindowTemplateEditedContentRect</string>
@@ -3131,8 +3108,7 @@
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{324, 606}, {131, 93}}</string>
-					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>{{324, 626}, {131, 73}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -3216,13 +3192,9 @@
 							<string>prefTestEmail:</string>
 							<string>prefWindowController:</string>
 							<string>quickSnap:</string>
-							<string>setOverwriteSnapshot:</string>
-							<string>showInMenuBar:</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>id</string>
-							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 							<string>id</string>
@@ -3239,8 +3211,6 @@
 							<string>prefTestEmail:</string>
 							<string>prefWindowController:</string>
 							<string>quickSnap:</string>
-							<string>setOverwriteSnapshot:</string>
-							<string>showInMenuBar:</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
@@ -3262,14 +3232,6 @@
 							</object>
 							<object class="IBActionInfo">
 								<string key="name">quickSnap:</string>
-								<string key="candidateClassName">id</string>
-							</object>
-							<object class="IBActionInfo">
-								<string key="name">setOverwriteSnapshot:</string>
-								<string key="candidateClassName">id</string>
-							</object>
-							<object class="IBActionInfo">
-								<string key="name">showInMenuBar:</string>
 								<string key="candidateClassName">id</string>
 							</object>
 						</object>
