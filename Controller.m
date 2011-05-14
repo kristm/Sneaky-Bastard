@@ -130,11 +130,12 @@
 												suspensionBehavior: NSNotificationSuspensionBehaviorCoalesce
 	 ];
 	
+	NSString *customPath = (NSString *)CFPreferencesCopyAppValue(CFSTR("snapshotDir"), appID);
 	if([pref_delayOnlyWakeup boolValue]){
-		[self startSneaky:fullPath];		
+		[self startSneaky:customPath];		
 	}else{
 		[self performSelector: @selector(startSneaky:)
-				   withObject:fullPath
+				   withObject:customPath
 				   afterDelay:[pref_delay intValue]];					
 	}
 }
@@ -152,7 +153,7 @@
 	NSLog(@"start sneaky");
 	
 	//[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(anyThread_handleNoSnapshots:) name:NoSnapshotsFound object:nil];		
-	[self loadSnapshotsStart:fullPath];	
+	[self loadSnapshotsStart:(NSString *)CFPreferencesCopyAppValue(CFSTR("snapshotDir"), appID)];	
 	[self setTimer: [NSTimer scheduledTimerWithTimeInterval: 1.0
 													 target: self
 												   selector: @selector(checkProgress:)
@@ -166,7 +167,7 @@
 	NSLog(@"going to sleep %@",timer);
 	[NSObject cancelPreviousPerformRequestsWithTarget: self
 											 selector:@selector(startSneaky:)
-											   object:fullPath];
+											   object:(NSString *)CFPreferencesCopyAppValue(CFSTR("snapshotDir"), appID)];
 	[queue cancelAllOperations];	
 	[timer invalidate];
 	[self setTimer:nil];	
@@ -178,7 +179,7 @@
 
 	//[self startSneaky:fullPath];
 	[self performSelector: @selector(startSneaky:)
-				withObject:fullPath
+				withObject:(NSString *)CFPreferencesCopyAppValue(CFSTR("snapshotDir"), appID)
 				afterDelay:[pref_delay intValue]];
 }
 
@@ -190,7 +191,7 @@
 	if([alertLevel intValue] == 1){
 		
 		[self performSelector: @selector(startSneaky:)
-				   withObject:fullPath
+				   withObject:(NSString *)CFPreferencesCopyAppValue(CFSTR("snapshotDir"), appID)
 				   afterDelay:([pref_delayOnlyWakeup boolValue]) ? 0.5 : [pref_delay intValue]];		
 	}
 }
@@ -283,10 +284,11 @@
 		NSMutableArray* attachmentList = [NSMutableArray array];
 		NSMutableString* imgPath;
 		NSMutableArray* ipAddress = [NSMutableArray array];
+		NSString *customPath = (NSString *)CFPreferencesCopyAppValue(CFSTR("snapshotDir"), appID);
 		
 		while (item=[iterator nextObject]) 
 		{
-			imgPath = [NSString stringWithFormat:@"%@/%@",fullPath,[item valueForKey:@"name"]];
+			imgPath = [NSString stringWithFormat:@"%@/%@",customPath,[item valueForKey:@"name"]];
 			NSData *imgData = [[NSData alloc] initWithContentsOfFile:imgPath];
 			[attachmentList addObject:[EDObjectPair pairWithObjects:imgData:[imgPath lastPathComponent]]];
 		}
@@ -331,7 +333,7 @@
 													   selector: @selector(timerIncrement:)
 													   userInfo: nil
 														repeats: YES]];			
-		MailOperation* mailSnaps = [[MailOperation alloc] initWithRootPath:fullPath queue:queue attachList:attachmentList header:headerFields auth:authInfo ipAddr:ipAddress];
+		MailOperation* mailSnaps = [[MailOperation alloc] initWithRootPath:customPath queue:queue attachList:attachmentList header:headerFields auth:authInfo ipAddr:ipAddress];
 		
 		[queue addOperation: mailSnaps];	
 
@@ -488,11 +490,12 @@
 	NSEnumerator* iterator = [tableRecord objectEnumerator]; 	
 	NSFileManager* fileManager = [NSFileManager defaultManager];
 	NSMutableString* imgPath;
+	NSString* customPath = (NSString *)CFPreferencesCopyAppValue(CFSTR("snapshotDir"), appID);
 	//int total = [self numberOfRowsInTableView:tableView];
-
+	
 	while (item=[iterator nextObject]) 
 	{
-		imgPath = [NSString stringWithFormat:@"%@%@",fullPath,[item valueForKey:@"name"]];
+		imgPath = [NSString stringWithFormat:@"%@%@",customPath,[item valueForKey:@"name"]];
 		[fileManager removeItemAtPath:imgPath error:NULL];
 		
 		NSLog(@"delete --> %@",imgPath);
@@ -532,7 +535,8 @@
 		
 	}
 	sneakyCam = [[SneakyCamera alloc] init] ;
-	[sneakyCam setImgPath:[path stringByAppendingFormat:@"/%@",sbDir]];
+	//[sneakyCam setImgPath:[path stringByAppendingFormat:@"/%@",sbDir]];
+	[sneakyCam setImgPath:(NSString *)CFPreferencesCopyAppValue(CFSTR("snapshotDir"), appID)];
 	[sneakyCam setImgName:fn];
 	
 }

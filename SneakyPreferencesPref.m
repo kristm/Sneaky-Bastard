@@ -156,7 +156,7 @@
 	NSLog(@"sheet selection %@",[sheet directory]);
     if (returnCode == NSOKButton) {
 		CFPreferencesAppSynchronize(appID);
-		CFPreferencesSetAppValue(CFSTR("snapshotDir"), [sheet directory], appID);
+		CFPreferencesSetAppValue(CFSTR("snapshotDir"), [NSString stringWithFormat:@"%@%@",[sheet directory],@"/"], appID);
 		
     }
 }

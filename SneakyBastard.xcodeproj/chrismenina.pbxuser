@@ -8,7 +8,7 @@
 			5BFD2DC2135FC9C000E35469 /* SneakyBastard */,
 		);
 		breakpoints = (
-			5BBAB292137E172200F97FC3 /* Controller.m:525 */,
+			5BBAB292137E172200F97FC3 /* Controller.m:528 */,
 		);
 		codeSenseManager = 5BFD2D4D135FC7C700E35469 /* Code sense */;
 		executables = (
@@ -125,6 +125,15 @@
 			5B5B846F137E46F000130858 /* PBXTextBookmark */ = 5B5B846F137E46F000130858 /* PBXTextBookmark */;
 			5B5B8470137E46F000130858 /* PBXTextBookmark */ = 5B5B8470137E46F000130858 /* PBXTextBookmark */;
 			5B5B8471137E46F000130858 /* PBXTextBookmark */ = 5B5B8471137E46F000130858 /* PBXTextBookmark */;
+			5B5B853D137E501E00130858 /* PBXTextBookmark */ = 5B5B853D137E501E00130858 /* PBXTextBookmark */;
+			5B5B853E137E501E00130858 /* PBXTextBookmark */ = 5B5B853E137E501E00130858 /* PBXTextBookmark */;
+			5B5B853F137E501E00130858 /* PBXTextBookmark */ = 5B5B853F137E501E00130858 /* PBXTextBookmark */;
+			5B5B8540137E501E00130858 /* PBXTextBookmark */ = 5B5B8540137E501E00130858 /* PBXTextBookmark */;
+			5B5B8541137E501E00130858 /* PBXTextBookmark */ = 5B5B8541137E501E00130858 /* PBXTextBookmark */;
+			5B5B854E137E528F00130858 /* PBXTextBookmark */ = 5B5B854E137E528F00130858 /* PBXTextBookmark */;
+			5B5B854F137E528F00130858 /* PBXTextBookmark */ = 5B5B854F137E528F00130858 /* PBXTextBookmark */;
+			5B5B8550137E528F00130858 /* PBXTextBookmark */ = 5B5B8550137E528F00130858 /* PBXTextBookmark */;
+			5B5B8553137E52CD00130858 /* PBXTextBookmark */ = 5B5B8553137E52CD00130858 /* PBXTextBookmark */;
 			5B5ED2FC1379A4F000A177CF = 5B5ED2FC1379A4F000A177CF /* PBXTextBookmark */;
 			5B5ED2FD1379A4F000A177CF = 5B5ED2FD1379A4F000A177CF /* PBXTextBookmark */;
 			5B5ED31E1379A83100A177CF = 5B5ED31E1379A83100A177CF /* PBXTextBookmark */;
@@ -218,7 +227,7 @@
 		fRef = F506C03D013D9D7901CA16C8 /* SneakyPreferencesPref.m */;
 		name = "SneakyPreferencesPref.m: 128";
 		rLen = 0;
-		rLoc = 5055;
+		rLoc = 5096;
 		rType = 0;
 		vrLen = 1096;
 		vrLoc = 3419;
@@ -287,7 +296,7 @@
 		fRef = F506C03D013D9D7901CA16C8 /* SneakyPreferencesPref.m */;
 		name = "SneakyPreferencesPref.m: 151";
 		rLen = 0;
-		rLoc = 5197;
+		rLoc = 5238;
 		rType = 0;
 		vrLen = 1279;
 		vrLoc = 3860;
@@ -317,7 +326,7 @@
 		fRef = F506C03D013D9D7901CA16C8 /* SneakyPreferencesPref.m */;
 		name = "SneakyPreferencesPref.m: 220";
 		rLen = 0;
-		rLoc = 7733;
+		rLoc = 7774;
 		rType = 0;
 		vrLen = 2224;
 		vrLoc = 6069;
@@ -327,7 +336,7 @@
 		fRef = F506C03D013D9D7901CA16C8 /* SneakyPreferencesPref.m */;
 		name = "SneakyPreferencesPref.m: 217";
 		rLen = 0;
-		rLoc = 7479;
+		rLoc = 7520;
 		rType = 0;
 		vrLen = 2239;
 		vrLoc = 6069;
@@ -337,7 +346,7 @@
 		fRef = F506C03D013D9D7901CA16C8 /* SneakyPreferencesPref.m */;
 		name = "SneakyPreferencesPref.m: 217";
 		rLen = 0;
-		rLoc = 7479;
+		rLoc = 7520;
 		rType = 0;
 		vrLen = 2242;
 		vrLoc = 6069;
@@ -347,7 +356,7 @@
 		fRef = F506C03D013D9D7901CA16C8 /* SneakyPreferencesPref.m */;
 		name = "SneakyPreferencesPref.m: 215";
 		rLen = 0;
-		rLoc = 7472;
+		rLoc = 7513;
 		rType = 0;
 		vrLen = 2242;
 		vrLoc = 6069;
@@ -357,7 +366,7 @@
 		fRef = F506C03D013D9D7901CA16C8 /* SneakyPreferencesPref.m */;
 		name = "SneakyPreferencesPref.m: 218";
 		rLen = 0;
-		rLoc = 7651;
+		rLoc = 7692;
 		rType = 0;
 		vrLen = 2242;
 		vrLoc = 6069;
@@ -367,7 +376,7 @@
 		fRef = F506C03D013D9D7901CA16C8 /* SneakyPreferencesPref.m */;
 		name = "SneakyPreferencesPref.m: 220";
 		rLen = 0;
-		rLoc = 7733;
+		rLoc = 7774;
 		rType = 0;
 		vrLen = 2242;
 		vrLoc = 6069;
@@ -377,7 +386,7 @@
 		fRef = F506C03D013D9D7901CA16C8 /* SneakyPreferencesPref.m */;
 		name = "SneakyPreferencesPref.m: 222";
 		rLen = 0;
-		rLoc = 7755;
+		rLoc = 7796;
 		rType = 0;
 		vrLen = 2242;
 		vrLoc = 6069;
@@ -387,7 +396,7 @@
 		fRef = F506C03D013D9D7901CA16C8 /* SneakyPreferencesPref.m */;
 		name = "SneakyPreferencesPref.m: 223";
 		rLen = 0;
-		rLoc = 7817;
+		rLoc = 7858;
 		rType = 0;
 		vrLen = 2242;
 		vrLoc = 6069;
@@ -397,7 +406,7 @@
 		fRef = F506C03D013D9D7901CA16C8 /* SneakyPreferencesPref.m */;
 		name = "SneakyPreferencesPref.m: 217";
 		rLen = 0;
-		rLoc = 7497;
+		rLoc = 7538;
 		rType = 0;
 		vrLen = 2221;
 		vrLoc = 6069;
@@ -457,7 +466,7 @@
 		fRef = F506C03D013D9D7901CA16C8 /* SneakyPreferencesPref.m */;
 		name = "SneakyPreferencesPref.m: 220";
 		rLen = 0;
-		rLoc = 7651;
+		rLoc = 7692;
 		rType = 0;
 		vrLen = 1700;
 		vrLoc = 5623;
@@ -537,7 +546,7 @@
 		fRef = F506C03D013D9D7901CA16C8 /* SneakyPreferencesPref.m */;
 		name = "SneakyPreferencesPref.m: 237";
 		rLen = 0;
-		rLoc = 7593;
+		rLoc = 7634;
 		rType = 0;
 		vrLen = 1945;
 		vrLoc = 6312;
@@ -547,7 +556,7 @@
 		fRef = F506C03D013D9D7901CA16C8 /* SneakyPreferencesPref.m */;
 		name = "SneakyPreferencesPref.m: 237";
 		rLen = 0;
-		rLoc = 7593;
+		rLoc = 7634;
 		rType = 0;
 		vrLen = 1945;
 		vrLoc = 6312;
@@ -587,7 +596,7 @@
 		fRef = F506C03D013D9D7901CA16C8 /* SneakyPreferencesPref.m */;
 		name = "SneakyPreferencesPref.m: 234";
 		rLen = 67;
-		rLoc = 7365;
+		rLoc = 7406;
 		rType = 0;
 		vrLen = 2391;
 		vrLoc = 7148;
@@ -617,7 +626,7 @@
 		fRef = 5BFD2DD8135FCA0700E35469 /* Controller.m */;
 		name = "Controller.m: 284";
 		rLen = 0;
-		rLoc = 9308;
+		rLoc = 9636;
 		rType = 0;
 		vrLen = 1625;
 		vrLoc = 8789;
@@ -627,7 +636,7 @@
 		fRef = F506C03D013D9D7901CA16C8 /* SneakyPreferencesPref.m */;
 		name = "SneakyPreferencesPref.m: 234";
 		rLen = 67;
-		rLoc = 7365;
+		rLoc = 7406;
 		rType = 0;
 		vrLen = 2391;
 		vrLoc = 7148;
@@ -637,10 +646,100 @@
 		fRef = F506C03D013D9D7901CA16C8 /* SneakyPreferencesPref.m */;
 		name = "SneakyPreferencesPref.m: 244";
 		rLen = 0;
-		rLoc = 7736;
+		rLoc = 7777;
 		rType = 0;
 		vrLen = 2391;
 		vrLoc = 7148;
+	};
+	5B5B853D137E501E00130858 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F506C03D013D9D7901CA16C8 /* SneakyPreferencesPref.m */;
+		name = "SneakyPreferencesPref.m: 238";
+		rLen = 0;
+		rLoc = 7565;
+		rType = 0;
+		vrLen = 1738;
+		vrLoc = 6165;
+	};
+	5B5B853E137E501E00130858 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5BFD2DDA135FCA0700E35469 /* GetSnapshots.m */;
+		name = "GetSnapshots.m: 47";
+		rLen = 0;
+		rLoc = 1458;
+		rType = 0;
+		vrLen = 1674;
+		vrLoc = 1622;
+	};
+	5B5B853F137E501E00130858 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5BFD2DDE135FCA0700E35469 /* SneakyCamera.m */;
+		name = "SneakyCamera.m: 138";
+		rLen = 0;
+		rLoc = 3740;
+		rType = 0;
+		vrLen = 1146;
+		vrLoc = 3771;
+	};
+	5B5B8540137E501E00130858 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5BFD2DD8135FCA0700E35469 /* Controller.m */;
+		name = "Controller.m: 60";
+		rLen = 8;
+		rLoc = 1659;
+		rType = 0;
+		vrLen = 1050;
+		vrLoc = 1064;
+	};
+	5B5B8541137E501E00130858 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5BFD2DD8135FCA0700E35469 /* Controller.m */;
+		name = "Controller.m: 539";
+		rLen = 0;
+		rLoc = 17464;
+		rType = 0;
+		vrLen = 1181;
+		vrLoc = 16505;
+	};
+	5B5B854E137E528F00130858 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5BFD2DD8135FCA0700E35469 /* Controller.m */;
+		name = "Controller.m: 48";
+		rLen = 11;
+		rLoc = 1437;
+		rType = 0;
+		vrLen = 1010;
+		vrLoc = 1326;
+	};
+	5B5B854F137E528F00130858 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F506C03D013D9D7901CA16C8 /* SneakyPreferencesPref.m */;
+		name = "SneakyPreferencesPref.m: 238";
+		rLen = 0;
+		rLoc = 7565;
+		rType = 0;
+		vrLen = 1870;
+		vrLoc = 6315;
+	};
+	5B5B8550137E528F00130858 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F506C03D013D9D7901CA16C8 /* SneakyPreferencesPref.m */;
+		name = "SneakyPreferencesPref.m: 166";
+		rLen = 0;
+		rLoc = 5153;
+		rType = 0;
+		vrLen = 1181;
+		vrLoc = 4163;
+	};
+	5B5B8553137E52CD00130858 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F506C03D013D9D7901CA16C8 /* SneakyPreferencesPref.m */;
+		name = "SneakyPreferencesPref.m: 169";
+		rLen = 0;
+		rLoc = 5238;
+		rType = 0;
+		vrLen = 1181;
+		vrLoc = 4163;
 	};
 	5B5ED2FC1379A4F000A177CF /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
@@ -687,7 +786,7 @@
 		fRef = 5BFD2DD8135FCA0700E35469 /* Controller.m */;
 		name = "Controller.m: 517";
 		rLen = 0;
-		rLoc = 16282;
+		rLoc = 16802;
 		rType = 0;
 		vrLen = 1274;
 		vrLoc = 15509;
@@ -759,7 +858,7 @@
 		path = /Users/chrismenina/src/cocoa/SneakyBastard/EDCommon.framework/Headers/EDCommonDefines.h;
 		sourceTree = "<absolute>";
 	};
-	5BBAB292137E172200F97FC3 /* Controller.m:525 */ = {
+	5BBAB292137E172200F97FC3 /* Controller.m:528 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -771,7 +870,7 @@
 		functionName = "-quickSnap:";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 525;
+		lineNumber = 528;
 		modificationTime = 327030562.388188;
 		originalNumberOfMultipleMatches = 0;
 		state = 1;
@@ -830,7 +929,7 @@
 		isa = PBXTextBookmark;
 		fRef = F506C03D013D9D7901CA16C8 /* SneakyPreferencesPref.m */;
 		rLen = 0;
-		rLoc = 11001;
+		rLoc = 11042;
 		rType = 0;
 	};
 	5BBAB2A9137E258500F97FC3 /* PBXTextBookmark */ = {
@@ -838,7 +937,7 @@
 		fRef = F506C03D013D9D7901CA16C8 /* SneakyPreferencesPref.m */;
 		name = "SneakyPreferencesPref.m: 128";
 		rLen = 0;
-		rLoc = 5055;
+		rLoc = 5096;
 		rType = 0;
 		vrLen = 1096;
 		vrLoc = 3419;
@@ -923,9 +1022,9 @@
 	};
 	5BFD2DD8135FCA0700E35469 /* Controller.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {748, 9087}}";
-			sepNavSelRange = "{9308, 0}";
-			sepNavVisRange = "{8789, 1625}";
+			sepNavIntBoundsRect = "{{0, 0}, {748, 9217}}";
+			sepNavSelRange = "{1437, 11}";
+			sepNavVisRange = "{1326, 1010}";
 			sepNavWindowFrame = "{{15, 106}, {1152, 667}}";
 		};
 	};
@@ -938,9 +1037,9 @@
 	};
 	5BFD2DDA135FCA0700E35469 /* GetSnapshots.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {731, 1872}}";
-			sepNavSelRange = "{1461, 0}";
-			sepNavVisRange = "{1440, 180}";
+			sepNavIntBoundsRect = "{{0, 0}, {748, 1677}}";
+			sepNavSelRange = "{1458, 0}";
+			sepNavVisRange = "{1622, 1674}";
 		};
 	};
 	5BFD2DDB135FCA0700E35469 /* MailOperation.h */ = {
@@ -966,9 +1065,9 @@
 	};
 	5BFD2DDE135FCA0700E35469 /* SneakyCamera.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {748, 3159}}";
-			sepNavSelRange = "{4439, 0}";
-			sepNavVisRange = "{3423, 899}";
+			sepNavIntBoundsRect = "{{0, 0}, {748, 3081}}";
+			sepNavSelRange = "{3740, 0}";
+			sepNavVisRange = "{3771, 1146}";
 		};
 	};
 	5BFD2EA0135FCADF00E35469 /* main.m */ = {
@@ -996,9 +1095,9 @@
 	};
 	F506C03D013D9D7901CA16C8 /* SneakyPreferencesPref.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {748, 3978}}";
-			sepNavSelRange = "{7736, 0}";
-			sepNavVisRange = "{7148, 2391}";
+			sepNavIntBoundsRect = "{{0, 0}, {748, 4342}}";
+			sepNavSelRange = "{5238, 0}";
+			sepNavVisRange = "{4163, 1181}";
 			sepNavWindowFrame = "{{15, 106}, {1152, 667}}";
 		};
 	};
