@@ -58,6 +58,7 @@
 	sbDir = @"temp/";
 	path = NSHomeDirectory();
 	fullPath =  [NSString stringWithFormat:@"%@/%@",path,sbDir];	
+	
 	[fm changeCurrentDirectoryPath:path]; 
 	BOOL isDir,b;
 	b = [fm fileExistsAtPath:sbDir isDirectory:&isDir];
@@ -117,6 +118,7 @@
 	NSLog(@"delay: %d",[pref_delay intValue] );
 	NSLog(@"do i delay %d",[pref_delayOnlyWakeup boolValue] );
 	NSLog(@"alert level %d",[alertLevel intValue]);
+	NSLog(@"snapshot dir %@",(NSString *)CFPreferencesCopyAppValue(CFSTR("snapshotDir"), appID));
 	NSLog(@"email server %@",(NSString *)CFPreferencesCopyAppValue(CFSTR("smtpURL"), appID));
 
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(anyThread_handleLoadedSnapshots:) name:LoadSnapshotsFinish object:nil];

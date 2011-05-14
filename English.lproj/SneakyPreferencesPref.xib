@@ -12,7 +12,7 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="12"/>
+			<integer value="104"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -615,13 +615,13 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 											<object class="NSTextField" id="130296601">
 												<reference key="NSNextResponder" ref="455507704"/>
 												<int key="NSvFlags">268</int>
-												<string key="NSFrame">{{339, 187}, {103, 17}}</string>
+												<string key="NSFrame">{{339, 187}, {54, 17}}</string>
 												<reference key="NSSuperview" ref="455507704"/>
 												<bool key="NSEnabled">YES</bool>
 												<object class="NSTextFieldCell" key="NSCell" id="896952046">
 													<int key="NSCellFlags">68288064</int>
 													<int key="NSCellFlags2">272630784</int>
-													<string key="NSContents">Save to: Default</string>
+													<string key="NSContents">Save to:</string>
 													<reference key="NSSupport" ref="256407295"/>
 													<reference key="NSControlView" ref="130296601"/>
 													<reference key="NSBackgroundColor" ref="974004470"/>
@@ -646,6 +646,22 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 													<string key="NSKeyEquivalent"/>
 													<int key="NSPeriodicDelay">400</int>
 													<int key="NSPeriodicInterval">75</int>
+												</object>
+											</object>
+											<object class="NSTextField" id="576160966">
+												<reference key="NSNextResponder" ref="455507704"/>
+												<int key="NSvFlags">268</int>
+												<string key="NSFrame">{{395, 187}, {68, 17}}</string>
+												<reference key="NSSuperview" ref="455507704"/>
+												<bool key="NSEnabled">YES</bool>
+												<object class="NSTextFieldCell" key="NSCell" id="709204309">
+													<int key="NSCellFlags">68288064</int>
+													<int key="NSCellFlags2">272630784</int>
+													<string key="NSContents">Default</string>
+													<reference key="NSSupport" ref="256407295"/>
+													<reference key="NSControlView" ref="576160966"/>
+													<reference key="NSBackgroundColor" ref="974004470"/>
+													<reference key="NSTextColor" ref="336776812"/>
 												</object>
 											</object>
 										</object>
@@ -1160,6 +1176,30 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 					</object>
 					<int key="connectionID">215</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">openDirectorySheet:</string>
+						<reference key="source" ref="294453543"/>
+						<reference key="destination" ref="713044021"/>
+					</object>
+					<int key="connectionID">245</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">snapshotDirLabel</string>
+						<reference key="source" ref="294453543"/>
+						<reference key="destination" ref="576160966"/>
+					</object>
+					<int key="connectionID">248</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">btnSetSnapshotDir</string>
+						<reference key="source" ref="294453543"/>
+						<reference key="destination" ref="713044021"/>
+					</object>
+					<int key="connectionID">249</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -1253,6 +1293,7 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 							<reference ref="358848829"/>
 							<reference ref="713044021"/>
 							<reference ref="130296601"/>
+							<reference ref="576160966"/>
 						</object>
 						<reference key="parent" ref="499579728"/>
 					</object>
@@ -1713,6 +1754,20 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 						<reference key="object" ref="496410931"/>
 						<reference key="parent" ref="713044021"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">246</int>
+						<reference key="object" ref="576160966"/>
+						<object class="NSMutableArray" key="children">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<reference ref="709204309"/>
+						</object>
+						<reference key="parent" ref="455507704"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">247</int>
+						<reference key="object" ref="709204309"/>
+						<reference key="parent" ref="576160966"/>
+					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -1813,6 +1868,9 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 					<string>243.IBPluginDependency</string>
 					<string>243.IBViewBoundsToFrameTransform</string>
 					<string>244.IBPluginDependency</string>
+					<string>246.IBPluginDependency</string>
+					<string>246.IBViewBoundsToFrameTransform</string>
+					<string>247.IBPluginDependency</string>
 					<string>6.IBPluginDependency</string>
 					<string>6.ImportedFromIB2</string>
 				</object>
@@ -1870,9 +1928,9 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{280, 318}, {687, 351}}</string>
+					<string>{{324, 318}, {687, 351}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{280, 318}, {687, 351}}</string>
+					<string>{{324, 318}, {687, 351}}</string>
 					<integer value="1"/>
 					<integer value="1"/>
 					<string>{224.664, 10}</string>
@@ -1946,12 +2004,17 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<object class="NSAffineTransform">
-						<bytes key="NSTransformStruct">P4AAAL+AAABDqYAAw04AAA</bytes>
+						<bytes key="NSTransformStruct">P4AAAL+AAABDqYAAw0oAAA</bytes>
 					</object>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<object class="NSAffineTransform">
 						<bytes key="NSTransformStruct">P4AAAL+AAABDqwAAwzkAAA</bytes>
+					</object>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<object class="NSAffineTransform">
+						<bytes key="NSTransformStruct">P4AAAL+AAABDqYAAw0oAAA</bytes>
 					</object>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -1974,7 +2037,7 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">244</int>
+			<int key="maxID">249</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -2002,11 +2065,13 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>openDirectorySheet:</string>
 							<string>toggleEnable:</string>
 							<string>toggleShowInMenu:</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 						</object>
@@ -2015,11 +2080,16 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>openDirectorySheet:</string>
 							<string>toggleEnable:</string>
 							<string>toggleShowInMenu:</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<object class="IBActionInfo">
+								<string key="name">openDirectorySheet:</string>
+								<string key="candidateClassName">id</string>
+							</object>
 							<object class="IBActionInfo">
 								<string key="name">toggleEnable:</string>
 								<string key="candidateClassName">id</string>
@@ -2037,6 +2107,7 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 							<string>alertLevel</string>
 							<string>authView</string>
 							<string>btnEnable</string>
+							<string>btnSetSnapshotDir</string>
 							<string>btnShowinMenu</string>
 							<string>delayOnWakeup</string>
 							<string>delaySeconds</string>
@@ -2049,6 +2120,7 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 							<string>mailSubject</string>
 							<string>mailTo</string>
 							<string>mailUsername</string>
+							<string>snapshotDirLabel</string>
 							<string>snapshotNumber</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
@@ -2058,10 +2130,12 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 							<string>NSButton</string>
 							<string>NSButton</string>
 							<string>NSButton</string>
+							<string>NSButton</string>
 							<string>NSTextField</string>
 							<string>NSStepper</string>
 							<string>NSTextField</string>
 							<string>NSButton</string>
+							<string>NSTextField</string>
 							<string>NSTextField</string>
 							<string>NSTextField</string>
 							<string>NSTextField</string>
@@ -2078,6 +2152,7 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 							<string>alertLevel</string>
 							<string>authView</string>
 							<string>btnEnable</string>
+							<string>btnSetSnapshotDir</string>
 							<string>btnShowinMenu</string>
 							<string>delayOnWakeup</string>
 							<string>delaySeconds</string>
@@ -2090,6 +2165,7 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 							<string>mailSubject</string>
 							<string>mailTo</string>
 							<string>mailUsername</string>
+							<string>snapshotDirLabel</string>
 							<string>snapshotNumber</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
@@ -2104,6 +2180,10 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">btnEnable</string>
+								<string key="candidateClassName">NSButton</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">btnSetSnapshotDir</string>
 								<string key="candidateClassName">NSButton</string>
 							</object>
 							<object class="IBToOneOutletInfo">
@@ -2152,6 +2232,10 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">mailUsername</string>
+								<string key="candidateClassName">NSTextField</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">snapshotDirLabel</string>
 								<string key="candidateClassName">NSTextField</string>
 							</object>
 							<object class="IBToOneOutletInfo">

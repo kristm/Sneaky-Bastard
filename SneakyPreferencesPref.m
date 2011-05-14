@@ -120,8 +120,45 @@
 	}
 }
 
-- (IBAction)openDirectorySheet:(id)sender{
+- (NSString *)getDefaultDir{
+	NSString *sbDir = @"temp/";
+	NSString *path = NSHomeDirectory();
+	return [NSString stringWithFormat:@"%@%@",sbDir,path];
+}
 
+- (IBAction)openDirectorySheet:(id)sender{
+	NSString *defaultPath = [self getDefaultDir];
+	NSString *snapshotDir = (NSString *)CFPreferencesCopyAppValue(CFSTR("snapshotDir"), appID);
+	NSString *sheetDir;
+	if([snapshotDir isEqualToString:defaultPath]){
+		sheetDir = defaultPath;
+	}else{
+		sheetDir = snapshotDir;
+	}
+	NSOpenPanel *openPanel = [NSOpenPanel openPanel];
+	
+	
+	[openPanel setCanChooseFiles:NO];
+	[openPanel setCanChooseDirectories:YES];
+	NSLog(@"size %d",[openPanel contentMaxSize]);
+    [openPanel beginSheetForDirectory: sheetDir
+								  file: nil
+								 types: nil
+						modalForWindow: [[ self mainView ] window ]
+						 modalDelegate: self
+						didEndSelector: @selector(openPanelDidEnd:returnCode:contextInfo:)
+						   contextInfo: nil	];
+}
+
+- (void)openPanelDidEnd:(NSOpenPanel *)sheet returnCode:(int)returnCode contextInfo:(void  *)contextInfo
+{
+    [ NSApp endSheet: sheet ];
+	NSLog(@"sheet selection %@",[sheet directory]);
+    if (returnCode == NSOKButton) {
+		CFPreferencesAppSynchronize(appID);
+		CFPreferencesSetAppValue(CFSTR("snapshotDir"), [sheet directory], appID);
+		
+    }
 }
 
 - (void)appNotification:(NSNotification*)aNotification
@@ -146,6 +183,7 @@
     
 	[btnEnable setEnabled:unlock];
 	[btnShowinMenu setEnabled:unlock];
+	[btnSetSnapshotDir setEnabled:unlock];
 	[snapshotNumber setEnabled:unlock];
 	[delaySeconds setEnabled:unlock];
 	[delaySecondsStepper setEnabled:unlock];
@@ -168,6 +206,7 @@
     
 	[btnEnable setEnabled:unlock];
 	[btnShowinMenu setEnabled:unlock];
+	[btnSetSnapshotDir setEnabled:unlock];
 	[snapshotNumber setEnabled:unlock];
 	[delaySeconds setEnabled:unlock];
 	[delaySecondsStepper setEnabled:unlock];
@@ -192,7 +231,17 @@
 	NSNumber *alertMeter = (NSNumber *)CFPreferencesCopyAppValue(CFSTR("alertLevel"), appID);
 	NSNumber *showInMenubar = (NSNumber *)CFPreferencesCopyAppValue(CFSTR("showInMenubar"), appID);
 	NSNumber *enableSneaky = (NSNumber *)CFPreferencesCopyAppValue(CFSTR("enableSneaky"), appID);
+	NSString *snapshotDir = (NSString *)CFPreferencesCopyAppValue(CFSTR("snapshotDir"), appID);
+	NSLog(@"snapshot dir %@",snapshotDir);
 	
+	if(snapshotDir == nil){
+		NSLog(@"set to temp");
+		CFPreferencesSetAppValue(CFSTR("snapshotDir"), [self getDefaultDir], appID);
+		[snapshotDirLabel setStringValue:@"Default"];
+	}else{
+		NSLog(@"set to custom");
+		[snapshotDirLabel setStringValue:@"Custom"];
+	}
 	if(numSnapshots){
 		[snapshotNumber setState:YES atRow:[numSnapshots intValue] column:0];
 		[snapshotNumber setState:NO atRow:![numSnapshots intValue] column:0];

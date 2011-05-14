@@ -15,9 +15,11 @@
 	CFStringRef appID;
 	IBOutlet NSButton *btnEnable;
 	IBOutlet NSButton *btnShowinMenu;
+	IBOutlet NSButton *btnSetSnapshotDir;
 	IBOutlet SFAuthorizationView *authView;
 
     IBOutlet NSMatrix *snapshotNumber;
+	IBOutlet NSTextField *snapshotDirLabel;
     IBOutlet NSTextField *delaySeconds;
     IBOutlet NSStepper *delaySecondsStepper;
     IBOutlet NSButton *delayOnWakeup;
@@ -30,6 +32,7 @@
     IBOutlet NSTextField *mailTo;
     IBOutlet NSTextField *mailSubject;
     IBOutlet NSButton *mailIPAddress;
+	
 	NSString *appPath;
 	NSString *bundlePath;
 }
@@ -39,6 +42,7 @@
 - (void)appNotification:(NSNotification*)aNotification;
 - (void)defaultPrefs;
 - (void)updatePrefs;
+- (NSString *)getDefaultDir;
 
 - (IBAction)toggleEnable:(id)sender;
 - (IBAction)toggleShowInMenu:(id)sender;
