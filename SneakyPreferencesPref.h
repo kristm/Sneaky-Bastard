@@ -42,6 +42,7 @@
 
 - (IBAction)toggleEnable:(id)sender;
 - (IBAction)toggleShowInMenu:(id)sender;
+- (IBAction)openDirectorySheet:(id)sender;
 
 - (void)didUnselect;
 

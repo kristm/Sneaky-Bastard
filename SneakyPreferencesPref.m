@@ -120,6 +120,9 @@
 	}
 }
 
+- (IBAction)openDirectorySheet:(id)sender{
+
+}
 
 - (void)appNotification:(NSNotification*)aNotification
 {
