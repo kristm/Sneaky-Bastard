@@ -336,7 +336,7 @@
 										<key>_historyCapacity</key>
 										<integer>20</integer>
 										<key>bookmark</key>
-										<string>5B5B8553137E52CD00130858</string>
+										<string>5BE3D3F6137E6067004A01D0</string>
 										<key>history</key>
 										<array>
 											<string>5B47EB0D136046FC00095307</string>
@@ -354,7 +354,7 @@
 											<string>5B5B853E137E501E00130858</string>
 											<string>5B5B853F137E501E00130858</string>
 											<string>5B5B854E137E528F00130858</string>
-											<string>5B5B854F137E528F00130858</string>
+											<string>5B5B8555137E533B00130858</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -412,9 +412,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>5B5B83C7137E264800130858</string>
+				<string>5BE3D3D5137E5662004A01D0</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>5B5B83C8137E264800130858</string>
+				<string>5BE3D3D6137E5662004A01D0</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
 			</array>
@@ -571,9 +571,7 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>1CD10A99069EF8BA00B06720</string>
 		<string>5BFD2D4A135FC7C700E35469</string>
-		<string>1C78EAAD065D492600B07095</string>
 		<string>/Users/chrismenina/src/cocoa/SneakyBastard/SneakyBastard.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
@@ -593,14 +591,12 @@
 					<key>Dock</key>
 					<array>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
 								<string>1CD0528F0623707200166675</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>SneakyPreferencesPref.m</string>
+								<string></string>
 								<key>StatusBarVisibility</key>
 								<true/>
 							</dict>
@@ -656,7 +652,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>5BFD2D4A135FC7C700E35469</string>
-				<string>5B5B83CA137E264800130858</string>
+				<string>5BE3D3D7137E5662004A01D0</string>
 				<string>1CD0528F0623707200166675</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 			</array>
@@ -669,7 +665,7 @@
 			<key>WindowToolGUID</key>
 			<string>5BFD2D4A135FC7C700E35469</string>
 			<key>WindowToolIsVisible</key>
-			<true/>
+			<false/>
 		</dict>
 		<dict>
 			<key>FirstTimeWindowDisplayed</key>

@@ -155,11 +155,26 @@
     [ NSApp endSheet: sheet ];
 	NSLog(@"sheet selection %@",[sheet directory]);
     if (returnCode == NSOKButton) {
-		CFPreferencesAppSynchronize(appID);
-		CFPreferencesSetAppValue(CFSTR("snapshotDir"), [NSString stringWithFormat:@"%@%@",[sheet directory],@"/"], appID);
-		
+		NSFileManager *fm = [NSFileManager defaultManager];
+		if([fm isWritableFileAtPath:[sheet directory]] == NO){
+			NSAlert *alert = [NSAlert alertWithMessageText: @"Write Permission Not Allowed"
+											 defaultButton: @"OK"
+										   alternateButton: nil
+											   otherButton: nil
+								 informativeTextWithFormat: @"You don't have permission to use this directory. Please choose a folder that you own."];
+			[alert runModal];
+			//[alert beginSheetModalForWindow: [[self mainView] window] modalDelegate:self didEndSelector:@selector(alertDidEnd:returnCode:contextInfo:) contextInfo:nil];	
+		}else{
+			CFPreferencesAppSynchronize(appID);
+			CFPreferencesSetAppValue(CFSTR("snapshotDir"), [NSString stringWithFormat:@"%@%@",[sheet directory],@"/"], appID);		
+		}
     }
 }
+			
+-(void)alertDidEnd:(NSAlert *)alert returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo
+{
+	NSLog(@"alert did end");
+}			
 
 - (void)appNotification:(NSNotification*)aNotification
 {

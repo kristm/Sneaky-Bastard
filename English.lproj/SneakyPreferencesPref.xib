@@ -648,18 +648,18 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 													<int key="NSPeriodicInterval">75</int>
 												</object>
 											</object>
-											<object class="NSTextField" id="877747869">
+											<object class="NSTextField" id="843353758">
 												<reference key="NSNextResponder" ref="455507704"/>
 												<int key="NSvFlags">268</int>
 												<string key="NSFrame">{{395, 187}, {68, 17}}</string>
 												<reference key="NSSuperview" ref="455507704"/>
 												<bool key="NSEnabled">YES</bool>
-												<object class="NSTextFieldCell" key="NSCell" id="362729782">
+												<object class="NSTextFieldCell" key="NSCell" id="976331365">
 													<int key="NSCellFlags">68288064</int>
 													<int key="NSCellFlags2">272630784</int>
 													<string key="NSContents">Default</string>
 													<reference key="NSSupport" ref="256407295"/>
-													<reference key="NSControlView" ref="877747869"/>
+													<reference key="NSControlView" ref="843353758"/>
 													<reference key="NSBackgroundColor" ref="974004470"/>
 													<reference key="NSTextColor" ref="336776812"/>
 												</object>
@@ -1188,7 +1188,7 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 					<object class="IBOutletConnection" key="connection">
 						<string key="label">snapshotDirLabel</string>
 						<reference key="source" ref="294453543"/>
-						<reference key="destination" ref="877747869"/>
+						<reference key="destination" ref="843353758"/>
 					</object>
 					<int key="connectionID">248</int>
 				</object>
@@ -1293,7 +1293,7 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 							<reference ref="358848829"/>
 							<reference ref="713044021"/>
 							<reference ref="130296601"/>
-							<reference ref="877747869"/>
+							<reference ref="843353758"/>
 						</object>
 						<reference key="parent" ref="499579728"/>
 					</object>
@@ -1756,17 +1756,17 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">246</int>
-						<reference key="object" ref="877747869"/>
+						<reference key="object" ref="843353758"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="362729782"/>
+							<reference ref="976331365"/>
 						</object>
 						<reference key="parent" ref="455507704"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">247</int>
-						<reference key="object" ref="362729782"/>
-						<reference key="parent" ref="877747869"/>
+						<reference key="object" ref="976331365"/>
+						<reference key="parent" ref="843353758"/>
 					</object>
 				</object>
 			</object>
@@ -1928,9 +1928,9 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{324, 318}, {687, 351}}</string>
+					<string>{{291, 283}, {687, 351}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{324, 318}, {687, 351}}</string>
+					<string>{{291, 283}, {687, 351}}</string>
 					<integer value="1"/>
 					<integer value="1"/>
 					<string>{224.664, 10}</string>
