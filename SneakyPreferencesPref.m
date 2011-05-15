@@ -26,6 +26,26 @@
 	NSLog(@"main load %@",appPath);
 	[appPath retain];
 	
+	NSFileManager *fm = [NSFileManager defaultManager];
+	int path_length = [[self getDefaultDir] length];
+	BOOL isDir,tempExist;
+	//tempExist = [fm fileExistsAtPath:[NSString stringWithFormat:@"%@/%@",NSHomeDirectory(),@"temp"] isDirectory:&isDir];
+	tempExist = [fm fileExistsAtPath:[self getDefaultDir] isDirectory:&isDir];
+	NSLog(@"temp exist %d %d %@",tempExist,isDir,[self getDefaultDir]);
+	if(!tempExist || (tempExist && !isDir)){
+		NSLog(@"temp directory does not exists");
+		NSString *username = NSUserName();
+		NSMutableDictionary *attr = [NSMutableDictionary dictionary]; 
+		[attr setObject:username forKey:NSFileOwnerAccountName]; 
+		[attr setObject:@"staff" forKey:NSFileGroupOwnerAccountName]; 
+		[attr setObject:[NSNumber numberWithInt:480] forKey:NSFilePosixPermissions];
+		
+		[fm createDirectoryAtPath:[self getDefaultDir] 
+								withIntermediateDirectories:NO 
+								attributes:attr error:NULL];
+		
+	}
+	
     [[ NSDistributedNotificationCenter defaultCenter ] addObserver: self
 														  selector: @selector(appNotification:)
 															  name: nil
@@ -40,6 +60,8 @@
     [authView setAuthorizationRights:&rights];
     authView.delegate = self;
     [authView updateStatus:nil];
+	
+	[fm release];
 }
 
 - (IBAction)toggleEnable:(id)sender
@@ -123,7 +145,7 @@
 - (NSString *)getDefaultDir{
 	NSString *sbDir = @"temp/";
 	NSString *path = NSHomeDirectory();
-	return [NSString stringWithFormat:@"%@%@",sbDir,path];
+	return [NSString stringWithFormat:@"%@/%@",path,sbDir];
 }
 
 - (IBAction)openDirectorySheet:(id)sender{

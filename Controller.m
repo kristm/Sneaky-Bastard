@@ -51,40 +51,12 @@
 	
 	self = [super init];
 	
-	appID = CFSTR("org.hellowala.sneakybastard");
+	appID = CFSTR("org.hellowala.sneakybastard");	
 	
-	NSFileManager *fm = [NSFileManager defaultManager];
-	snapCount = 0;
-	sbDir = @"temp/";
-	path = NSHomeDirectory();
-	fullPath =  [NSString stringWithFormat:@"%@/%@",path,sbDir];	
-	
-	[fm changeCurrentDirectoryPath:path]; 
-	BOOL isDir,b;
-	b = [fm fileExistsAtPath:sbDir isDirectory:&isDir];
-
-	if(b){
-		tableRecord = [[NSMutableArray alloc] init];
-		queue = [[NSOperationQueue alloc] init];
-	}else{
-		BOOL dirOk;
-		NSString *username = NSUserName();
-		NSMutableDictionary *attr = [NSMutableDictionary dictionary]; 
-		[attr setObject:username forKey:NSFileOwnerAccountName]; 
-		[attr setObject:@"staff" forKey:NSFileGroupOwnerAccountName]; 
-		[attr setObject:[NSNumber numberWithInt:480] forKey:NSFilePosixPermissions];
-		
-		dirOk = [fm createDirectoryAtPath:sbDir 
-							   attributes:attr];
-
-	}
+	tableRecord = [[NSMutableArray alloc] init];
+	queue = [[NSOperationQueue alloc] init];
 	
 	prefsPath = [[ self searchPrefsPath ] retain ];
-	
-	// retain or use getter/setter
-	[sbDir retain];
-	[path retain];
-	[fullPath retain];
 	
 	NSNotificationCenter *center = [[NSWorkspace sharedWorkspace] notificationCenter];
 	[center addObserver:self 

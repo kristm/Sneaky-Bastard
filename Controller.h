@@ -37,9 +37,9 @@
 	//NSTimer				*ctimer;
 
 	SneakyCamera		*sneakyCam;
-	NSString			*path;
-	NSString			*sbDir;
-	NSString			*fullPath;
+//	NSString			*path;
+//	NSString			*sbDir;
+//	NSString			*fullPath;
 	NSString			*prefsPath;
 	NSNumber			*snapCount;
 	NSOperationQueue	*queue;	
