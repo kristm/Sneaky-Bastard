@@ -140,6 +140,7 @@
 	
 	[openPanel setCanChooseFiles:NO];
 	[openPanel setCanChooseDirectories:YES];
+	[openPanel setDelegate:self];
 	NSLog(@"size %d",[openPanel contentMaxSize]);
     [openPanel beginSheetForDirectory: sheetDir
 								  file: nil
@@ -155,19 +156,9 @@
     [ NSApp endSheet: sheet ];
 	NSLog(@"sheet selection %@",[sheet directory]);
     if (returnCode == NSOKButton) {
-		NSFileManager *fm = [NSFileManager defaultManager];
-		if([fm isWritableFileAtPath:[sheet directory]] == NO){
-			NSAlert *alert = [NSAlert alertWithMessageText: @"Write Permission Not Allowed"
-											 defaultButton: @"OK"
-										   alternateButton: nil
-											   otherButton: nil
-								 informativeTextWithFormat: @"You don't have permission to use this directory. Please choose a folder that you own."];
-			[alert runModal];
-			//[alert beginSheetModalForWindow: [[self mainView] window] modalDelegate:self didEndSelector:@selector(alertDidEnd:returnCode:contextInfo:) contextInfo:nil];	
-		}else{
-			CFPreferencesAppSynchronize(appID);
-			CFPreferencesSetAppValue(CFSTR("snapshotDir"), [NSString stringWithFormat:@"%@%@",[sheet directory],@"/"], appID);		
-		}
+		CFPreferencesAppSynchronize(appID);
+		CFPreferencesSetAppValue(CFSTR("snapshotDir"), [NSString stringWithFormat:@"%@%@",[sheet directory],@"/"], appID);		
+
     }
 }
 			
@@ -187,6 +178,28 @@
 - (BOOL)isUnlocked {
     return [authView authorizationState] == SFAuthorizationViewUnlockedState;
 }
+
+// NSOpenPanel delates
+- (void)panel:(id)sender didChangeToDirectoryURL:(NSURL *)url {
+	//NSString *selectedPath = [[url absoluteString] substringFromIndex:16];
+	NSString *selectedPath = [url path];
+	NSFileManager *fm = [NSFileManager defaultManager];
+	NSLog(@"path url %@",[url path]);
+	NSLog(@"selected path %@",selectedPath);
+	NSLog(@"is writable %d",[fm isWritableFileAtPath:selectedPath]);	
+	if([fm isWritableFileAtPath:selectedPath] == NO){
+		NSAlert *alert = [NSAlert alertWithMessageText: @"Write Permission Not Allowed"
+										 defaultButton: @"OK"
+									   alternateButton: nil
+										   otherButton: nil
+							 informativeTextWithFormat: @"You don't have permission to use this directory. Please choose a folder that you own."];
+		//[alert runModal];
+		[alert beginSheetModalForWindow:sender modalDelegate:self didEndSelector:@selector(alertDidEnd:returnCode:contextInfo:) contextInfo:nil];		
+		[sender setDirectory:NSHomeDirectory()];
+
+	}
+}
+
 
 //
 // SFAuthorization delegates
