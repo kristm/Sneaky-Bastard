@@ -126,6 +126,7 @@ NSString *NoSnapshotsFound = @"NoSnapshotsFound";
 	@finally {
 		NSLog(@"exception while parsing snapshot directory. make sure to notify main app");		
 		[[NSNotificationCenter defaultCenter] postNotificationName:LoadSnapshotsFinish object:nil userInfo:nil];
+		[pool release];
 	}
 	
     [pool release];	

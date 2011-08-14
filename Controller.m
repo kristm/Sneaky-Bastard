@@ -238,6 +238,7 @@
 		NSString *emailAddress = (NSString *)CFPreferencesCopyAppValue(CFSTR("emailAddress"), appID);
 		NSString *emailSubject = (NSString *)CFPreferencesCopyAppValue(CFSTR("emailSubject"), appID);
 		NSNumber *includeNetwork = (NSNumber *)CFPreferencesCopyAppValue(CFSTR("includeNetwork"), appID);
+		
 				
 		// setup smtp credentials
 		NSMutableDictionary *authInfo = [NSMutableDictionary dictionary];

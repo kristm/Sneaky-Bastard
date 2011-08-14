@@ -336,6 +336,8 @@
 	CFPreferencesSetAppValue(CFSTR("snapshotDelay"), [NSNumber numberWithInt:[delaySeconds intValue]], appID );
 	CFPreferencesSetAppValue(CFSTR("isDelayOnlyWakeup"), [NSNumber numberWithBool:[delayOnWakeup  state]], appID );
 	CFPreferencesSetAppValue(CFSTR("alertLevel"), [NSNumber numberWithInt:[alertLevel integerValue]], appID);
+	CFPreferencesSetAppValue(CFSTR("smtpUsername"), [mailUsername stringValue], appID);
+	CFPreferencesSetAppValue(CFSTR("smtpPassword"), [mailPassword stringValue], appID);	
 	CFPreferencesSetAppValue(CFSTR("smtpURL"), [mailServerUrl stringValue], appID);
 	CFPreferencesSetAppValue(CFSTR("smtpPort"), [mailPort stringValue], appID);
 	CFPreferencesSetAppValue(CFSTR("emailFrom"), [mailFrom stringValue], appID);
