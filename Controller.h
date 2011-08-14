@@ -28,6 +28,7 @@
 #import "GetSnapshots.h"
 #import "MailOperation.h"
 #import "SneakyCamera.h"
+#import "FBEncryptorAES.h"
 
 
 @interface Controller : NSObject {

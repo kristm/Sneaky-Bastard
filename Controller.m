@@ -243,7 +243,8 @@
 		// setup smtp credentials
 		NSMutableDictionary *authInfo = [NSMutableDictionary dictionary];
 		[authInfo setObject:smtpUsername forKey:EDSMTPUserName];
-		[authInfo setObject:smtpPassword forKey:EDSMTPPassword];
+		[authInfo setObject:[FBEncryptorAES decryptBase64String:smtpPassword keyString:@"Cellophane flowers"]
+                            forKey:EDSMTPPassword];//decrypt before sending
 		
 		// setup email header		
 		NSMutableDictionary *headerFields = [NSMutableDictionary dictionary];

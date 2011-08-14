@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5B1AEFD513F757EB0010CE41 /* FBEncryptorAES.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B1AEFD213F757EB0010CE41 /* FBEncryptorAES.m */; };
+		5B1AEFD613F757EB0010CE41 /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B1AEFD413F757EB0010CE41 /* NSData+Base64.m */; };
+		5B1AEFD713F757EB0010CE41 /* FBEncryptorAES.h in Headers */ = {isa = PBXBuildFile; fileRef = 5B1AEFD113F757EB0010CE41 /* FBEncryptorAES.h */; };
+		5B1AEFD813F757EB0010CE41 /* FBEncryptorAES.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B1AEFD213F757EB0010CE41 /* FBEncryptorAES.m */; };
+		5B1AEFD913F757EB0010CE41 /* NSData+Base64.h in Headers */ = {isa = PBXBuildFile; fileRef = 5B1AEFD313F757EB0010CE41 /* NSData+Base64.h */; };
+		5B1AEFDA13F757EB0010CE41 /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B1AEFD413F757EB0010CE41 /* NSData+Base64.m */; };
 		5B47EAE71360462900095307 /* SneakyBastard.app in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5BFD2DC3135FC9C000E35469 /* SneakyBastard.app */; };
 		5BC9A31A13670CA100630FFF /* SecurityInterface.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BC9A31913670CA100630FFF /* SecurityInterface.framework */; };
 		5BFD2DE9135FCA2700E35469 /* EDCommon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BFD2D50135FC95F00E35469 /* EDCommon.framework */; };
@@ -76,6 +82,10 @@
 		089C167FFE841241C02AAC07 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		1058C7ADFEA557BF11CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
 		32DBCFA20370C41700C91783 /* SneakyPreferences_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SneakyPreferences_Prefix.pch; sourceTree = "<group>"; };
+		5B1AEFD113F757EB0010CE41 /* FBEncryptorAES.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBEncryptorAES.h; sourceTree = "<group>"; };
+		5B1AEFD213F757EB0010CE41 /* FBEncryptorAES.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBEncryptorAES.m; sourceTree = "<group>"; };
+		5B1AEFD313F757EB0010CE41 /* NSData+Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Base64.h"; sourceTree = "<group>"; };
+		5B1AEFD413F757EB0010CE41 /* NSData+Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Base64.m"; sourceTree = "<group>"; };
 		5BC9A31913670CA100630FFF /* SecurityInterface.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SecurityInterface.framework; path = System/Library/Frameworks/SecurityInterface.framework; sourceTree = SDKROOT; };
 		5BFD2D50135FC95F00E35469 /* EDCommon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = EDCommon.framework; sourceTree = "<group>"; };
 		5BFD2D51135FC95F00E35469 /* EDMessage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = EDMessage.framework; sourceTree = "<group>"; };
@@ -135,6 +145,7 @@
 		089C166AFE841209C02AAC07 /* SneakyPreferences */ = {
 			isa = PBXGroup;
 			children = (
+				5B1AEFCD13F757940010CE41 /* FBEncrytor */,
 				08FB77AFFE84173DC02AAC07 /* Classes */,
 				32DBCFA10370C40200C91783 /* Other Sources */,
 				089C167CFE841241C02AAC07 /* Resources */,
@@ -227,6 +238,17 @@
 			name = "Other Sources";
 			sourceTree = "<group>";
 		};
+		5B1AEFCD13F757940010CE41 /* FBEncrytor */ = {
+			isa = PBXGroup;
+			children = (
+				5B1AEFD113F757EB0010CE41 /* FBEncryptorAES.h */,
+				5B1AEFD213F757EB0010CE41 /* FBEncryptorAES.m */,
+				5B1AEFD313F757EB0010CE41 /* NSData+Base64.h */,
+				5B1AEFD413F757EB0010CE41 /* NSData+Base64.m */,
+			);
+			name = FBEncrytor;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -236,6 +258,8 @@
 			files = (
 				8D202CEA0486D31800D8A456 /* SneakyPreferences_Prefix.pch in Headers */,
 				8D202CEB0486D31800D8A456 /* SneakyPreferencesPref.h in Headers */,
+				5B1AEFD713F757EB0010CE41 /* FBEncryptorAES.h in Headers */,
+				5B1AEFD913F757EB0010CE41 /* NSData+Base64.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -351,6 +375,8 @@
 				5BFD2EA6135FCAFE00E35469 /* MailOperation.m in Sources */,
 				5BFD2EA7135FCAFE00E35469 /* SneakyCamera.m in Sources */,
 				5BFD2EA8135FCAFE00E35469 /* main.m in Sources */,
+				5B1AEFD513F757EB0010CE41 /* FBEncryptorAES.m in Sources */,
+				5B1AEFD613F757EB0010CE41 /* NSData+Base64.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -359,6 +385,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D202CF10486D31800D8A456 /* SneakyPreferencesPref.m in Sources */,
+				5B1AEFD813F757EB0010CE41 /* FBEncryptorAES.m in Sources */,
+				5B1AEFDA13F757EB0010CE41 /* NSData+Base64.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

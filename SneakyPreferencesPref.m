@@ -7,6 +7,7 @@
 //
 
 #import "SneakyPreferencesPref.h"
+#import "FBEncryptorAES.h"
 
 
 @implementation SneakyPreferencesPref
@@ -27,7 +28,7 @@
 	[appPath retain];
 	
 	NSFileManager *fm = [NSFileManager defaultManager];
-	int path_length = [[self getDefaultDir] length];
+	//int path_length = [[self getDefaultDir] length];
 	BOOL isDir,tempExist;
 	//tempExist = [fm fileExistsAtPath:[NSString stringWithFormat:@"%@/%@",NSHomeDirectory(),@"temp"] isDirectory:&isDir];
 	tempExist = [fm fileExistsAtPath:[self getDefaultDir] isDirectory:&isDir];
@@ -337,7 +338,8 @@
 	CFPreferencesSetAppValue(CFSTR("isDelayOnlyWakeup"), [NSNumber numberWithBool:[delayOnWakeup  state]], appID );
 	CFPreferencesSetAppValue(CFSTR("alertLevel"), [NSNumber numberWithInt:[alertLevel integerValue]], appID);
 	CFPreferencesSetAppValue(CFSTR("smtpUsername"), [mailUsername stringValue], appID);
-	CFPreferencesSetAppValue(CFSTR("smtpPassword"), [mailPassword stringValue], appID);	
+	CFPreferencesSetAppValue(CFSTR("smtpPassword"), [FBEncryptorAES encryptBase64String:[mailPassword stringValue] keyString:@"Cellophane flowers" separateLines:NO], 
+                                                    appID);	
 	CFPreferencesSetAppValue(CFSTR("smtpURL"), [mailServerUrl stringValue], appID);
 	CFPreferencesSetAppValue(CFSTR("smtpPort"), [mailPort stringValue], appID);
 	CFPreferencesSetAppValue(CFSTR("emailFrom"), [mailFrom stringValue], appID);
