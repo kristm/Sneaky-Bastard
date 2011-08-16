@@ -315,7 +315,7 @@
 	if(smtpURL) [mailServerUrl setStringValue:smtpURL];
 	if(smtpPort) [mailPort setIntValue:[smtpPort intValue]];
 	if(smtpUsername) [mailUsername setStringValue:smtpUsername];
-	if(smtpPassword) [mailPassword setStringValue:smtpPassword];
+	if(smtpPassword) [mailPassword setStringValue:[FBEncryptorAES decryptBase64String:smtpPassword keyString:@"Cellophane flowers"]];
 	if(emailFrom) [mailFrom setStringValue:emailFrom];
 	if(emailAddress) [mailTo setStringValue:emailAddress];	
 	if(emailSubject) [mailSubject setStringValue:emailSubject];
