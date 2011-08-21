@@ -622,6 +622,7 @@
     //NSString *mainString = [infoDict valueForKey:@"CFBundleShortVersionString"];
     NSString *subString = [infoDict valueForKey:@"CFBundleVersion"];
     //return [NSString stringWithFormat:@"Version %@ (%@)", mainString, subString];
+	NSLog(@"sneaky version %@",subString);
 	return [NSString stringWithFormat:@"Version %@", subString];
 }
 

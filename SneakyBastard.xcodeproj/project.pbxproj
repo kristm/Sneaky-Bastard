@@ -107,7 +107,7 @@
 		5BFD2EA0135FCADF00E35469 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		5BFD2EB5135FCC0200E35469 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		8D202CF70486D31800D8A456 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		8D202CF80486D31800D8A456 /* SneakyBastard.prefPane */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SneakyBastard.prefPane; sourceTree = BUILT_PRODUCTS_DIR; };
+		8D202CF80486D31800D8A456 /* SneakyPreferences.prefPane */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SneakyPreferences.prefPane; sourceTree = BUILT_PRODUCTS_DIR; };
 		F506C035013D953901CA16C8 /* PreferencePanes.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PreferencePanes.framework; path = /System/Library/Frameworks/PreferencePanes.framework; sourceTree = "<absolute>"; };
 		F506C03C013D9D7901CA16C8 /* SneakyPreferencesPref.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SneakyPreferencesPref.h; sourceTree = "<group>"; };
 		F506C03D013D9D7901CA16C8 /* SneakyPreferencesPref.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SneakyPreferencesPref.m; sourceTree = "<group>"; };
@@ -223,7 +223,7 @@
 		19C28FB8FE9D52D311CA2CBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				8D202CF80486D31800D8A456 /* SneakyBastard.prefPane */,
+				8D202CF80486D31800D8A456 /* SneakyPreferences.prefPane */,
 				5BFD2DC3135FC9C000E35469 /* SneakyBastard.app */,
 			);
 			name = Products;
@@ -303,7 +303,7 @@
 			name = SneakyPreferences;
 			productInstallPath = "$(HOME)/Library/PreferencePanes";
 			productName = SneakyPreferences;
-			productReference = 8D202CF80486D31800D8A456 /* SneakyBastard.prefPane */;
+			productReference = 8D202CF80486D31800D8A456 /* SneakyPreferences.prefPane */;
 			productType = "com.apple.product-type.bundle";
 		};
 /* End PBXNativeTarget section */
@@ -494,7 +494,9 @@
 				GCC_ENABLE_OBJC_GC = supported;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				ONLY_ACTIVE_ARCH = YES;
 				PREBINDING = NO;
+				PRODUCT_NAME = SneakyBastard;
 				SDKROOT = macosx10.6;
 				VALID_ARCHS = "i386 ppc x86_64";
 			};
@@ -541,12 +543,16 @@
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
 				);
+				GCC_DYNAMIC_NO_PIC = YES;
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_OBJC_GC = unsupported;
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
 				INFOPLIST_FILE = "SneakyBastard-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
+				MACOSX_DEPLOYMENT_TARGET = 10.5;
+				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = (
 					"-framework",
 					Foundation,
