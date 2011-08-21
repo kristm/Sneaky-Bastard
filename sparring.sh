@@ -5,6 +5,7 @@
 
 isEnabled=`defaults read org.hellowala.sneakybastard enableSneaky`
 
+echo `date`
 if [ $isEnabled -eq 1 ];
 then
     echo "Sneaky should be up"
