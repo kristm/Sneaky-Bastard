@@ -28,17 +28,20 @@
 #import "GetSnapshots.h"
 #import "MailOperation.h"
 #import "SneakyCamera.h"
+#import "FBEncryptorAES.h"
 
 
 @interface Controller : NSObject {
 @private
+	CFStringRef appID;
 	NSStatusItem		*_statusItem;
 	//NSTimer				*ctimer;
 
 	SneakyCamera		*sneakyCam;
-	NSString			*path;
-	NSString			*sbDir;
-	NSString			*fullPath;
+//	NSString			*path;
+//	NSString			*sbDir;
+//	NSString			*fullPath;
+	NSString			*prefsPath;
 	NSNumber			*snapCount;
 	NSOperationQueue	*queue;	
 	NSMutableArray		*tableRecord;
@@ -64,9 +67,9 @@
 - (void)actionQuit:(id)sender;
 - (void)quickSnap:(id)sender;
 
+- (void)prefsNotification:(NSNotification*)aNotification;
 
-
-- (IBAction) setOverwriteSnapshot:(id)sender;
+//- (IBAction) setOverwriteSnapshot:(id)sender;
 - (IBAction) aboutWindowController: (id) sender;
 - (IBAction) prefWindowController: (id) sender;
 - (IBAction) prefTestEmail:(id)sender;

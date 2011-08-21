@@ -29,6 +29,7 @@ extern NSString *EmailSentSuccess;
 extern NSString *EmailSentFail;
 
 @interface MailOperation : NSOperation {
+	CFStringRef				appID;
 	NSArray*				attachments;
 	NSArray*				ipAddresses;
 	NSDictionary*			headers;

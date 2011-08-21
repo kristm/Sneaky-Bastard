@@ -63,59 +63,71 @@ NSString *NoSnapshotsFound = @"NoSnapshotsFound";
 	NSString* sourceDirectoryFilePath = nil;
 	NSDirectoryEnumerator* sourceDirectoryFilePathEnumerator = [[NSFileManager defaultManager] enumeratorAtPath:rootPath];
 	
-	while (sourceDirectoryFilePath = [sourceDirectoryFilePathEnumerator nextObject])
-	{
-		/*if ([self isCancelled])
-		 {
-		 break;	// user cancelled this operation
-		 }*/
-		//NSLog(@"get path=============");
-		[sourceDirectoryFilePathEnumerator skipDescendents];		
-		NSDictionary *sourceDirectoryFileAttributes = [sourceDirectoryFilePathEnumerator fileAttributes];
-		
-		NSString *sourceDirectoryFileType = [sourceDirectoryFileAttributes objectForKey:NSFileType];
-		
-		if ([sourceDirectoryFileType isEqualToString:NSFileTypeRegular] == YES)
+	@try{
+		while (sourceDirectoryFilePath = [sourceDirectoryFilePathEnumerator nextObject])
 		{
-			NSString *fullSourceDirectoryFilePath = [rootPath stringByAppendingPathComponent:sourceDirectoryFilePath];
+			/*if ([self isCancelled])
+			 {
+			 break;	// user cancelled this operation
+			 }*/
+			//NSLog(@"get path=============");
+			[sourceDirectoryFilePathEnumerator skipDescendents];		
+			NSDictionary *sourceDirectoryFileAttributes = [sourceDirectoryFilePathEnumerator fileAttributes];
+			
+			NSString *sourceDirectoryFileType = [sourceDirectoryFileAttributes objectForKey:NSFileType];
+			
+			if ([sourceDirectoryFileType isEqualToString:NSFileTypeRegular] == YES)
+			{
+				NSString *fullSourceDirectoryFilePath = [rootPath stringByAppendingPathComponent:sourceDirectoryFilePath];
 
-			
-			NSString* loadPath = fullSourceDirectoryFilePath;
-			
-			NSPredicate *bPredicate = [NSPredicate predicateWithFormat:@"SELF beginswith 'bbb'"];
-			if([bPredicate evaluateWithObject:[loadPath lastPathComponent]]){
 				
-				FSRef ref;
-				Boolean isDirectory;
-				FSPathMakeRef((const UInt8 *)[loadPath fileSystemRepresentation], &ref, &isDirectory); // no error checking
-				//NSLog(@"ref %@",[loadPath lastPathComponent]);
-				FSCatalogInfo catInfo;
-				FSGetCatalogInfo(&ref,  (kFSCatInfoContentMod | kFSCatInfoDataSizes), &catInfo, nil, nil, nil); // no error checking
+				NSString* loadPath = fullSourceDirectoryFilePath;
 				
-				CFAbsoluteTime cfTime;
-				UCConvertUTCDateTimeToCFAbsoluteTime(&catInfo.contentModDate, &cfTime); // no error checking
-				CFDateRef dateRef = nil;
-				dateRef = CFDateCreate(kCFAllocatorDefault, cfTime);	
+				NSPredicate *bPredicate = [NSPredicate predicateWithFormat:@"SELF beginswith 'bbb'"];
+				if([bPredicate evaluateWithObject:[loadPath lastPathComponent]]){
+					
+					FSRef ref;
+					Boolean isDirectory;
+					FSPathMakeRef((const UInt8 *)[loadPath fileSystemRepresentation], &ref, &isDirectory); // no error checking
+					//NSLog(@"ref %@",[loadPath lastPathComponent]);
+					FSCatalogInfo catInfo;
+					FSGetCatalogInfo(&ref,  (kFSCatInfoContentMod | kFSCatInfoDataSizes), &catInfo, nil, nil, nil); // no error checking
+					
+					CFAbsoluteTime cfTime;
+					UCConvertUTCDateTimeToCFAbsoluteTime(&catInfo.contentModDate, &cfTime); // no error checking
+					CFDateRef dateRef = nil;
+					dateRef = CFDateCreate(kCFAllocatorDefault, cfTime);	
+					
+					NSDateFormatter* formatter = [[[NSDateFormatter alloc] init] autorelease];
+					[formatter setTimeStyle:NSDateFormatterNoStyle];
+					[formatter setDateStyle:NSDateFormatterShortStyle];
+					NSString *modDateStr = [formatter stringFromDate:(NSDate*)dateRef];
+					
+					NSDictionary *info = [NSDictionary dictionaryWithObjectsAndKeys:
+										  [loadPath lastPathComponent], @"name",
+										  modDateStr, @"created",nil];		
+					NSLog(@"snapshot found");
+					[[NSNotificationCenter defaultCenter] postNotificationName:LoadSnapshotsFinish object:nil userInfo:info];
+				}
 				
-				NSDateFormatter* formatter = [[[NSDateFormatter alloc] init] autorelease];
-				[formatter setTimeStyle:NSDateFormatterNoStyle];
-				[formatter setDateStyle:NSDateFormatterShortStyle];
-				NSString *modDateStr = [formatter stringFromDate:(NSDate*)dateRef];
-				
-				NSDictionary *info = [NSDictionary dictionaryWithObjectsAndKeys:
-									  [loadPath lastPathComponent], @"name",
-									  modDateStr, @"created",nil];		
-				NSLog(@"snapshot found");
-				[[NSNotificationCenter defaultCenter] postNotificationName:LoadSnapshotsFinish object:nil userInfo:info];
+			}else{
+
+				//[[NSNotificationCenter defaultCenter] postNotificationName:NoSnapshotsFound object:nil userInfo:nil];
 			}
-			
-		}else{
-
-			//[[NSNotificationCenter defaultCenter] postNotificationName:NoSnapshotsFound object:nil userInfo:nil];
 		}
+		NSLog(@"thread finished");
 	}
-	NSLog(@"thread finished");
 
+	@catch (NSException *e) {
+		NSLog(@"exception while parsing snapshot directory");
+		[[NSNotificationCenter defaultCenter] postNotificationName:LoadSnapshotsFinish object:nil userInfo:nil];
+	}
+	
+	@finally {
+		NSLog(@"exception while parsing snapshot directory. make sure to notify main app");		
+		[[NSNotificationCenter defaultCenter] postNotificationName:LoadSnapshotsFinish object:nil userInfo:nil];
+		[pool release];
+	}
 	
     [pool release];	
 	

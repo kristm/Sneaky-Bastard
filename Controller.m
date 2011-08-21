@@ -36,6 +36,8 @@
 - (void)startSneaky:(NSString *)fpath;
 - (BOOL) useSmtpSettings;
 - (void)alertTimeOut:(NSTimer *)mTimer;
+- (NSString*)searchPrefsPath;
+
 @end
 
 #define	TIMEOUT 30
@@ -49,36 +51,12 @@
 	
 	self = [super init];
 	
-	NSFileManager *fm = [NSFileManager defaultManager];
-	snapCount = 0;
-	sbDir = @"temp/";
-	path = NSHomeDirectory();
-	fullPath =  [NSString stringWithFormat:@"%@/%@",path,sbDir];	
-	[fm changeCurrentDirectoryPath:path]; 
-	BOOL isDir,b;
-	b = [fm fileExistsAtPath:sbDir isDirectory:&isDir];
-
-	if(b){
-		tableRecord = [[NSMutableArray alloc] init];
-		queue = [[NSOperationQueue alloc] init];
-	}else{
-		BOOL dirOk;
-		NSString *username = NSUserName();
-		NSMutableDictionary *attr = [NSMutableDictionary dictionary]; 
-		[attr setObject:username forKey:NSFileOwnerAccountName]; 
-		[attr setObject:@"staff" forKey:NSFileGroupOwnerAccountName]; 
-		[attr setObject:[NSNumber numberWithInt:480] forKey:NSFilePosixPermissions];
-		
-		dirOk = [fm createDirectoryAtPath:sbDir 
-							   attributes:attr];
-
-	}
+	appID = CFSTR("org.hellowala.sneakybastard");	
 	
-
-	// retain or use getter/setter
-	[sbDir retain];
-	[path retain];
-	[fullPath retain];
+	tableRecord = [[NSMutableArray alloc] init];
+	queue = [[NSOperationQueue alloc] init];
+	
+	prefsPath = [[ self searchPrefsPath ] retain ];
 	
 	NSNotificationCenter *center = [[NSWorkspace sharedWorkspace] notificationCenter];
 	[center addObserver:self 
@@ -95,9 +73,8 @@
 			selector:@selector(screenSaverDidStop:)
 			name:@"com.apple.screensaver.didstop" object:nil];
 	
-	//NSDictionary *defaults = [NSDictionary dictionaryWithObject:[NSNumber numberWithBool:NO] forKey:@"includeNetwork"];
-	NSDictionary *defaults = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:NO],@"includeNetwork",[NSNumber numberWithInt:120],@"snapshotDelay",[NSNumber numberWithBool:YES],@"isDelayOnlyWakeup",[NSNumber numberWithInt:0],@"alertLevel",nil];
-	[[NSUserDefaults standardUserDefaults] registerDefaults: defaults];	
+
+
 	
 	return self;
 }
@@ -106,27 +83,33 @@
 {
 
 	NSLog(@"awake from nib");
-	NSLog(@"network? %d",[[NSUserDefaults standardUserDefaults] boolForKey:@"includeNetwork"]);	
-	NSLog(@"delay: %d",[[NSUserDefaults standardUserDefaults] integerForKey:@"snapshotDelay"]);
-	NSLog(@"do i delay %d",[[NSUserDefaults standardUserDefaults] boolForKey:@"isDelayOnlyWakeup"]);
-	NSLog(@"alert level %d",[[NSUserDefaults standardUserDefaults] boolForKey:@"alertLevel"]);
-	//int delay = [[NSUserDefaults standardUserDefaults] integerForKey:@"snapshotDelay"];
-	/*if( [txtDelay stringValue] == nil){
-		[[NSUserDefaults standardUserDefaults] setInteger:120 forKey:@"snapshotDelay"];
+	NSNumber *pref_delay = (NSNumber*)CFPreferencesCopyAppValue( CFSTR("snapshotDelay"), appID);
+	NSNumber *pref_delayOnlyWakeup = (NSNumber*)CFPreferencesCopyAppValue( CFSTR("isDelayOnlyWakeup"), appID );
+	NSNumber *alertLevel = (NSNumber *)CFPreferencesCopyAppValue(CFSTR("alertLevel"), appID);
+	
+	NSLog(@"delay: %d",[pref_delay intValue] );
+	NSLog(@"do i delay %d",[pref_delayOnlyWakeup boolValue] );
+	NSLog(@"alert level %d",[alertLevel intValue]);
+	NSLog(@"snapshot dir %@",(NSString *)CFPreferencesCopyAppValue(CFSTR("snapshotDir"), appID));
+	NSLog(@"email server %@",(NSString *)CFPreferencesCopyAppValue(CFSTR("smtpURL"), appID));
 
-	}*/
-	//[checkOnlyonwakeup setEnabled:false];
-	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(anyThread_handleLoadedSnapshots:) name:LoadSnapshotsFinish object:nil];	
-	if([[NSUserDefaults standardUserDefaults] boolForKey:@"isDelayOnlyWakeup"]){
-		[self startSneaky:fullPath];		
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(anyThread_handleLoadedSnapshots:) name:LoadSnapshotsFinish object:nil];
+	
+    [[ NSDistributedNotificationCenter defaultCenter ] addObserver: self
+														  selector: @selector(prefsNotification:)
+															  name: nil
+															object: @"SneakyPreferencesPref"
+												suspensionBehavior: NSNotificationSuspensionBehaviorCoalesce
+	 ];
+	
+	NSString *customPath = (NSString *)CFPreferencesCopyAppValue(CFSTR("snapshotDir"), appID);
+	if([pref_delayOnlyWakeup boolValue]){
+		[self startSneaky:customPath];		
 	}else{
 		[self performSelector: @selector(startSneaky:)
-				   withObject:fullPath
-				   afterDelay:[[NSUserDefaults standardUserDefaults] integerForKey:@"snapshotDelay"]];			
-		
+				   withObject:customPath
+				   afterDelay:[pref_delay intValue]];					
 	}
-	//[self startSneaky:fullPath];
-	
 }
 
 
@@ -142,7 +125,7 @@
 	NSLog(@"start sneaky");
 	
 	//[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(anyThread_handleNoSnapshots:) name:NoSnapshotsFound object:nil];		
-	[self loadSnapshotsStart:fullPath];	
+	[self loadSnapshotsStart:(NSString *)CFPreferencesCopyAppValue(CFSTR("snapshotDir"), appID)];	
 	[self setTimer: [NSTimer scheduledTimerWithTimeInterval: 1.0
 													 target: self
 												   selector: @selector(checkProgress:)
@@ -156,28 +139,32 @@
 	NSLog(@"going to sleep %@",timer);
 	[NSObject cancelPreviousPerformRequestsWithTarget: self
 											 selector:@selector(startSneaky:)
-											   object:fullPath];
+											   object:(NSString *)CFPreferencesCopyAppValue(CFSTR("snapshotDir"), appID)];
 	[queue cancelAllOperations];	
 	[timer invalidate];
 	[self setTimer:nil];	
 }
 
 - (void) machineDidWake:(NSNotification *)notification{
-	NSLog(@"sneaky wake up! %d seconds",[[NSUserDefaults standardUserDefaults] integerForKey:@"snapshotDelay"]);
+	NSNumber *pref_delay = (NSNumber*)CFPreferencesCopyAppValue( CFSTR("snapshotDelay"), appID);
+	NSLog(@"sneaky wake up! %d seconds",[pref_delay intValue]);
 
 	//[self startSneaky:fullPath];
 	[self performSelector: @selector(startSneaky:)
-				withObject:fullPath
-				afterDelay:[[NSUserDefaults standardUserDefaults] integerForKey:@"snapshotDelay"]];
+				withObject:(NSString *)CFPreferencesCopyAppValue(CFSTR("snapshotDir"), appID)
+				afterDelay:[pref_delay intValue]];
 }
 
 - (void) screenSaverDidStop:(NSNotification *)notification{
-	NSLog(@"back from idle time %d",[[NSUserDefaults standardUserDefaults] integerForKey:@"alertLevel"]);
-	if([[NSUserDefaults standardUserDefaults] integerForKey:@"alertLevel"] == 1){
+	NSNumber *pref_delay = (NSNumber*)CFPreferencesCopyAppValue( CFSTR("snapshotDelay"), appID);
+	NSNumber *pref_delayOnlyWakeup = (NSNumber*)CFPreferencesCopyAppValue( CFSTR("isDelayOnlyWakeup"), appID );	
+	NSNumber *alertLevel = (NSNumber *)CFPreferencesCopyAppValue(CFSTR("alertLevel"), appID);
+	NSLog(@"back from idle time %d",[alertLevel intValue]);
+	if([alertLevel intValue] == 1){
 		
 		[self performSelector: @selector(startSneaky:)
-				   withObject:fullPath
-				   afterDelay:([[NSUserDefaults standardUserDefaults] boolForKey:@"isDelayOnlyWakeup"]) ? 0.5 : [[NSUserDefaults standardUserDefaults] integerForKey:@"snapshotDelay"]];		
+				   withObject:(NSString *)CFPreferencesCopyAppValue(CFSTR("snapshotDir"), appID)
+				   afterDelay:([pref_delayOnlyWakeup boolValue]) ? 0.5 : [pref_delay intValue]];		
 	}
 }
 
@@ -243,17 +230,27 @@
 		NSLog(@"network is not connected");
 	}else{
 		NSLog(@"credentials complete");
+		//NSString *smtpURL = (NSString *)CFPreferencesCopyAppValue(CFSTR("smtpURL"), appID);
+		//NSNumber *smtpPort = (NSNumber *)CFPreferencesCopyAppValue(CFSTR("smtpPort"), appID);
+		NSString *smtpUsername = (NSString *)CFPreferencesCopyAppValue(CFSTR("smtpUsername"), appID);
+		NSString *smtpPassword = (NSString *)CFPreferencesCopyAppValue(CFSTR("smtpPassword"), appID);
+		NSString *emailFrom = (NSString *)CFPreferencesCopyAppValue(CFSTR("emailFrom"), appID);
+		NSString *emailAddress = (NSString *)CFPreferencesCopyAppValue(CFSTR("emailAddress"), appID);
+		NSString *emailSubject = (NSString *)CFPreferencesCopyAppValue(CFSTR("emailSubject"), appID);
+		NSNumber *includeNetwork = (NSNumber *)CFPreferencesCopyAppValue(CFSTR("includeNetwork"), appID);
 		
+				
 		// setup smtp credentials
 		NSMutableDictionary *authInfo = [NSMutableDictionary dictionary];
-		[authInfo setObject:[[NSUserDefaults standardUserDefaults] stringForKey:@"smtpUsername"] forKey:EDSMTPUserName];
-		[authInfo setObject:[[NSUserDefaults standardUserDefaults] stringForKey:@"smtpPassword"] forKey:EDSMTPPassword];
+		[authInfo setObject:smtpUsername forKey:EDSMTPUserName];
+		[authInfo setObject:[FBEncryptorAES decryptBase64String:smtpPassword keyString:@"Cellophane flowers"]
+                            forKey:EDSMTPPassword];
 		
-		// setup email header
+		// setup email header		
 		NSMutableDictionary *headerFields = [NSMutableDictionary dictionary];
-		[headerFields setObject:[[NSUserDefaults standardUserDefaults] stringForKey:@"emailFrom"] forKey:@"From"]; 
-		[headerFields setObject:[[NSUserDefaults standardUserDefaults] stringForKey:@"emailAddress"] forKey:@"To"]; 	
-		[headerFields setObject:[[NSUserDefaults standardUserDefaults] stringForKey:@"emailSubject"] forKey:@"Subject"];
+		[headerFields setObject:emailFrom forKey:@"From"]; 
+		[headerFields setObject:emailAddress forKey:@"To"]; 	
+		[headerFields setObject:emailSubject forKey:@"Subject"];
 		
 		// setup attachments
 		id item = NULL;
@@ -261,10 +258,11 @@
 		NSMutableArray* attachmentList = [NSMutableArray array];
 		NSMutableString* imgPath;
 		NSMutableArray* ipAddress = [NSMutableArray array];
+		NSString *customPath = (NSString *)CFPreferencesCopyAppValue(CFSTR("snapshotDir"), appID);
 		
 		while (item=[iterator nextObject]) 
 		{
-			imgPath = [NSString stringWithFormat:@"%@/%@",fullPath,[item valueForKey:@"name"]];
+			imgPath = [NSString stringWithFormat:@"%@/%@",customPath,[item valueForKey:@"name"]];
 			NSData *imgData = [[NSData alloc] initWithContentsOfFile:imgPath];
 			[attachmentList addObject:[EDObjectPair pairWithObjects:imgData:[imgPath lastPathComponent]]];
 		}
@@ -275,7 +273,7 @@
 		[queue cancelAllOperations];
 		NSLog(@"sending mail");
 		
-		if([[NSUserDefaults standardUserDefaults] boolForKey:@"includeNetwork"] == true){
+		if([includeNetwork boolValue] == true){
 			NSEnumerator *addresses = [[[NSHost currentHost] addresses] objectEnumerator];
 			NSString *address;
 			while (address = [addresses nextObject])
@@ -299,7 +297,7 @@
 			
 			NSLog(@"machine id: %@",ipAddress);
 		}else{
-			[ipAddress addObject:@"Sneaky Bastard version 0.1.6"];
+			[ipAddress addObject:@"Sneaky Bastard version 0.1.7"];
 		}
 		
 		secs = to = 0;
@@ -309,7 +307,7 @@
 													   selector: @selector(timerIncrement:)
 													   userInfo: nil
 														repeats: YES]];			
-		MailOperation* mailSnaps = [[MailOperation alloc] initWithRootPath:fullPath queue:queue attachList:attachmentList header:headerFields auth:authInfo ipAddr:ipAddress];
+		MailOperation* mailSnaps = [[MailOperation alloc] initWithRootPath:customPath queue:queue attachList:attachmentList header:headerFields auth:authInfo ipAddr:ipAddress];
 		
 		[queue addOperation: mailSnaps];	
 
@@ -338,8 +336,14 @@
 
 - (BOOL) useSmtpSettings
 {
-	//[[NSUserDefaults standardUserDefaults] boolForKey:@"overwriteSnapshot"]
-	return ([[NSUserDefaults standardUserDefaults] stringForKey:@"smtpURL"] != nil && [[NSUserDefaults standardUserDefaults] stringForKey:@"smtpPort"] != nil && [[NSUserDefaults standardUserDefaults] stringForKey:@"smtpUsername"] != nil && [[NSUserDefaults standardUserDefaults] stringForKey:@"smtpPassword"] != nil && [[NSUserDefaults standardUserDefaults] stringForKey:@"emailAddress"] != nil && [[NSUserDefaults standardUserDefaults] stringForKey:@"emailSubject"] != nil );
+	return ((NSString *)CFPreferencesCopyAppValue(CFSTR("smtpURL"), appID) != nil && 
+			(NSNumber *)CFPreferencesCopyAppValue(CFSTR("smtpPort"), appID) != nil &&
+			(NSString *)CFPreferencesCopyAppValue(CFSTR("smtpUsername"), appID) != nil &&
+			(NSString *)CFPreferencesCopyAppValue(CFSTR("smtpPassword"), appID) != nil &&
+			(NSString *)CFPreferencesCopyAppValue(CFSTR("emailFrom"), appID) != nil &&
+			(NSString *)CFPreferencesCopyAppValue(CFSTR("emailAddress"), appID) != nil &&
+			(NSString *)CFPreferencesCopyAppValue(CFSTR("emailSubject"), appID) != nil &&
+			(NSNumber *)CFPreferencesCopyAppValue(CFSTR("includeNetwork"), appID) != nil);
 }
 
 
@@ -460,11 +464,12 @@
 	NSEnumerator* iterator = [tableRecord objectEnumerator]; 	
 	NSFileManager* fileManager = [NSFileManager defaultManager];
 	NSMutableString* imgPath;
+	NSString* customPath = (NSString *)CFPreferencesCopyAppValue(CFSTR("snapshotDir"), appID);
 	//int total = [self numberOfRowsInTableView:tableView];
-
+	
 	while (item=[iterator nextObject]) 
 	{
-		imgPath = [NSString stringWithFormat:@"%@%@",fullPath,[item valueForKey:@"name"]];
+		imgPath = [NSString stringWithFormat:@"%@%@",customPath,[item valueForKey:@"name"]];
 		[fileManager removeItemAtPath:imgPath error:NULL];
 		
 		NSLog(@"delete --> %@",imgPath);
@@ -476,15 +481,21 @@
 
 
 - (void) actionQuit:(id)sender {
+	[[ NSDistributedNotificationCenter defaultCenter ] postNotificationName: @"SBQuit"
+																	 object: @"Controller"
+																   userInfo: nil
+														 deliverImmediately: YES
+	 ];	
 	[NSApp terminate:sender];
 }
 
 
 - (void) quickSnap:(id)sender{
-	
 	NSString *fn;
-	
-	if([[NSUserDefaults standardUserDefaults] boolForKey:@"overwriteSnapshot"] == 1){
+	CFPreferencesAppSynchronize(appID);
+	NSNumber *overwriteSnapshots = (NSNumber *)CFPreferencesCopyAppValue(CFSTR("overwriteSnapshot"), appID);
+	NSLog(@"overwrite snaps %d",[overwriteSnapshots intValue]);
+	if([overwriteSnapshots intValue] == 1){
 		NSDate *now = [NSDate date];
 	
 		NSDateFormatter* formatter = [[[NSDateFormatter alloc] init] autorelease];
@@ -498,7 +509,8 @@
 		
 	}
 	sneakyCam = [[SneakyCamera alloc] init] ;
-	[sneakyCam setImgPath:[path stringByAppendingFormat:@"/%@",sbDir]];
+	//[sneakyCam setImgPath:[path stringByAppendingFormat:@"/%@",sbDir]];
+	[sneakyCam setImgPath:(NSString *)CFPreferencesCopyAppValue(CFSTR("snapshotDir"), appID)];
 	[sneakyCam setImgName:fn];
 	
 }
@@ -551,36 +563,56 @@
 
 - (id)statusItem
 {
+	NSLog(@"status item");
+	NSNumber *showMenu = (NSNumber*)CFPreferencesCopyAppValue( CFSTR("showInMenubar"), appID );
 	if (_statusItem == nil)
 	{
-		//NSMenu		*menu;
-		//NSMenuItem *bmenu;
-		NSImage *img;
-		
+		if([showMenu boolValue]){
+			NSLog(@"showing menubar icon");
+			NSImage *img;
+			
+			img = [NSImage imageNamed:@"smile"];
+			_statusItem = [[[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength] retain];
+			[_statusItem setImage:img];
+			[_statusItem setHighlightMode:YES];
+			[_statusItem setEnabled:YES];
+			
 
-		img = [NSImage imageNamed:@"smile"];
-		_statusItem = [[[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength] retain];
-		[_statusItem setImage:img];
-		[_statusItem setHighlightMode:YES];
-		[_statusItem setEnabled:YES];
-		
-
-		[_statusItem setMenu:menuItemMenu];
-		
-		[img release];
-		//[menu release];		
-
+			[_statusItem setMenu:menuItemMenu];
+			
+			[img release];
+			//[menu release];		
+		}
 		
 	}
 	return _statusItem;
 }
 
 
-- (IBAction) setOverwriteSnapshot:(id)sender{
+- (NSString*)searchPrefsPath
+{
+    NSString *home = [[ NSString stringWithString: @"~/Library/PreferencePanes/" ] stringByExpandingTildeInPath ];
 	
-	NSLog(@"overwrite snapshot %d",[[NSUserDefaults standardUserDefaults] boolForKey:@"overwriteSnapshot"]);
-	
+    NSArray *testArray = [ NSArray arrayWithObjects:
+						  [ home stringByAppendingPathComponent: @"SneakyBastard.prefPane/" ],
+						  @"/Library/PreferencePanes/SneakyBastard.prefPane/",
+						  @"/System/Library/PreferencePanes/SneakyBastard.prefPane/",
+						  nil ];
+    NSEnumerator *e = [ testArray objectEnumerator ];
+    NSString *path;
+    BOOL isDir;
+    while (path = [ e nextObject ])
+        if ([[ NSFileManager defaultManager ] fileExistsAtPath: path isDirectory: &isDir ])
+            if (isDir)
+                return path;
+    return nil;
 }
+
+//- (IBAction) setOverwriteSnapshot:(id)sender{
+//	
+//	NSLog(@"overwrite snapshot %d",[[NSUserDefaults standardUserDefaults] boolForKey:@"overwriteSnapshot"]);
+//	
+//}
 
 - (NSString *)versionString
 {
@@ -595,7 +627,7 @@
 
 - (NSString*)copyrightString
 {
-    return @"Copyright © 2010 \nKrist Menina\nkrist@hellowala.org";
+    return @"Copyright © 2011 \nKrist Menina\nkrist@hellowala.org";
 }
 - (float)appNameLabelFontSize
 {
@@ -618,12 +650,34 @@
 
 - (IBAction) prefWindowController: (id) sender
 {
-	[prefWindow setLevel:NSStatusWindowLevel];
-	[prefWindow makeKeyAndOrderFront:nil];
-	[prefWindow center];
+	NSLog(@"open prefs %@",prefsPath);
+	//[NSTask launchedTaskWithLaunchPath:@"/usr/bin/open" arguments:[NSArray arrayWithObject: prefsPath ]];
+	[[NSWorkspace sharedWorkspace] openFile:prefsPath];
 
-	//[versionText setStringValue:[self printVersion]];	
 }
+
+// This method handles all notifications sent by the preferencePane
+-(void)prefsNotification:(NSNotification*)aNotification
+{
+	NSLog(@"notification from prefpane %@",[aNotification name]);
+	if ([[ aNotification name ] isEqualTo: @"SBShowMenubar" ]) {
+		NSLog(@"show in menu bar notify");
+		[self statusItem];
+	}else if([[ aNotification name] isEqualTo: @"SBHideMenubar" ]){
+		NSLog(@"hide menubar notify");
+		if(_statusItem != nil){
+			[[NSStatusBar systemStatusBar] removeStatusItem:_statusItem];
+			[_statusItem release];
+			_statusItem = nil;
+		}
+	}else if([[aNotification name] isEqualTo:@"SBQuit" ]){
+		NSLog(@"sb quit notification received");
+		//[[NSApplication sharedApplication] terminate:self];
+		[NSApp terminate:self];
+	}
+		
+}
+
 
 - (IBAction) prefTestEmail:(id)sender
 {

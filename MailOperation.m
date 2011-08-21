@@ -37,6 +37,7 @@ NSString *EmailSentFail = @"EmailSentFail";
 						ipAddr:(NSArray *)ipAddress
 {
 	self = [super init];
+	appID = CFSTR("org.hellowala.sneakybastard");
 	attachments = [aList retain];
 	headers = [hList retain];
 	authInfo = [aInfo retain];
@@ -59,17 +60,14 @@ NSString *EmailSentFail = @"EmailSentFail";
 	if ([self isCancelled] ){
 		NSLog(@"cancelled");	
 	} 
-	NSLog(@"main email loop");
+	NSString *smtpURL = (NSString *)CFPreferencesCopyAppValue(CFSTR("smtpURL"), appID);
+	NSLog(@"main email loop %@",smtpURL);
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 
 
 	NSString *text;	
 	text = @"Sent from:\r\n";
-	text = [text stringByAppendingString:[ipAddresses description]];
-
-
-
-
+	text = [text stringByAppendingString:[ipAddresses description]];	
 	
 	EDMailAgent	*mailAgent; //= [[EDMailAgent alloc] autorelease];
 	mailAgent = [EDMailAgent mailAgentForRelayHostWithName:[[NSUserDefaults standardUserDefaults] stringForKey:@"smtpURL"] port:[[NSUserDefaults standardUserDefaults] integerForKey:@"smtpPort"]]; 
