@@ -13,14 +13,14 @@ then
     if [ -z $isUp ];
     then
         echo "But it is down... Force activate"
-        userPref=`find ~/Library/PreferencePanes -name "SneakyBastard.prefPane" -print`
-        systemPref=`find /Library/PreferencePanes -name "SneakyBastard.prefPane" -print`
+        userPref=`find ~/Library/PreferencePanes -name "SneakyPreferences.prefPane" -print`
+        systemPref=`find /Library/PreferencePanes -name "SneakyPreferences.prefPane" -print`
         if [ $userPref ];
         then
-            open ~/Library/PreferencePanes/SneakyBastard.prefPane/Contents/Resources/SneakyBastard.app
+            open ~/Library/PreferencePanes/SneakyPreferences.prefPane/Contents/Resources/SneakyBastard.app
         elif [ $systemPref ];
         then
-            open /Library/PreferencePanes/SneakyBastard.prefPane/Contents/Resources/SneakyBastard.app
+            open /Library/PreferencePanes/SneakyPreferences.prefPane/Contents/Resources/SneakyBastard.app
         else
             echo "cant find SneakyBastard preference pane... Quitting"
         fi
